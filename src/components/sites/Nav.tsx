@@ -50,6 +50,9 @@ export default function Nav(props: NavProps) {
 					<ul className="flex space-x-6">
 						{/* Login  */}
 						<li className={navStyle.navItems}>
+							
+						</li>
+						<li className={navStyle.navItems}>
 							{isActive && <IconCircleUser width="1.5em" height="1.5em" className="cursor-pointer" />}
 							{!isActive && (
 								<Link

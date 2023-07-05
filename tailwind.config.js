@@ -13,6 +13,7 @@ module.exports = {
         current: "currentColor",
         primary: "#035e99",
         secondary: "#ff6600",
+        blue: '#2155E9',
         "light-text": "#000",
         "light-bg": "#EDEDED",
         'light': '#f5f5f5',
