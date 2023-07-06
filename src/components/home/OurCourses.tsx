@@ -11,8 +11,8 @@ export default function OurCourses() {
 			<div className="bg-white/80 py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
 					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-						<h1 className=" font-bold text-[50px] text-slate-800">Our Courses</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-600">Unleashing Your Full Potential with Cutting-Edge Courses</p>
+						<h1 className=" font-bold text-[50px] text-blue">Our Courses</h1>
+						<p className="mt-6 text-lg leading-8 text-gray-600 font-semibold">Unleashing Your Full Potential with Cutting-Edge Courses</p>
 					</div>
 					<div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 						{products.map(product => (
@@ -40,7 +40,7 @@ export default function OurCourses() {
 					</div>
 					<Link
 						href={ROUTES.courses.index}
-						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-secondary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
+						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-primary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
 						role="button"
 					>
 						View all courses <IconArrowRight className="ml-1" />

@@ -169,7 +169,7 @@ export default function EnrollCourse() {
 
 										<Link
 											href={ROUTES.enroll.confirm(uniqueId())}
-											className="bg-gradient-to-r from-secondary to-blue mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+											className="bg-gradient-to-r from-blue-800 to-blue mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
 											type="button"
 											data-te-ripple-init
 											data-te-ripple-color="light"
@@ -180,7 +180,7 @@ export default function EnrollCourse() {
 								</div>
 
 								{/* <!-- Right column container with background and description--> */}
-								<div className="bg-gradient-to-r from-secondary to-blue flex justify-center items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
+								<div className="bg-gradient-to-r from-blue-800 to-blue flex justify-center items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
 									<div className="px-4 py-6 md:mx-6 text-white md:p-12">
 										<h4 className="mb-6 text-xl font-semibold">Over 200 candidates are already enrolled in this course</h4>
 										<p className="text-sm">Join our amazing community and happy students who are already enrolled.</p>

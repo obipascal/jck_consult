@@ -10,8 +10,8 @@ export default function Testimonies() {
 			<div className="bg-white/80 py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
 					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-						<h1 className=" font-bold text-[50px] text-slate-800">Testimonials</h1>
-						<p className="mt-6 text-lg leading-8 text-slate-800">Discover What Our Clients Are Saying: Real Stories, Real Results</p>
+						<h1 className=" font-bold text-[50px] text-blue">Testimonials</h1>
+						<p className="mt-6 text-lg leading-8 text-slate-800 font-semibold">Discover What Our Clients Are Saying: Real Stories, Real Results</p>
 					</div>
 					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
 						<section className="text-neutral-700 dark:text-neutral-300">
@@ -24,7 +24,7 @@ export default function Testimonies() {
 											<Image alt="" width={100} height={100} src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" />
 										</div>
 										<div className="p-6">
-											<h4 className="mb-4 text-2xl font-semibold">Maria Smantha</h4>
+											<h4 className="mb-4 text-2xl font-semibold text-blue">Maria Smantha</h4>
 											<hr />
 											<p className="mt-4">
 												<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="inline-block h-7 w-7 pr-2" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@ export default function Testimonies() {
 											<Image alt="" width={100} height={100} src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" />
 										</div>
 										<div className="p-6">
-											<h4 className="mb-4 text-2xl font-semibold">Lisa Cudrow</h4>
+											<h4 className="mb-4 text-2xl font-semibold text-blue">Lisa Cudrow</h4>
 											<hr />
 											<p className="mt-4">
 												<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="inline-block h-7 w-7 pr-2" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ export default function Testimonies() {
 											<Image alt="" width={100} height={100} src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" />
 										</div>
 										<div className="p-6">
-											<h4 className="mb-4 text-2xl font-semibold">John Smith</h4>
+											<h4 className="mb-4 text-2xl font-semibold text-blue">John Smith</h4>
 											<hr />
 											<p className="mt-4">
 												<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="inline-block h-7 w-7 pr-2" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@ export default function Testimonies() {
 					</div>
 					<Link
 						href={ROUTES.testimonies}
-						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-secondary hover:border-secondary transition-all hover:text-white m-auto block shadow-lg flex items-center"
+						className="p-3 rounded-full w-fit mt-10 border border-blue bg-white  text-slate-800 hover:bg-primary hover:border-primary transition-all hover:text-white m-auto block shadow-lg flex items-center"
 						role="button"
 					>
 						Show more <IconArrowRight className="ml-1" />

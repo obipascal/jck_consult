@@ -13,7 +13,7 @@ export default function HomeHeaderSection() {
 	const images = [HeaderLady, Chart, Programming, Scrum]
 
 	return (
-		<section className="bg-gradient-to-r from-indigo-500 to-blue  pt-20" data-aos="fade-up">
+		<section className="bg-gradient-to-r from-indigo-500 to-blue-900  pt-20" data-aos="fade-up">
 			<div className=" grid sm:grid-cols-1 md:grid-cols-2 gap-4 md:px-10 xs:px-5">
 				<div className="flex justify-start relative">
 					<div className="p-5 py-10">

@@ -3,24 +3,21 @@ import React from "react"
 import IconArrowRight from "../icons/IconArrowRight"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 
-type FAQsProps = {
-	bg?: "plain" | "img"
-}
 export default function HomeFAQs() {
 	return (
 		<section className="bg-[url('/img/bg/Frame_bg.png')] bg-no-repeat bg-cover bg-center my-0">
 			<div className="bg-white/80 py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
 					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-						<h1 className=" font-bold text-[50px] text-slate-800">Support & FAQs</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-600">Got Questions? We Have Answers! Explore Our Frequently Asked Questions</p>
+						<h1 className="font-bold text-[50px] text-blue">Support & FAQs</h1>
+						<p className="mt-6 text-lg leading-8 text-gray-600 font-semibold">Got Questions? We Have Answers! Explore Our Frequently Asked Questions</p>
 					</div>
 					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
 						<div id="accordionFlushExample">
 							<div className="rounded-none border border-l-0 border-r-0 border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
 								<h2 className="mb-0" id="flush-headingOne">
 									<button
-										className="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+										className="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-blue font-bold transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none   [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
 										type="button"
 										data-te-collapse-init
 										data-te-target="#flush-collapseOne"
@@ -45,7 +42,7 @@ export default function HomeFAQs() {
 							<div className="rounded-none border border-l-0 border-r-0 border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
 								<h2 className="mb-0" id="flush-headingTwo">
 									<button
-										className="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+										className="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-blue font-bold transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none  [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
 										type="button"
 										data-te-collapse-init
 										data-te-collapse-collapsed
@@ -71,7 +68,7 @@ export default function HomeFAQs() {
 							<div className="rounded-none border border-b-0 border-l-0 border-r-0 border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
 								<h2 className="mb-0" id="flush-headingThree">
 									<button
-										className="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+										className="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-blue font-bold transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none  [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
 										type="button"
 										data-te-collapse-init
 										data-te-collapse-collapsed
@@ -99,7 +96,7 @@ export default function HomeFAQs() {
 					</div>
 					<Link
 						href={`${ROUTES.about}#faqs`}
-						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-secondary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
+						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-primary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
 						role="button"
 					>
 						Read more <IconArrowRight className="ml-1" />

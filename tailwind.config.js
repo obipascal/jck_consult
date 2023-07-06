@@ -11,9 +11,11 @@ module.exports = {
     extend: {
       colors: {
         current: "currentColor",
-        primary: "#035e99",
+        primary: "rgb(30 58 138)",
         secondary: "#ff6600",
-        blue: '#2155E9',
+        blue: 'rgb(30 58 138)',
+        'blue-900': 'rgb(30 58 138)',
+        'blue-800': 'rgb(30 64 175)',
         "light-text": "#000",
         "light-bg": "#EDEDED",
         'light': '#f5f5f5',

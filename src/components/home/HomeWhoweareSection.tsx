@@ -10,7 +10,7 @@ export default function HomeWhoweareSection() {
 	return (
 		<section className="bg-white pb-20 pt-5" id="next__h_whoweare">
 			<header data-aos="fade-up" className="px-10 mb-10 text-center">
-				<h1 className=" font-bold text-[50px] text-slate-800">Who We Are</h1>
+				<h1 className=" font-bold text-[50px] text-blue">Who We Are</h1>
 			</header>
 			<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 px-10">
 				<div data-aos="zoom-in-right" className="flex items-center justify-center">
@@ -38,7 +38,7 @@ export default function HomeWhoweareSection() {
 			</div>
 			<Link
 				href={`${ROUTES.about}#who-we-are`}
-				className="p-3 rounded-full w-fit mt-10 border bg-gradient-to-r from-indigo-500 to-blue text-white border-blue  text-slate-800 hover:bg-secondary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
+				className="p-3 rounded-full w-fit mt-10 border bg-gradient-to-r from-indigo-500 to-blue text-white border-blue  text-slate-800 hover:bg-primary hover:border-white  transition-all hover:text-white m-auto block shadow-lg flex items-center"
 				role="button"
 			>
 				Read more <IconArrowRight className="ml-1" />

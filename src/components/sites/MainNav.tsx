@@ -16,10 +16,11 @@ import Link from "next/link"
 import { capitalize } from "@JCKConsultant/lib/utils"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import MainDarkmodeToggle from "./MainDarkmodeToggle"
+import MainSidebar from "./MainSidebar"
 
 export const BilmaStoreLogo = Logo
 
-const navStyle = {
+export const navStyle = {
 	navItems: "flex items-center"
 }
 
@@ -37,7 +38,7 @@ export default function MainNav(props: MainNavProps) {
 	return (
 		<>
 			{/* Nav menu */}
-			<NavMenu />
+			<MainSidebar />
 			{/*  Nav bar */}
 			<nav
 				className={classNames({
@@ -54,19 +55,16 @@ export default function MainNav(props: MainNavProps) {
 						<h5 className="font-bold xs:invisible md:visible text-ellipsis overflow-hidden">{props?.storeName ? capitalize(props?.storeName)?.split("-")?.join(" ") : "JCK Consultant"}</h5>
 					</Link>
 					{/* Nav Items */}
-					<ul className="flex space-x-6 xs:invisible md:visible">
+					<ul className="flex space-x-6 xs:hidden md:flex">
 						<li className={navStyle.navItems}>
-							<Link
-								className="font-semibold border-b-2 border-transparent transition-all dark:hover:border-secondary dark:hover:text-secondary hover:border-secondary hover:text-primary "
-								href={ROUTES.home}
-							>
+							<Link className="font-semibold border-b-2 border-transparent transition transition-transform ease-in-out   hover:border-yellow-400 hover:text-primary " href={ROUTES.home}>
 								Home
 							</Link>
 						</li>
 						<li className={`${navStyle.navItems}  relative group/nav-dropdown`}>
 							<Link
 								href={ROUTES.courses.index}
-								className="font-semibold border-b-2 border-transparent  dark:hover:border-secondary dark:hover:text-secondary hover:border-secondary hover:text-primary flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+								className="font-semibold border-b-2 border-transparent    hover:border-yellow-400 hover:text-primary flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
 							>
 								Courses
 								<span className="ml-2 w-2">
@@ -90,20 +88,21 @@ export default function MainNav(props: MainNavProps) {
 							</div>
 						</li>
 						<li className={navStyle.navItems}>
-							<Link
-								className="font-semibold border-b-2 border-transparent transition-all dark:hover:border-secondary dark:hover:text-secondary hover:border-secondary hover:text-primary "
-								href={ROUTES.about}
-							>
+							<Link className="font-semibold border-b-2 border-transparent transition-all   hover:border-yellow-400 hover:text-primary " href={ROUTES.about}>
 								About
 							</Link>
 						</li>
 						<li className={navStyle.navItems}>
-							<Link
-								className="font-semibold border-b-2 border-transparent transition-all dark:hover:border-secondary dark:hover:text-secondary hover:border-secondary hover:text-primary "
-								href={ROUTES.contact}
-							>
+							<Link className="font-semibold border-b-2 border-transparent transition-all   hover:border-yellow-400 hover:text-primary " href={ROUTES.contact}>
 								Contact Us
 							</Link>
+						</li>
+					</ul>
+
+					<ul className="flex space-x-6 xs:flex md:hidden">
+						<li className={navStyle.navItems}>
+							{isNavMenuShown && <IconCloseOutline onClick={toggleNavMenuVisibility} className={classNames({ "cursor-pointer animate__animated animate__fadeIn": true })} width="2em" height="2em" />}
+							{!isNavMenuShown && <IconFilterRight onClick={toggleNavMenuVisibility} className={classNames({ "cursor-pointer animate__animated animate__fadeIn": true })} width="2em" height="2em" />}
 						</li>
 					</ul>
 				</div>

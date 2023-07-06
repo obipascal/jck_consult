@@ -23,8 +23,8 @@ export default function ContactInfo() {
 								<IconTelephoneFill width={"2em"} height={"2em"} />
 							</span>
 							<div className="ml-3">
-								<h1 className="font-bold ">Phone Number</h1>
-								<p className="font-semibold ">+234 9125256272</p>
+								<h1 className="font-bold text-blue">Phone Number</h1>
+								<p className="font-normal ">+234 9125256272</p>
 							</div>
 						</div>
 					</div>
@@ -36,8 +36,8 @@ export default function ContactInfo() {
 						</span>
 
 						<div className="ml-3">
-							<h1 className="font-bold ">Email</h1>
-							<p className="font-semibold ">support@jckconsulting.co.uk</p>
+							<h1 className="font-bold text-blue">Email</h1>
+							<p className="font-normal ">support@jckconsulting.co.uk</p>
 						</div>
 					</div>
 
@@ -48,7 +48,7 @@ export default function ContactInfo() {
 						</span>
 
 						<div className="ml-3">
-							<h1 className="font-bold ">Address</h1>
+							<h1 className="font-bold text-blue">Address</h1>
 							<p className="font-normal ">No 26 Ebenezer street, Byazhin Across, Kubwa</p>
 						</div>
 					</div>

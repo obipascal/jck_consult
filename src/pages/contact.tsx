@@ -1,11 +1,7 @@
 import Layout from "@JCKConsultant/components/sites/Layout"
 import Image from "next/image"
 import React from "react"
-import { Formik, Form, Field, ErrorMessage } from "formik"
 
-import AuthBackground from "@JCKConsultant/assets/img/auth/draw2.webp"
-import { ReviewValidationSchema } from "@JCKConsultant/lib/validator/reviewValidator"
-import IconGoogle from "@JCKConsultant/components/icons/IconGoogle"
 import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
@@ -33,6 +29,7 @@ export default function Contact() {
 									<div className="xs:mx-6 xs:py-10 md:p-12">
 										<form autoComplete="off">
 											<p className="mb-4">Please fill out the form below and we will contact you as soon as possible!</p>
+
 											{/* <!--Username input--> */}
 											<div className="grid xs:grid-cols-1 md:grid-cols-2 gap-4">
 												<div>
@@ -120,7 +117,7 @@ export default function Contact() {
 
 										<Link
 											href={ROUTES.enroll.confirm(uniqueId())}
-											className="bg-gradient-to-r from-secondary to-blue mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+											className="bg-gradient-to-r from-blue-800 to-blue mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
 											type="button"
 											data-te-ripple-init
 											data-te-ripple-color="light"
@@ -131,21 +128,21 @@ export default function Contact() {
 								</div>
 
 								{/* <!-- Right column container with background and description--> */}
-								<div className="bg-gradient-to-r from-secondary to-blue flex flex-col justify-start items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
+								<div className="bg-gradient-to-r from-blue-800 to-blue flex flex-col justify-start items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
 									<div className="px-4 py-6 md:mx-6 text-white md:p-12">
-										<h4 className="mb-6 text-3xl font-semibold">Get In Touch</h4>
+										<h4 className="mb-6 text-3xl font-normal">Get In Touch</h4>
 										<p className="text-sm">We would love to speak with you. Feel free to reach out using the below details.</p>
 									</div>
-									<div data-aos="fade-up" className=" grid grid-cols-1 justify-between">
+									<div data-aos="fade-up" className=" grid grid-cols-1 justify-between pl-2">
 										{/* Phone number */}
 										<div className="flex">
 											<div className="w-fit flex items-center text-white">
 												<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue  mb-3">
-													<IconTelephoneFill width={"2em"} height={"2em"} />
+													<IconTelephoneFill width={"1em"} height={"1em"} />
 												</span>
 												<div className="ml-3">
 													<h1 className="font-bold ">Phone Number</h1>
-													<p className="font-semibold ">+234 9125256272</p>
+													<p className="font-normal md:text-md xs:text-xs ">+234 9125256272</p>
 												</div>
 											</div>
 										</div>
@@ -153,23 +150,23 @@ export default function Contact() {
 										{/* Email */}
 										<div className="flex text-white">
 											<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue mb-3">
-												<IconEnvelope width={"2em"} height={"2em"} />
+												<IconEnvelope width={"1em"} height={"1em"} />
 											</span>
 
 											<div className="ml-3">
-												<h1 className="font-bold ">Email</h1>
-												<p className="font-semibold ">support@jckconsulting.co.uk</p>
+												<h1 className="font-bold md:text-md xs:text-xs">Email</h1>
+												<p className="font-normal ">support@jckconsulting.co.uk</p>
 											</div>
 										</div>
 
 										{/* Address */}
 										<div className="flex text-white">
-											<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue mb-3">
-												<IconMapMarkerRadius width={"2em"} height={"2em"} />
+											<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue mb-3 h-fit">
+												<IconMapMarkerRadius width={"1em"} height={"1em"} />
 											</span>
 
 											<div className="ml-3">
-												<h1 className="font-bold ">Address</h1>
+												<h1 className="font-bold md:text-md xs:text-xs">Address</h1>
 												<p className="font-normal ">No 26 Ebenezer street, Byazhin Across, Kubwa</p>
 											</div>
 										</div>
