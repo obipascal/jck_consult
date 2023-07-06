@@ -2,6 +2,7 @@ import React from "react"
 import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import IconArrowRight from "../icons/IconArrowRight"
+import { ROUTES } from "@JCKConsultant/configs/routes"
 
 export default function WhyUs() {
 	return (
@@ -28,7 +29,7 @@ export default function WhyUs() {
 						</dl>
 					</div>
 					<Link
-						href="#"
+						href={`${ROUTES.about}#why-us`}
 						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-secondary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
 						role="button"
 					>

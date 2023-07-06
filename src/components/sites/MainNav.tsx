@@ -85,7 +85,7 @@ export default function MainNav(props: MainNavProps) {
 									href="#"
 									data-te-dropdown-item-ref
 								>
-									Action
+									Item 1
 								</a>
 							</div>
 						</li>
@@ -98,7 +98,10 @@ export default function MainNav(props: MainNavProps) {
 							</Link>
 						</li>
 						<li className={navStyle.navItems}>
-							<Link className="font-semibold border-b-2 border-transparent transition-all dark:hover:border-secondary dark:hover:text-secondary hover:border-secondary hover:text-primary " href="#">
+							<Link
+								className="font-semibold border-b-2 border-transparent transition-all dark:hover:border-secondary dark:hover:text-secondary hover:border-secondary hover:text-primary "
+								href={ROUTES.contact}
+							>
 								Contact Us
 							</Link>
 						</li>

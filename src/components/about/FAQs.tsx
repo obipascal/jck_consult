@@ -2,7 +2,7 @@ import React from "react"
 
 export default function FAQs() {
 	return (
-		<section className="bg-white bg-no-repeat bg-cover bg-center my-0">
+		<section className="bg-white bg-no-repeat bg-cover bg-center my-0" id="faqs">
 			<div className="py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
 					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">

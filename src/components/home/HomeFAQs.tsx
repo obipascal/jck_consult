@@ -1,9 +1,10 @@
 import Link from "next/link"
 import React from "react"
 import IconArrowRight from "../icons/IconArrowRight"
+import { ROUTES } from "@JCKConsultant/configs/routes"
 
 type FAQsProps = {
-	bg?: 'plain'|'img'
+	bg?: "plain" | "img"
 }
 export default function HomeFAQs() {
 	return (
@@ -97,7 +98,7 @@ export default function HomeFAQs() {
 						</div>
 					</div>
 					<Link
-						href="#"
+						href={`${ROUTES.about}#faqs`}
 						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-secondary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
 						role="button"
 					>

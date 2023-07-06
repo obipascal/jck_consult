@@ -3,6 +3,7 @@ import React from "react"
 import Persons from "@JCKConsultant/assets/img/look_mob-4 1.png"
 import Link from "next/link"
 import IconArrowRight from "../icons/IconArrowRight"
+import { ROUTES } from "@JCKConsultant/configs/routes"
 
 export const WhoWeAreImg = Persons
 export default function HomeWhoweareSection() {
@@ -36,7 +37,7 @@ export default function HomeWhoweareSection() {
 				</div>
 			</div>
 			<Link
-				href="#"
+				href={`${ROUTES.about}#who-we-are`}
 				className="p-3 rounded-full w-fit mt-10 border bg-gradient-to-r from-indigo-500 to-blue text-white border-blue  text-slate-800 hover:bg-secondary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
 				role="button"
 			>

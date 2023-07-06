@@ -25,12 +25,12 @@ export default function OurCourses() {
 										<div>
 											<h3 className="text-sm font-semibold text-gray-700">
 												<a href={product.href}>
-													<span aria-hidden="true" className="absolute inset-0" />
+													{/* <span aria-hidden="true" className="absolute inset-0" /> */}
 													{product.name}
 												</a>
 											</h3>
 											<p className="mt-1 text-sm text-gray-500">{product?.desc}</p>
-											<Link href="#" className="p-2 px-3 rounded-full w-fit mt-3 block bg-secondary text-white" role="button">
+											<Link href={ROUTES?.enroll.index(product.name)} className="p-2 px-3 rounded-full w-fit mt-3 block bg-secondary text-white" role="button">
 												Enroll course
 											</Link>
 										</div>

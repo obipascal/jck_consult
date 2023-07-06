@@ -3,7 +3,7 @@ import { WrenchScrewdriverIcon, CpuChipIcon, PhoneIcon, UserCircleIcon } from "@
 
 export default function WhyChooseUs() {
 	return (
-		<section className="bg-gradient-to-r from-indigo-500 to-blue bg-no-repeat bg-cover bg-center">
+		<section className="bg-gradient-to-r from-indigo-500 to-blue bg-no-repeat bg-cover bg-center" id="why-us">
 			<div className="py-16 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
 					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">

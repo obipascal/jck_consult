@@ -4,7 +4,7 @@ import { WhoWeAreImg } from "../home/HomeWhoweareSection"
 
 export default function WhoWeAre() {
 	return (
-		<div className="md:py-20 xs:py-10 bg-white mx-auto md:px-6">
+		<div className="md:py-20 xs:py-10 bg-white mx-auto md:px-6" id="who-we-are">
 			{/* <!-- Section: Design Block --> */}
 			<div className="mx-auto text-center lg:text-left xl:px-32">
 				<div className="flex grid items-center lg:grid-cols-2">

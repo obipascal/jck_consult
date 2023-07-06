@@ -7,5 +7,12 @@ export const ROUTES = {
 		index: "/courses",
 		details: (courseId: any) => `/courses/${courseId}`
 	},
-	testimonies: "/testimonies"
+	testimonies: "/testimonies",
+
+	enroll: {
+		index: (course: any) => `/enroll?_course=${course}`,
+		confirm: (orderId: any) => `/enroll/${orderId}/confirm`
+	},
+
+	contact: "/contact"
 }

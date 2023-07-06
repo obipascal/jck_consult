@@ -1,8 +1,10 @@
+import { ROUTES } from "@JCKConsultant/configs/routes"
+import Link from "next/link"
 import React from "react"
 
 export default function MainFooter() {
 	return (
-		<footer className="bg-gradient-to-r from-indigo-500 to-blue text-center text-white">
+		<footer className="bg-gradient-to-r from-secondary to-blue text-center text-white">
 			<div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
 				<div className="mr-12 hidden lg:block">
 					<span>Get connected with us on social networks:</span>
@@ -48,50 +50,52 @@ export default function MainFooter() {
 					</div>
 					{/* <!-- Products section --> */}
 					<div className="">
-						<h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">Products</h6>
+						<h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">Quick Links</h6>
 						<p className="mb-4">
-							<a href="#!" className="">
-								Angular
-							</a>
+							<Link href={ROUTES.home} className="">
+								Home
+							</Link>
 						</p>
 						<p className="mb-4">
-							<a href="#!" className="">
-								React
-							</a>
+							<Link href={ROUTES.about} className="">
+								About Us
+							</Link>
 						</p>
 						<p className="mb-4">
-							<a href="#!" className="">
-								Vue
-							</a>
+							<Link href={ROUTES.courses.index} className="">
+								Courses
+							</Link>
 						</p>
 						<p>
-							<a href="#!" className="">
-								Laravel
-							</a>
+							<Link href={ROUTES.contact} className="">
+								Contact Us
+							</Link>
 						</p>
 					</div>
 					{/* <!-- Useful links section --> */}
 					<div className="">
 						<h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">Useful links</h6>
 						<p className="mb-4">
-							<a href="#!" className="">
-								Pricing
-							</a>
+							<Link href={ROUTES.testimonies} className="">
+								Testimonies
+							</Link>
 						</p>
 						<p className="mb-4">
-							<a href="#!" className="">
-								Settings
-							</a>
+							<Link href={`${ROUTES.about}#faqs`} className="">
+								FAQs
+							</Link>
 						</p>
+
 						<p className="mb-4">
-							<a href="#!" className="">
-								Orders
-							</a>
+							<Link href={`#`} className="">
+								Privacy Policy
+							</Link>
 						</p>
-						<p>
-							<a href="#!" className="">
-								Help
-							</a>
+
+						<p className="mb-4">
+							<Link href={`#`} className="">
+								Terms & Conditions
+							</Link>
 						</p>
 					</div>
 					{/* <!-- Contact section --> */}
@@ -137,9 +141,9 @@ export default function MainFooter() {
 
 			{/* <!--Copyright section--> */}
 			<div className="p-6 text-center">
-				<span>© 2023 Copyright:</span>
-				<a className="font-semibold " href="https://tailwind-elements.com/">
-					Tailwind Elements
+				<span>&copy; {new Date().getFullYear()} Copyright: </span>
+				<a className="font-semibold " href={ROUTES.home}>
+					JCK Consulting Ltd
 				</a>
 			</div>
 		</footer>
