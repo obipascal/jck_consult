@@ -158,3 +158,8 @@ export const greetings = (name: string) => {
 export const waitUntil = (timeout: number): Promise<void> => {
 	return new Promise(resolve => setTimeout(resolve, timeout))
 }
+
+// @ts-ignore
+export const classNames = (...classes) => {
+	return classes.filter(Boolean).join(" ")
+}

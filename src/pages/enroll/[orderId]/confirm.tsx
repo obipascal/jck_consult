@@ -23,12 +23,26 @@ export default function EnrollSuccess() {
 							<div className="">
 								{/* <!-- Left column container--> */}
 								<div className="px-4 md:px-0">
-									<div className="xs:mx-6 xs:py-10 md:p-12  text-center">
+									<div className="xs:mx-6 xs:py-10 md:p-12  ">
 										<Image src={SuccessIcon} alt="" className="m-auto mb-3 block" />
-										<p className="mb-4 font-bold text-3xl">Your order was successful!</p>
+										<p className="mb-4 font-bold text-3xl text-center">Success!</p>
 
 										<p className="mb-4">
-											Please check your email for a confirmation. An invoice will be emailed to you shortly after our staff must have approve your order so you can make payments. Thank you!
+											Thank you for expressing interest in our course. We appreciate your eagerness to learn and would like to inform you that your request has been forwarded to one of our staff
+											members for confirmation.
+											<br />
+											<br />
+											To ensure smooth communication, we kindly ask you to check your email for a confirmation regarding your interest in the course.
+											<br />
+											<br />
+											A payment link will be communicated to you as soon as your request has been confirmed.
+											<br />
+											<br />
+											If you have any further questions or require assistance, please do not hesitate to reach out to us via{" "}
+											<Link href={ROUTES.contact} className="underline decoration-5 font-semibold decoration-transparent hover:decoration-yellow-300">
+												Contact Us
+											</Link>
+											. We are here to help you through your learning journey.
 										</p>
 
 										<Link

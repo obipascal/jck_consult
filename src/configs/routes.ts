@@ -14,5 +14,19 @@ export const ROUTES = {
 		confirm: (orderId: any) => `/enroll/${orderId}/confirm`
 	},
 
-	contact: "/contact"
+	contact: "/contact",
+
+	dashboard: {
+		index: "/dashboard",
+		courses: {
+			index: "/dashboard/courses",
+			create: "/dashboard/courses/create"
+		},
+		users: {
+			index: "/dashboard/users"
+		},
+		transactions: {
+			index: "/dashboard/transactions"
+		}
+	}
 }
