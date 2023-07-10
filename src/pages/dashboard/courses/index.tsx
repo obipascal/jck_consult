@@ -18,7 +18,7 @@ export default function DashboardCourses() {
 	return (
 		<DashboardLayout pageName="Courses">
 			<DashboardContent title="Courses" component={<CreateButton />}>
-				<p className="p-2">My Courses</p>
+				<p className="p-2 my-3">Courses</p>
 
 				<CourseListItem courseName="Data Analysis" />
 				<CourseListItem courseName="Scrum Master Class" />

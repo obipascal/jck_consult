@@ -23,7 +23,8 @@ export const ROUTES = {
 			create: "/dashboard/courses/create"
 		},
 		users: {
-			index: "/dashboard/users"
+			index: "/dashboard/users",
+			info: (userId: any) => `/dashboard/users/${userId}`
 		},
 		transactions: {
 			index: "/dashboard/transactions"

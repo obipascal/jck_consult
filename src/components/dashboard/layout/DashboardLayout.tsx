@@ -1,6 +1,7 @@
 import React from "react"
 import DashboardNavbar from "./DashboardNavbar"
 import dynamic from "next/dynamic"
+import EditCoursePanel from "../panels/EditCoursePanel"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type DashboardLayoutProps = {
@@ -10,10 +11,15 @@ type DashboardLayoutProps = {
 
 export default function DashboardLayout({ children, pageName = "Dashboard" }: DashboardLayoutProps) {
 	return (
-		<section className="min-h-screen">
-			<InitTailwindUI />
-			<DashboardNavbar pageName={pageName} />
-			{children}
-		</section>
+		<>
+			<section className="min-h-screen">
+				<InitTailwindUI />
+				<DashboardNavbar pageName={pageName} />
+				{children}
+			</section>
+
+			{/* Panels */}
+			<EditCoursePanel />
+		</>
 	)
 }
