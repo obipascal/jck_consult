@@ -1,7 +1,5 @@
 export const ROUTES = {
 	home: "/",
-	register: "/register",
-	login: "/login",
 	about: "/about",
 	courses: {
 		index: "/courses",
@@ -20,7 +18,8 @@ export const ROUTES = {
 		index: "/dashboard",
 		courses: {
 			index: "/dashboard/courses",
-			create: "/dashboard/courses/create"
+			create: "/dashboard/courses/create",
+			request: "/dashboard/courses/enrollRequest"
 		},
 		users: {
 			index: "/dashboard/users",
@@ -28,6 +27,14 @@ export const ROUTES = {
 		},
 		transactions: {
 			index: "/dashboard/transactions"
+		},
+		settings: {
+			index: "/dashboard/settings"
 		}
-	}
+	},
+
+	forgotPassword: "/forgotPassword",
+	verifyAccount: "/verifyAccount",
+	changePassword: "/changePassword",
+	login: "/login"
 }

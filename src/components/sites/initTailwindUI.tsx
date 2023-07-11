@@ -1,11 +1,11 @@
 import React from "react"
-import { Carousel, Ripple, Input, Dropdown, Collapse, initTE } from "tw-elements"
+import { Carousel, Ripple, Input, Dropdown, Collapse, Tab, initTE } from "tw-elements"
 // @ts-ignore
 
 export default function InitTailwindUI() {
 	React.useEffect(() => {
-		initTE({ Carousel, Input, Dropdown, Collapse, Ripple })
-	})
+		initTE({ Carousel, Input, Dropdown, Collapse, Tab, Ripple })
+	}, [])
 
 	return null
 }

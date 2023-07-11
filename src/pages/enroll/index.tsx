@@ -10,6 +10,7 @@ import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { uniqueId } from "@JCKConsultant/lib/utils"
+import OrderSummary from "@JCKConsultant/components/misc/OrderSummary"
 
 type InitDataTypes = {
 	username?: string
@@ -17,7 +18,6 @@ type InitDataTypes = {
 }
 
 export default function EnrollCourse() {
-	const initData: InitDataTypes = {}
 	return (
 		<MainLayout>
 			<div className=" h-full xs:p-3 md:p-10">
@@ -121,51 +121,7 @@ export default function EnrollCourse() {
 
 										<p className="mb-4">Your order summary</p>
 
-										<div className="flex flex-col my-3">
-											<div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-												<div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-													<div className="overflow-hidden">
-														<table className="min-w-full text-left text-sm font-light">
-															<thead className="border-b bg-white font-medium">
-																<tr>
-																	<th scope="col" className="px-6 py-4">
-																		Item
-																	</th>
-																	<th scope="col" className="px-6 py-4">
-																		Desc
-																	</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr className="border-b bg-neutral-100">
-																	<td className="whitespace-nowrap px-6 py-4 font-bold">Course:</td>
-																	<td className="whitespace-nowrap px-6 py-4">Data Analysis</td>
-																</tr>
-																<tr className="border-b bg-white">
-																	<td className="whitespace-nowrap px-6 py-4 font-bold">Amount:</td>
-																	<td className="whitespace-nowrap px-6 py-4">&pound; 1,000.00</td>
-																</tr>
-
-																<tr className="border-b bg-neutral-100">
-																	<td className="whitespace-nowrap px-6 py-4 font-bold">Discount:</td>
-																	<td className="whitespace-nowrap px-6 py-4">0% (&pound; 0)</td>
-																</tr>
-
-																<tr className="border-b bg-white">
-																	<td className="whitespace-nowrap px-6 py-4 font-bold">Subtotal:</td>
-																	<td className="whitespace-nowrap px-6 py-4">&pound; 1,000.00</td>
-																</tr>
-
-																<tr className="border-b bg-neutral-100">
-																	<td className="whitespace-nowrap px-6 py-4 font-bold">Total:</td>
-																	<td className="whitespace-nowrap px-6 py-4">&pound; 1,000.00</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
-										</div>
+										<OrderSummary />
 
 										<Link
 											href={ROUTES.enroll.confirm(uniqueId())}

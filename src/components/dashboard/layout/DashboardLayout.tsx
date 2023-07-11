@@ -2,6 +2,7 @@ import React from "react"
 import DashboardNavbar from "./DashboardNavbar"
 import dynamic from "next/dynamic"
 import EditCoursePanel from "../panels/EditCoursePanel"
+import TransactionDetailsPanel from "../panels/TransactionDetailsPanel"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type DashboardLayoutProps = {
@@ -20,6 +21,7 @@ export default function DashboardLayout({ children, pageName = "Dashboard" }: Da
 
 			{/* Panels */}
 			<EditCoursePanel />
+			<TransactionDetailsPanel />
 		</>
 	)
 }

@@ -4,7 +4,7 @@ import React from "react"
 type DashboardContentProps = {
 	type?: "page" | "nav"
 	title?: string
-	component?: React.ReactNode
+	component?: React.ReactNode | Array<React.ReactNode>
 	children?: React.ReactNode
 }
 export default function DashboardContent({ type = "page", title = "Dashboard", component, children }: DashboardContentProps) {
@@ -16,12 +16,12 @@ export default function DashboardContent({ type = "page", title = "Dashboard", c
 			return (
 				<>
 					<header className="bg-white shadow">
-						<div className={`mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 grid ${component ? "grid-cols-2" : "grid-cols-1"}`}>
+						<div className={`mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 grid ${component ? "md:grid-cols-2 xs:grid-cols-1" : "grid-cols-1"}`}>
 							<div>
 								<h1 className="text-3xl font-bold tracking-tight text-gray-900">{title}</h1>
 							</div>
 
-							<div className="flex items-end justify-end">{component}</div>
+							<div className="flex md:items-end md:justify-end xs:items-start xs:justify-start md:mt-0 xs:mt-3">{component} </div>
 						</div>
 					</header>
 					<main>

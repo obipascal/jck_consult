@@ -1,23 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { HYDRATE } from "next-redux-wrapper"
 import { AppState } from "../stores"
+import { PanelState } from "@JCKConsultant/types/panel"
 
 // Type for our state
+
 export interface PanelsStateProps {
-	editCoursePanel: {
-		show?: boolean
-		params?: string
-		data?: any
-	}
+	editCoursePanel: PanelState
+	transDetailsPanel: PanelState
 }
 
 // Initial state
+const panelInitState: PanelState = {
+	show: false,
+	params: "",
+	data: null
+}
 const initialState: PanelsStateProps = {
-	editCoursePanel: {
-		show: false,
-		params: "",
-		data: null
-	}
+	editCoursePanel: panelInitState,
+	transDetailsPanel: panelInitState
 }
 
 // Actual Slice
@@ -35,6 +36,16 @@ export const PanelsSlice = createSlice({
 			if (data) state.editCoursePanel.data = data
 		},
 
+		toggleTransDetailsPanel(state, action) {
+			const { params, data, status } = action?.payload
+
+			if (typeof status === "boolean") state.transDetailsPanel.show = status
+
+			if (params) state.transDetailsPanel.params = params
+
+			if (data) state.transDetailsPanel.data = data
+		},
+
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
 		extraReducers: {
 			// @ts-ignore
@@ -48,8 +59,9 @@ export const PanelsSlice = createSlice({
 	}
 })
 
-export const { toggleEditCoursePanel } = PanelsSlice.actions
+export const { toggleEditCoursePanel, toggleTransDetailsPanel } = PanelsSlice.actions
 
 export const getEditCoursePanel = (state: AppState) => state?.panels?.editCoursePanel
+export const getTransDetailsPanel = (state: AppState) => state?.panels?.transDetailsPanel
 
 export default PanelsSlice

@@ -2,6 +2,7 @@ import CourseListItem from "@JCKConsultant/components/dashboard/courses/CourseLi
 import DashboardContent from "@JCKConsultant/components/dashboard/layout/DashboardContent"
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { uniqueId } from "@JCKConsultant/lib/utils"
 import Link from "next/link"
 
 const CreateButton = () => {
@@ -14,12 +15,24 @@ const CreateButton = () => {
 		</Link>
 	)
 }
+
+const EnrollRequestButton = () => {
+	return (
+		<Link href={ROUTES.dashboard.courses.request} role="button" className="rounded-full border-2 border-secondary  p-2 text-blue flex items-center shadow-md mr-3">
+			Enroll Request
+			<sup className="inline-block whitespace-nowrap rounded-full bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white shadow-3xl ml-1">
+				3
+			</sup>
+		</Link>
+	)
+}
+
+const components = [<EnrollRequestButton key={uniqueId()} />, <CreateButton key={uniqueId()} />]
+
 export default function DashboardCourses() {
 	return (
 		<DashboardLayout pageName="Courses">
-			<DashboardContent title="Courses" component={<CreateButton />}>
-				<p className="p-2 my-3">Courses</p>
-
+			<DashboardContent title="Courses" component={components}>
 				<CourseListItem courseName="Data Analysis" />
 				<CourseListItem courseName="Scrum Master Class" />
 			</DashboardContent>
