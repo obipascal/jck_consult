@@ -10,6 +10,7 @@ import { Provider } from "react-redux"
 import { wrapper } from "@JCKConsultant/redux/stores"
 import DarkModeHandler from "@JCKConsultant/components/sites/DarkModeHandler"
 import "aos/dist/aos.css"
+import React from "react"
 
 const queryClient = new QueryClient()
 

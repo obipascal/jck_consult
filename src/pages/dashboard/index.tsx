@@ -1,5 +1,6 @@
 import DashboardContent from "@JCKConsultant/components/dashboard/layout/DashboardContent"
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
+import { authorizedOnly } from "@JCKConsultant/lib/authSession"
 import { CurrencyPoundIcon } from "@heroicons/react/20/solid"
 import { BookOpenIcon, UsersIcon } from "@heroicons/react/24/outline"
 import dynamic from "next/dynamic"
@@ -42,4 +43,9 @@ export default function Dashboard() {
 			</DashboardContent>
 		</DashboardLayout>
 	)
+}
+
+// Session inspector
+export async function getServerSideProps(context: any) {
+	return authorizedOnly(context)
 }

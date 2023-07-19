@@ -57,14 +57,14 @@ export default function MainNav(props: MainNavProps) {
 					{/* Nav Items */}
 					<ul className="flex space-x-6 xs:hidden md:flex">
 						<li className={navStyle.navItems}>
-							<Link className="font-semibold border-b-2 border-transparent transition transition-transform ease-in-out   hover:border-yellow-400 hover:text-primary " href={ROUTES.home}>
+							<Link className="font-semibold border-b-2 border-transparent transition transition-transform ease-in-out   hover:border-secondary hover:text-primary " href={ROUTES.home}>
 								Home
 							</Link>
 						</li>
 						<li className={`${navStyle.navItems}  relative group/nav-dropdown`}>
 							<Link
 								href={ROUTES.courses.index}
-								className="font-semibold border-b-2 border-transparent    hover:border-yellow-400 hover:text-primary flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+								className="font-semibold border-b-2 border-transparent    hover:border-secondary hover:text-primary flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
 							>
 								Courses
 								<span className="ml-2 w-2">
@@ -88,12 +88,12 @@ export default function MainNav(props: MainNavProps) {
 							</div>
 						</li>
 						<li className={navStyle.navItems}>
-							<Link className="font-semibold border-b-2 border-transparent transition-all   hover:border-yellow-400 hover:text-primary " href={ROUTES.about}>
+							<Link className="font-semibold border-b-2 border-transparent transition-all   hover:border-secondary hover:text-primary " href={ROUTES.about}>
 								About
 							</Link>
 						</li>
 						<li className={navStyle.navItems}>
-							<Link className="font-semibold border-b-2 border-transparent transition-all   hover:border-yellow-400 hover:text-primary " href={ROUTES.contact}>
+							<Link className="font-semibold border-b-2 border-transparent transition-all   hover:border-secondary hover:text-primary " href={ROUTES.contact}>
 								Contact Us
 							</Link>
 						</li>

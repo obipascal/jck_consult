@@ -34,7 +34,7 @@ export const ROUTES = {
 	},
 
 	forgotPassword: "/forgotPassword",
-	verifyAccount: "/verifyAccount",
-	changePassword: "/changePassword",
+	verifyPasswordReset: "/confirmResetPassword",
+	changePassword: (resetToken: string) => `/changePassword?reset_token=${resetToken}`,
 	login: "/login"
 }

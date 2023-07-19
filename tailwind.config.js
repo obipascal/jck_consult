@@ -12,7 +12,7 @@ module.exports = {
       colors: {
         current: "currentColor",
         primary: "rgb(30 58 138)",
-        secondary: "rgb(250 204 21)",
+        secondary: "#ffd700",
         blue: 'rgb(30 58 138)',
         'blue-900': 'rgb(30 58 138)',
         'blue-800': 'rgb(30 64 175)',

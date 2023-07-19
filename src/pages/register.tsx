@@ -8,6 +8,7 @@ import { ReviewValidationSchema } from "@JCKConsultant/lib/validator/reviewValid
 import IconGoogle from "@JCKConsultant/components/icons/IconGoogle"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import Link from "next/link"
+import { unauthorizedOnly } from "@JCKConsultant/lib/authSession"
 
 type InitDataTypes = {
 	username?: string
@@ -42,7 +43,7 @@ export default function Register() {
 												name="username"
 												onChange={handleChange}
 												value={values?.username}
-												className="peer border-transparent block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15]  transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+												className="peer border-transparent block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15]  transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
 												id="userUsername"
 												placeholder="e.g: example@yourcompany.com"
 											/>
@@ -61,7 +62,7 @@ export default function Register() {
 												name="password"
 												onChange={handleChange}
 												value={values?.password}
-												className="peer border-transparent block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15]  transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+												className="peer border-transparent block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15]  transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
 												id="userPassword"
 												placeholder="e.g: example@yourcompany.com"
 											/>
@@ -128,4 +129,8 @@ export default function Register() {
 			</section>
 		</Layout>
 	)
+}
+
+export async function getServerSideProps(context: any) {
+	return unauthorizedOnly(context)
 }
