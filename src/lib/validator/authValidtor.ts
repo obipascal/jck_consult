@@ -1,15 +1,7 @@
 import * as yup from "yup"
 
 export const loginValidatorScheme = yup.object().shape({
-	password: yup
-		.string()
-		.required("Your password is required")
-		.trim("Your password never had empty space")
-		.matches(/\w*[a-z]\w*/, "Your password had a small letter")
-		.matches(/\w*[A-Z]\w*/, "Your password had a capital letter")
-		.matches(/\d/, "Your password had a number")
-		.matches(/[!@#$%^&*()\-_"=+{}; :,<.>]/, "Your password had a special character")
-		.min(8, "Passowrd must be at least 8 characters"),
+	password: yup.string().required("Your password is required").trim("Your password never had empty space").min(8, "Passowrd must be at least 8 characters"),
 
 	username: yup.string().email("Username must be an email.").required("Username is required")
 })

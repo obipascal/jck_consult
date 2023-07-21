@@ -3,14 +3,14 @@ import Swal from "sweetalert2"
 const toastInit = Swal.mixin({
 	toast: true,
 	showClass: {
-		popup: "animate__animated animate__slideInUp"
-	},
-	hideClass: {
 		popup: "animate__animated animate__slideOutDown"
 	},
-	timer: 5000,
+	hideClass: {
+		popup: "animate__animated animate__slideInUp"
+	},
+	timer: 30000,
 	timerProgressBar: false,
-	position: "bottom-end",
+	position: "top",
 	showConfirmButton: false
 })
 

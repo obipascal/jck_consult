@@ -2,6 +2,7 @@ import DashboardContent from "@JCKConsultant/components/dashboard/layout/Dashboa
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
 import ApplicationSettings from "@JCKConsultant/components/dashboard/settings/ApplicationSettings"
 import ProfileSettings from "@JCKConsultant/components/dashboard/settings/ProfileSettings"
+import { authorizedOnly } from "@JCKConsultant/lib/authSession"
 import { PaperClipIcon } from "@heroicons/react/24/solid"
 import React from "react"
 
@@ -67,4 +68,9 @@ export default function SettingsPage() {
 			</DashboardContent>
 		</DashboardLayout>
 	)
+}
+
+// Session inspector
+export async function getServerSideProps(context: any) {
+	return authorizedOnly(context)
 }

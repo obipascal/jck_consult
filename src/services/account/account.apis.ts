@@ -2,7 +2,7 @@ import { GET, POST, PUT, DROP } from "@JCKConsultant/configs/api"
 import { accountEndpoints } from "./account.endpoints"
 
 export type UpdateAccountProps = {
-	accountId: number
+	accountId?: number
 	data: any
 }
 
@@ -14,7 +14,7 @@ export const UpdateProfile = async (params: UpdateAccountProps) => {
 	return await PUT(accountEndpoints.UPDATE_PROFILE(params?.accountId), params?.data)
 }
 
-export const FetchAccount = async (accountId: number) => {
+export const FetchAccount = async () => {
 	return await GET(accountEndpoints.GET)
 }
 export const FetchProfile = async (accountId: number) => {

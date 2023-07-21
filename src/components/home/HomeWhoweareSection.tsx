@@ -16,7 +16,7 @@ export default function HomeWhoweareSection() {
 				<div data-aos="zoom-in-right" className="flex items-center justify-center">
 					<Image src={Persons} alt="" className="m-auto block wow zoomInUp" data-wow-duration="2s" data-wow-delay="5s" data-wow-offset="10" />
 				</div>
-				<div data-aos="fade-up" className="md:col-span-2 xs:col-span-1">
+				<div data-aos="fade-up" className="md:col-span-2 xs:col-span-1 text-black">
 					<p className="text-md mb-3 font-medium ">Welcome to JCK Consultant Ltd, your gateway to success in the fast-paced world of technology.</p>
 
 					<p className="text-md mb-3 font-medium">

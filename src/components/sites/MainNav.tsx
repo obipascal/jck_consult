@@ -42,9 +42,7 @@ export default function MainNav(props: MainNavProps) {
 			{/*  Nav bar */}
 			<nav
 				className={classNames({
-					"fixed top-0 left-0 right-0 backdrop-blur w-screen  shadow-lg  p-2 z-50": true,
-					"bg-slate-50/75": themeMode === "light",
-					"bg-slate-900/75": themeMode === "dark"
+					"fixed top-0 left-0 right-0 backdrop-blur w-screen  shadow-lg  p-2 z-50 bg-slate-50/75 text-black": true
 				})}
 			>
 				{/* flex container */}
@@ -77,9 +75,9 @@ export default function MainNav(props: MainNavProps) {
 									</svg>
 								</span>
 							</Link>
-							<div className="absolute group-hover/nav-dropdown:visible  hover:visible flex flex-col top-[50px] bg-neutral-100 transition duration-150 ease-in-out invisible z-[1000] float-left overflow-hidden rounded-lg min-w-full dark:bg-neutral-600">
+							<div className="absolute group-hover/nav-dropdown:visible  hover:visible flex flex-col top-[50px] bg-neutral-100 transition duration-150 ease-in-out invisible z-[1000] float-left overflow-hidden rounded-lg min-w-full">
 								<a
-									className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+									className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
 									href="#"
 									data-te-dropdown-item-ref
 								>

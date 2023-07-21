@@ -10,9 +10,10 @@ type WYSIWYGEditorProps = {
 	getContents?: (content: string) => string
 	onChange?: any
 	inputName?: string
+	value?: string
 }
 
-export default function WYSIWYGEditor({ getContents, onChange, inputName = "course_content" }: WYSIWYGEditorProps) {
+export default function WYSIWYGEditor({ getContents, onChange, value, inputName = "course_content" }: WYSIWYGEditorProps) {
 	return (
 		<>
 			<Editor
@@ -20,7 +21,7 @@ export default function WYSIWYGEditor({ getContents, onChange, inputName = "cour
 				apiKey={process.env.TINY_APIKEY}
 				textareaName={inputName}
 				onInit={(evt, editor) => (typeof getContents === "function" ? getContents(editor.getContent()) : "")}
-				initialValue="<p>This is the initial content of the editor.</p>"
+				initialValue={value ? value : ""}
 				init={{
 					height: 200,
 					menubar: false,

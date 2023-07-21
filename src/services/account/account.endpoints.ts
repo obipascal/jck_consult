@@ -1,6 +1,6 @@
 export const accountEndpoints = {
 	PROFILE: (accountId: number) => `protected:/v1/account/${accountId}`,
-	UPDATE_PROFILE: (accountId: number) => `protected:/v1/account/${accountId}`,
+	UPDATE_PROFILE: (accountId?: number) => `protected:/v1/account/${accountId}`,
 	UPDATE: `protected:/v1/account`,
 	GET: `protected:/v1/account`,
 	ALL: (perPage: number = 10) => `protected:/v1/accounts?perPage=${perPage}`,
