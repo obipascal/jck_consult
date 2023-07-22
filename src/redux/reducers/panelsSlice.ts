@@ -8,6 +8,8 @@ import { PanelState } from "@JCKConsultant/types/panel"
 export interface PanelsStateProps {
 	editCoursePanel: PanelState
 	transDetailsPanel: PanelState
+	addFAQPanel: PanelState
+	updateFAQPanel: PanelState
 }
 
 // Initial state
@@ -18,7 +20,9 @@ const panelInitState: PanelState = {
 }
 const initialState: PanelsStateProps = {
 	editCoursePanel: panelInitState,
-	transDetailsPanel: panelInitState
+	transDetailsPanel: panelInitState,
+	addFAQPanel: panelInitState,
+	updateFAQPanel: panelInitState
 }
 
 // Actual Slice
@@ -46,6 +50,26 @@ export const PanelsSlice = createSlice({
 			if (data) state.transDetailsPanel.data = data
 		},
 
+		toggleAddFAQPanel(state, action) {
+			const { params, data, status } = action?.payload
+
+			if (typeof status === "boolean") state.addFAQPanel.show = status
+
+			if (params) state.addFAQPanel.params = params
+
+			if (data) state.addFAQPanel.data = data
+		},
+
+		toggleUpdateFAQPanel(state, action) {
+			const { params, data, status } = action?.payload
+
+			if (typeof status === "boolean") state.updateFAQPanel.show = status
+
+			if (params) state.updateFAQPanel.params = params
+
+			if (data) state.updateFAQPanel.data = data
+		},
+
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
 		extraReducers: {
 			// @ts-ignore
@@ -59,9 +83,11 @@ export const PanelsSlice = createSlice({
 	}
 })
 
-export const { toggleEditCoursePanel, toggleTransDetailsPanel } = PanelsSlice.actions
+export const { toggleEditCoursePanel, toggleTransDetailsPanel, toggleAddFAQPanel, toggleUpdateFAQPanel } = PanelsSlice.actions
 
 export const getEditCoursePanel = (state: AppState) => state?.panels?.editCoursePanel
 export const getTransDetailsPanel = (state: AppState) => state?.panels?.transDetailsPanel
+export const getAddFAQPanel = (state: AppState) => state?.panels?.addFAQPanel
+export const getUpdateFAQPanel = (state: AppState) => state?.panels?.updateFAQPanel
 
 export default PanelsSlice

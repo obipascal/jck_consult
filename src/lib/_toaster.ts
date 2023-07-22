@@ -8,7 +8,7 @@ const toastInit = Swal.mixin({
 	hideClass: {
 		popup: "animate__animated animate__slideInUp"
 	},
-	timer: 30000,
+	timer: 9000,
 	timerProgressBar: false,
 	position: "top",
 	showConfirmButton: false

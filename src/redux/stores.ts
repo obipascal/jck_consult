@@ -4,6 +4,7 @@ import { appSlice } from "./reducers/appSlice"
 import AuthSlice from "./reducers/AuthSlice"
 import PanelsSlice from "./reducers/panelsSlice"
 import ModalsSlice from "./reducers/modalSlice"
+import { FAQsSlice } from "./reducers/faqsSlice"
 
 const makeStore = () =>
 	configureStore({
@@ -11,7 +12,8 @@ const makeStore = () =>
 			[appSlice?.name]: appSlice.reducer,
 			[AuthSlice?.name]: AuthSlice.reducer,
 			[PanelsSlice?.name]: PanelsSlice.reducer,
-			[ModalsSlice?.name]: ModalsSlice.reducer
+			[ModalsSlice?.name]: ModalsSlice.reducer,
+			[FAQsSlice?.name]: FAQsSlice.reducer
 		},
 		devTools: true
 	})

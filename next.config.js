@@ -2,10 +2,7 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env:{
-    TINY_APIKEY: 'n84qiy4o7j5gys47byyxb10pef8dhozn2pek8usoztit8a8c',
-    API_BASE_URL: 'http://127.0.0.1:8000'
-  },
+  
   images: {
     remotePatterns: [
       {

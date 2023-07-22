@@ -8,6 +8,8 @@ import { CreateSettings } from "@JCKConsultant/services/settings/settings.apis"
 import { ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 import AppSettingLogoUploader from "./AppSettingLogoUploader"
+import { useSelector } from "react-redux"
+import { getConfigs } from "@JCKConsultant/redux/reducers/appSlice"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type InitValsProps = {
@@ -24,19 +26,19 @@ type InitValsProps = {
 }
 
 export default function ApplicationSettings() {
-	// ---------------------------------------------------------
+	const configs = useSelector(getConfigs)
 
 	const initVals: InitValsProps = {
-		name: "",
-		desc: "",
-		phone_number: "",
-		email: "",
-		line_address: "",
-		facebook_handle: "",
-		instagram_handle: "",
-		twitter_handle: "",
-		linkedin_handle: "",
-		whatsapp_handle: ""
+		name: configs?.settings?.name ?? "",
+		desc: configs?.settings?.desc ?? "",
+		phone_number: configs?.settings?.phone_number ?? "",
+		email: configs?.settings?.email ?? "",
+		line_address: configs?.settings?.line_address ?? "",
+		facebook_handle: configs?.settings?.facebook_handle ?? "",
+		instagram_handle: configs?.settings?.instagram_handle ?? "",
+		twitter_handle: configs?.settings?.twitter_handle ?? "",
+		linkedin_handle: configs?.settings?.linkedin_handle ?? "",
+		whatsapp_handle: configs?.settings?.whatsapp_handle ?? ""
 	}
 
 	const createSettingApi = useMutation(CreateSettings, {
@@ -76,7 +78,7 @@ export default function ApplicationSettings() {
 		<div className="mt-6 border-t border-gray-100">
 			<InitTailwindUI />
 
-			<AppSettingLogoUploader />
+			<AppSettingLogoUploader defaultLogo={configs?.settings?.logo} />
 
 			<Formik initialValues={initVals} onSubmit={_handleSubmit} validationSchema={appValidatorScheme}>
 				{({ handleChange, values }) => (
@@ -86,7 +88,7 @@ export default function ApplicationSettings() {
 							<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
 								<dt className="text-sm font-medium leading-6 text-gray-900">
 									<h1 className="font-semibold text-gray-600 text-lg">Website Name</h1>
-									<h2 className="font-medium text-md text-gray-500">JCK Consult</h2>
+									<h2 className="font-medium text-md text-gray-500">{configs?.settings?.name}</h2>
 								</dt>
 								<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
 									<div>
@@ -116,7 +118,7 @@ export default function ApplicationSettings() {
 							<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
 								<dt className="text-sm font-medium leading-6 text-gray-900">
 									<h1 className="font-semibold text-gray-600 text-lg">Description</h1>
-									<p className="font-medium text-md text-gray-500">JCK Consult is a IT consulting service company, we help you transit into tech ease.</p>
+									<p className="font-medium text-md text-gray-500">{configs?.settings?.desc}</p>
 								</dt>
 								<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
 									<div>
@@ -259,11 +261,11 @@ export default function ApplicationSettings() {
 												value={values?.instagram_handle}
 												type="url"
 												className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-												id="appSettings_facebookInput"
+												id="appSettings_instagramInput"
 												placeholder="Facebook Handle"
 											/>
 											<label
-												htmlFor="appSettings_facebookInput"
+												htmlFor="appSettings_instagramInput"
 												className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
 											>
 												Instagram
@@ -281,11 +283,11 @@ export default function ApplicationSettings() {
 												value={values?.twitter_handle}
 												type="url"
 												className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-												id="appSettings_facebookInput"
+												id="appSettings_twitterInput"
 												placeholder="Facebook Handle"
 											/>
 											<label
-												htmlFor="appSettings_facebookInput"
+												htmlFor="appSettings_twitterInput"
 												className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
 											>
 												Twitter
@@ -303,11 +305,11 @@ export default function ApplicationSettings() {
 												value={values?.linkedin_handle}
 												type="url"
 												className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-												id="appSettings_facebookInput"
+												id="appSettings_linkedinInput"
 												placeholder="Facebook Handle"
 											/>
 											<label
-												htmlFor="appSettings_facebookInput"
+												htmlFor="appSettings_linkedinInput"
 												className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
 											>
 												LinkedIn
@@ -324,11 +326,11 @@ export default function ApplicationSettings() {
 												value={values?.whatsapp_handle}
 												type="url"
 												className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-												id="appSettings_facebookInput"
+												id="appSettings_whatsappInput"
 												placeholder="Facebook Handle"
 											/>
 											<label
-												htmlFor="appSettings_facebookInput"
+												htmlFor="appSettings_whatsappInput"
 												className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
 											>
 												WhatsApp
@@ -359,7 +361,7 @@ export default function ApplicationSettings() {
 					<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
 						<div>
 							<div className="relative mb-4">
-								<WYSIWYGEditor value={"Write content will be displayed on the about us description page."} inputName="about" />
+								<WYSIWYGEditor value={configs?.settings?.about} inputName="about" />
 							</div>
 						</div>
 					</dd>

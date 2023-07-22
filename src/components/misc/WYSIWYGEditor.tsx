@@ -18,7 +18,7 @@ export default function WYSIWYGEditor({ getContents, onChange, value, inputName 
 		<>
 			<Editor
 				onChange={typeof onChange === "function" ? onChange : null}
-				apiKey={process.env.TINY_APIKEY}
+				apiKey={process.env.NEXT_PUBLIC_TINY_APIKEY}
 				textareaName={inputName}
 				onInit={(evt, editor) => (typeof getContents === "function" ? getContents(editor.getContent()) : "")}
 				initialValue={value ? value : ""}

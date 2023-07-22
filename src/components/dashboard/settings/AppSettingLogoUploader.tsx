@@ -6,7 +6,10 @@ import { UpdateSiteLogo } from "@JCKConsultant/services/settings/settings.apis"
 import { ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 
-export default function AppSettingLogoUploader() {
+type AppSettingLogoUploaderProps = {
+	defaultLogo?: string
+}
+export default function AppSettingLogoUploader({ defaultLogo }: AppSettingLogoUploaderProps) {
 	const [previewImage, setPreviewImage] = React.useState<string | null>(null)
 	const fileInputRef = React.createRef<HTMLInputElement>()
 
@@ -56,7 +59,13 @@ export default function AppSettingLogoUploader() {
 			<form onSubmit={_handleSubmit}>
 				<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
 					<dt className="text-sm font-medium leading-6 text-gray-900">
-						<Image width={100} height={100} src={previewImage ? previewImage : Logo} alt="" className="rounded-full w-20 h-20 md:inline md:m-0 xs:block xs:m-auto" />
+						<Image
+							width={100}
+							height={100}
+							src={previewImage ? previewImage : defaultLogo ? (defaultLogo as string) : Logo}
+							alt=""
+							className="rounded-full w-20 h-20 md:inline md:m-0 xs:block xs:m-auto"
+						/>
 					</dt>
 					<dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex items-center md:justify-start xs:justify-center py-2">
 						<div className="">

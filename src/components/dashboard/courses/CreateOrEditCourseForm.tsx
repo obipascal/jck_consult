@@ -10,7 +10,7 @@ export type CreateOrEditCourseFormInputProps = {
 
 export default function CreateOrEditCourseForm({ data, submitBtnText = "Create Course" }: CreateOrEditCourseFormInputProps) {
 	return (
-		<form>
+		<form className="text-black">
 			{/* File uploader & Previewer */}
 			<div className="relative mb-12">
 				<DragAndDropImageFile inputName="course_image" />
@@ -20,7 +20,7 @@ export default function CreateOrEditCourseForm({ data, submitBtnText = "Create C
 			<div className="relative mb-12" data-te-input-wrapper-init>
 				<input
 					type="text"
-					className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+					className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-black  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
 					id="createCourseInput-name"
 					aria-describedby="emailHelp"
 					placeholder="Course Title"
@@ -31,7 +31,7 @@ export default function CreateOrEditCourseForm({ data, submitBtnText = "Create C
 				>
 					Course Title
 				</label>
-				{/* <small id="emailHelp" className="absolute w-full text-neutral-500 dark:text-neutral-200" data-te-input-helper-ref>
+				{/* <small id="emailHelp" className="absolute w-full text-neutral-500 text-black" data-te-input-helper-ref>
 								We&apos;ll never share your email with anyone else.
 							</small> */}
 			</div>
@@ -40,7 +40,7 @@ export default function CreateOrEditCourseForm({ data, submitBtnText = "Create C
 			<div className="relative mb-12" data-te-input-wrapper-init>
 				<input
 					type="number"
-					className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+					className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-black  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
 					id="createCourseInput-amount"
 					aria-describedby="emailHelp"
 					placeholder="Course Amount"
@@ -51,15 +51,12 @@ export default function CreateOrEditCourseForm({ data, submitBtnText = "Create C
 				>
 					Course Amount <small>in pound (&pound;)</small>
 				</label>
-				{/* <small id="emailHelp" className="absolute w-full text-neutral-500 dark:text-neutral-200" data-te-input-helper-ref>
-								We&apos;ll never share your email with anyone else.
-							</small> */}
 			</div>
 
 			{/* Course Description */}
 			<div className="relative mb-12" data-te-input-wrapper-init>
 				<textarea
-					className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+					className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-black  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
 					id="createCourseInput-courseName"
 					aria-describedby="emailHelp"
 					placeholder="Course Description"
@@ -70,28 +67,39 @@ export default function CreateOrEditCourseForm({ data, submitBtnText = "Create C
 				>
 					Course Description
 				</label>
-				<small className="absolute w-full text-neutral-500 dark:text-neutral-200" data-te-input-helper-ref>
+				<small className="absolute w-full text-neutral-500 text-black" data-te-input-helper-ref>
 					This will be displayed on the course cards, Please make it brief.
 				</small>
 			</div>
 
 			{/* Course Body */}
 			<div className="relative mb-12">
-				<small className="w-full font-bold my-3 block text-neutral-500 dark:text-neutral-200" data-te-input-helper-ref>
+				<small className="w-full font-bold my-3 block text-neutral-500 text-black" data-te-input-helper-ref>
 					Write the course content here
 				</small>
 				<WYSIWYGEditor />
 			</div>
 
 			{/* <!--Submit button--> */}
-			<button
-				type="submit"
-				className="inline-block rounded bg-gradient-to-r from-blue-800 to-blue-900 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-				data-te-ripple-init
-				data-te-ripple-color="light"
-			>
-				{submitBtnText}
-			</button>
+			<div className="grid grid-cols-2 gap-4">
+				<button
+					type="submit"
+					className="inline-block rounded bg-gradient-to-r from-blue-800 to-blue-900 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+					data-te-ripple-init
+					data-te-ripple-color="light"
+				>
+					Publish Course
+				</button>
+
+				<button
+					type="submit"
+					className="inline-block rounded border border-blue-900 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-gray-700 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+					data-te-ripple-init
+					data-te-ripple-color="light"
+				>
+					Draft Course
+				</button>
+			</div>
 		</form>
 	)
 }

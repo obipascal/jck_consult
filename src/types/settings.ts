@@ -1,4 +1,6 @@
 import type { User as NextAuthUser } from "next-auth"
+import { PaginationResponse } from "./http"
+import { FAQResponseInterface } from "./faqs"
 
 export type UserSettings = Pick<NextAuthUser, "name" | "email" | "image">
 
@@ -19,4 +21,13 @@ export interface ApplicationSettingsProps {
 	logo: string
 	created_at: string
 	updated_at: string
+}
+
+export interface SiteConfigs {
+	faqs: PaginationResponse<FAQResponseInterface>
+	settings: ApplicationSettingsProps
+}
+
+export type DashboardProps = {
+	configs: SiteConfigs
 }

@@ -1,13 +1,14 @@
 import DashboardContent from "@JCKConsultant/components/dashboard/layout/DashboardContent"
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
 import { authorizedOnly } from "@JCKConsultant/lib/authSession"
+import { DashboardProps } from "@JCKConsultant/types"
 import { CurrencyPoundIcon } from "@heroicons/react/20/solid"
 import { BookOpenIcon, UsersIcon } from "@heroicons/react/24/outline"
 import dynamic from "next/dynamic"
 
 const DashboardUsersStatistics = dynamic(() => import("@JCKConsultant/components/dashboard/statistics/DashboardUsersStatistics"), { ssr: false })
 
-export default function Dashboard() {
+export default function Dashboard({ configs }: DashboardProps) {
 	return (
 		<DashboardLayout>
 			<DashboardContent title="Dashboard">

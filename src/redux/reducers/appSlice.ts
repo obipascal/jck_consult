@@ -1,18 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { HYDRATE } from "next-redux-wrapper"
 import { AppState } from "../stores"
-
+import { SiteConfigs } from "@JCKConsultant/types"
 
 // Type for our state
 export interface AppStateProps {
 	theme: "dark" | "light"
 	showNavMenu: boolean
+	configs?: SiteConfigs
 }
 
 // Initial state
 const initialState: AppStateProps = {
 	theme: "light",
-	showNavMenu: false
+	showNavMenu: false,
+	configs: undefined
 }
 
 // Actual Slice
@@ -46,6 +48,10 @@ export const appSlice = createSlice({
 			state.showNavMenu = action?.payload
 		},
 
+		setConfigs(state, action) {
+			state.configs = action?.payload
+		},
+
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
 		extraReducers: {
 			// @ts-ignore
@@ -59,11 +65,12 @@ export const appSlice = createSlice({
 	}
 })
 
-export const { setTheme, toggleNavMenu } = appSlice.actions
+export const { setTheme, toggleNavMenu, setConfigs } = appSlice.actions
 
 export const getTheme = (state: AppState) => state?.app?.theme
 export const inDarkMode = (state: AppState) => state?.app?.theme === "dark"
 export const inLightMode = (state: AppState) => state?.app?.theme === "light"
 export const getNavMenuState = (state: AppState) => state?.app?.showNavMenu
+export const getConfigs = (state: AppState) => state?.app?.configs
 
 export default appSlice

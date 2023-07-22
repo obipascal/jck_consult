@@ -11,14 +11,14 @@ const DragAndDropImageFile: React.FC<DragAndDropImageFileProps> = props => {
 
 	const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0] as File
-		setSelectedFile(file)
+
 		previewFile(file)
 	}
 
 	const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
 		event.preventDefault()
 		const file = event.dataTransfer.files?.[0]
-		setSelectedFile(file)
+
 		previewFile(file)
 	}
 
@@ -56,7 +56,7 @@ const DragAndDropImageFile: React.FC<DragAndDropImageFileProps> = props => {
 	return (
 		<div
 			onClick={handleContainerClick}
-			className="cursor-pointer xs:h-[250px] md:h-[300px] bg-light-bg rounded border-dotted border-3 border-sky-500 flex items-center justify-center px-3 text-center drag-and-drop-container"
+			className="cursor-pointer xs:h-[250px] md:h-[300px] bg-light-bg rounded border-dotted border-3 border-sky-500 flex items-center justify-center px-3 text-center text-black drag-and-drop-container"
 			onDrop={handleDrop}
 			onDragOver={handleDragOver}
 			style={containerStyle}

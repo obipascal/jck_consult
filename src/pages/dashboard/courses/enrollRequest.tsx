@@ -3,6 +3,7 @@ import DashboardLayout from "@JCKConsultant/components/dashboard/layout/Dashboar
 import React from "react"
 import { UserHeader } from "../users/[userId]"
 import OrderSummary from "@JCKConsultant/components/misc/OrderSummary"
+import { authorizedOnly } from "@JCKConsultant/lib/authSession"
 
 export default function enrollRequest() {
 	return (
@@ -111,4 +112,9 @@ export default function enrollRequest() {
 			</DashboardContent>
 		</DashboardLayout>
 	)
+}
+
+// Session inspector
+export async function getServerSideProps(context: any) {
+	return authorizedOnly(context)
 }

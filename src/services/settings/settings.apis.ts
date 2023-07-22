@@ -14,6 +14,10 @@ export const FetchSetting = async (params: string | any) => {
 	return await GET(settingsEndpoints.SHOW(params))
 }
 
+export const FetchConfigs = async () => {
+	return await GET(settingsEndpoints.INDEX())
+}
+
 export const CreateFAQ = async (params: FormData | any) => {
 	return await POST(settingsEndpoints.FAQs.CREATE, params)
 }

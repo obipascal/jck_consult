@@ -5,6 +5,9 @@ import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import Image from "next/image"
 import { signOut } from "next-auth/react"
+import { useSelector } from "react-redux"
+import { getConfigs } from "@JCKConsultant/redux/reducers/appSlice"
+import Logo from "@JCKConsultant/assets/img/logo.png"
 
 // @ts-ignore
 function classNames(...classes) {
@@ -31,6 +34,8 @@ const navigation: Array<NavigationProps> = [
 ]
 
 export default function DashboardNavbar({ pageName = "Dashboard" }: DashboardNavbarProps) {
+	const configs = useSelector(getConfigs)
+
 	const _handleSignout = () => {
 		sessionStorage.clear()
 		signOut()
@@ -50,8 +55,8 @@ export default function DashboardNavbar({ pageName = "Dashboard" }: DashboardNav
 							</div>
 							<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
 								<div className="flex flex-shrink-0 items-center">
-									<img className="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-									<img className="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+									<Image width={100} height={100} className="block h-10 rounded w-auto lg:hidden" src={(configs?.settings?.logo as string) ?? Logo} alt={(configs?.settings?.name as string) ?? ""} />
+									<Image width={100} height={100} className="hidden h-10 rounded w-auto lg:block" src={(configs?.settings?.logo as string) ?? Logo} alt={(configs?.settings?.name as string) ?? ""} />
 								</div>
 								<div className="hidden sm:ml-6 sm:block">
 									<div className="flex space-x-4">

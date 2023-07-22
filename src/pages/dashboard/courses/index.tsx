@@ -2,6 +2,7 @@ import CourseListItem from "@JCKConsultant/components/dashboard/courses/CourseLi
 import DashboardContent from "@JCKConsultant/components/dashboard/layout/DashboardContent"
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { authorizedOnly } from "@JCKConsultant/lib/authSession"
 import { uniqueId } from "@JCKConsultant/lib/utils"
 import Link from "next/link"
 
@@ -38,4 +39,9 @@ export default function DashboardCourses() {
 			</DashboardContent>
 		</DashboardLayout>
 	)
+}
+
+// Session inspector
+export async function getServerSideProps(context: any) {
+	return authorizedOnly(context)
 }
