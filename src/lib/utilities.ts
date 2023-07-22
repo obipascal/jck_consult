@@ -1,8 +1,3 @@
-import React from "react"
-import { sleep } from "./_sleep"
-import $ from "jquery"
-import { shareContentProps } from "types"
-
 export const extractToken = (token: string): string => {
 	return token.split("|")[1]
 }
@@ -27,30 +22,9 @@ export const decryptString = (encryptedString: string | any): string | any => {
 	return atob(encryptedString)
 }
 
-export const toggleMarketplaceTab = (e: React.ChangeEvent<HTMLButtonElement> | any) => {
-	const target = e.target
-
-	document.querySelectorAll(".bk__tab-item").forEach(elem => {
-		if (elem?.classList?.contains("active")) {
-			elem.classList.remove("active")
-		}
-	})
-
-	sleep(1000).then(() => {
-		$(target).addClass("active")
-		target.classList.add("active")
-	})
-}
-
 export const reloadSession = () => {
 	const event = new Event("visibilitychange")
 	document.dispatchEvent(event)
-}
-
-export const shareContent = async (content: shareContentProps) => {
-	if (typeof navigator?.share !== "undefined" && typeof navigator?.share === "function") {
-		await navigator?.share(content)
-	}
 }
 
 export const formatNumber = (num: any) => `${Intl.NumberFormat().format(parseInt(num))}.00`
