@@ -1,13 +1,10 @@
 import Head from "next/head"
-import Image from "next/image"
 import React, { useState, useEffect, useCallback } from "react"
 
 import type { Meta, WithChildren } from "@JCKConsultant/types"
-import Nav, { BilmaStoreLogo } from "./Nav"
 import { useDispatch, useSelector } from "react-redux"
-import { getTheme, setTheme, toggleNavMenu } from "@JCKConsultant/redux/reducers/appSlice"
+import { getTheme, toggleNavMenu } from "@JCKConsultant/redux/reducers/appSlice"
 import classNames from "classnames"
-import IconShoppingCart from "../icons/shoppingCart"
 import dynamic from "next/dynamic"
 import MainNav from "./MainNav"
 import MainFooter from "./MainFooter"
@@ -25,7 +22,6 @@ interface LayoutLayoutProps extends WithChildren {
 export default function MainLayout({ meta, children, subdomain, showCart = true }: LayoutLayoutProps) {
 	const [scrolled, setScrolled] = useState(false)
 	const dispatcher = useDispatch()
-	const theme = useSelector(getTheme)
 
 	React.useEffect(() => {
 		AOS.init()
