@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Inter } from "next/font/google"
-import Layout from "@JCKConsultant/components/sites/Layout"
+
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import HomeHeaderSection from "@JCKConsultant/components/home/HomeHeaderSection"
 import HomeWhoweareSection from "@JCKConsultant/components/home/HomeWhoweareSection"
