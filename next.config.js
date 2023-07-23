@@ -47,8 +47,8 @@ const nextConfig = {
         port: '8000',
         pathname: '/api/**',
       },  {
-        protocol: 'http',
-        hostname: "jckconsulting.co.uk",
+        protocol: 'https',
+        hostname: "apis.jckconsulting.co.uk",
         port: '',
         pathname: '/api/**',
       },
