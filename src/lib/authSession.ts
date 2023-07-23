@@ -5,20 +5,38 @@ import { getSession } from "next-auth/react"
 export const authorizedOnly = async (context: any) => {
 	const { resolvedUrl } = context
 	const _session = await getSession(context)
-	const _data = await FetchConfigs()
 
-	if (!_session)
+	try {
+		const _data = await FetchConfigs()
+
+		if (!_session)
+			return {
+				redirect: {
+					destination: resolvedUrl && resolvedUrl !== ROUTES.login ? `${ROUTES.login}?callback=${resolvedUrl}` : ROUTES.login,
+					permanent: false
+				}
+			}
+
 		return {
-			redirect: {
-				destination: resolvedUrl && resolvedUrl !== ROUTES.login ? `${ROUTES.login}?callback=${resolvedUrl}` : ROUTES.login,
-				permanent: false
+			props: {
+				session: _session,
+				configs: _data?.data
 			}
 		}
+	} catch (error) {
+		if (!_session)
+			return {
+				redirect: {
+					destination: resolvedUrl && resolvedUrl !== ROUTES.login ? `${ROUTES.login}?callback=${resolvedUrl}` : ROUTES.login,
+					permanent: false
+				}
+			}
 
-	return {
-		props: {
-			session: _session,
-			configs: _data?.data
+		return {
+			props: {
+				session: _session,
+				configs: null
+			}
 		}
 	}
 }
