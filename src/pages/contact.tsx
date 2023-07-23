@@ -8,16 +8,25 @@ import { uniqueId } from "@JCKConsultant/lib/utils"
 import IconMapMarkerRadius from "@JCKConsultant/components/icons/IconMapMarkerRadius"
 import IconEnvelope from "@JCKConsultant/components/icons/IconEnvelope"
 import IconTelephoneFill from "@JCKConsultant/components/icons/IconTelephoneFill"
+import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
+import { AppConfigs, Meta } from "@JCKConsultant/types"
 
 type InitDataTypes = {
 	username?: string
 	password?: string
 }
 
-export default function Contact() {
+export default function Contact({ configs }: AppConfigs) {
 	const initData: InitDataTypes = {}
+
+	const metaData: Meta = {
+		title: configs?.settings?.name,
+		description: configs?.settings?.desc,
+		logo: configs?.settings?.logo
+	}
+
 	return (
-		<MainLayout>
+		<MainLayout meta={metaData} siteConfigs={configs} title="Contact Us">
 			<div className=" h-full xs:p-3 md:p-10">
 				<div className=" w-full text-neutral-800">
 					<div className="w-full">
@@ -129,14 +138,14 @@ export default function Contact() {
 								{/* <!-- Right column container with background and description--> */}
 								<div className="bg-gradient-to-r from-blue-800 to-blue flex flex-col justify-start items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
 									<div className="px-4 py-6 md:mx-6 text-white md:p-12">
-										<h4 className="mb-6 text-3xl font-normal">Get In Touch</h4>
+										<h4 className="mb-6 text-3xl font-bold text-secondary">Get In Touch</h4>
 										<p className="text-sm">We would love to speak with you. Feel free to reach out using the below details.</p>
 									</div>
 									<div data-aos="fade-up" className=" grid grid-cols-1 justify-between pl-2">
 										{/* Phone number */}
 										<div className="flex">
 											<div className="w-fit flex items-center text-white">
-												<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue  mb-3">
+												<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-secondary  mb-3">
 													<IconTelephoneFill width={"1em"} height={"1em"} />
 												</span>
 												<div className="ml-3">
@@ -148,7 +157,7 @@ export default function Contact() {
 
 										{/* Email */}
 										<div className="flex text-white">
-											<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue mb-3">
+											<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-secondary mb-3">
 												<IconEnvelope width={"1em"} height={"1em"} />
 											</span>
 
@@ -160,7 +169,7 @@ export default function Contact() {
 
 										{/* Address */}
 										<div className="flex text-white">
-											<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue mb-3 h-fit">
+											<span className="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-secondary mb-3 h-fit">
 												<IconMapMarkerRadius width={"1em"} height={"1em"} />
 											</span>
 
@@ -178,4 +187,8 @@ export default function Contact() {
 			</div>
 		</MainLayout>
 	)
+}
+
+export async function getServerSideProps(context: any) {
+	return prefetchConfigs(context)
 }

@@ -1,16 +1,11 @@
 import Image from "next/image"
 import React from "react"
-import Logo from "@JCKConsultant/assets/img/logo.png"
-import IconCircleUser from "../icons/userIcon"
+import Logo from "@JCKConsultant/assets/img/logox180.png"
 import { useDispatch, useSelector } from "react-redux"
-import { getNavMenuState, getTheme, toggleNavMenu } from "@JCKConsultant/redux/reducers/appSlice"
-import { getAuthStatus } from "@JCKConsultant/redux/reducers/AuthSlice"
+import { getNavMenuState, toggleNavMenu } from "@JCKConsultant/redux/reducers/appSlice"
 import classNames from "classnames"
 import IconFilterRight from "../icons/IconFilterRight"
-import NavMenu from "./NavMenu"
 import IconCloseOutline from "../icons/IconCloseOutline"
-import IconSearch from "../icons/IconSearch"
-import IconBxHomeAlt from "../icons/IconBxHomeAlt"
 import Link from "next/link"
 
 import { capitalize } from "@JCKConsultant/lib/utils"
@@ -18,18 +13,17 @@ import { ROUTES } from "@JCKConsultant/configs/routes"
 import MainDarkmodeToggle from "./MainDarkmodeToggle"
 import MainSidebar from "./MainSidebar"
 
-export const BilmaStoreLogo = Logo
+export const AppLogo = Logo
 
 export const navStyle = {
 	navItems: "flex items-center"
 }
 
 type MainNavProps = {
-	storeName?: string
+	siteName?: string
+	siteLogo?: string
 }
 export default function MainNav(props: MainNavProps) {
-	const themeMode = useSelector(getTheme)
-	const isActive = useSelector(getAuthStatus)
 	const dispatcher = useDispatch()
 	const isNavMenuShown = useSelector(getNavMenuState)
 
@@ -49,8 +43,8 @@ export default function MainNav(props: MainNavProps) {
 				<div className="flex item-center justify-between container">
 					{/* Logo */}
 					<Link href={ROUTES.home} className="flex items-center">
-						<Image src={BilmaStoreLogo} className="w-50 mr-2" alt={props?.storeName ? props?.storeName : "Bilma Stores"} width={50} />
-						<h5 className="font-bold xs:invisible md:visible text-ellipsis overflow-hidden">{props?.storeName ? capitalize(props?.storeName)?.split("-")?.join(" ") : "JCK Consultant"}</h5>
+						<Image src={props?.siteLogo ? props?.siteLogo : AppLogo} height={100} width={100} className="h-16 w-16 mr-2 rounded-md" alt={props?.siteName ? props?.siteName : "JCK Consulting."} />
+						<h5 className="font-bold xs:invisible md:visible text-ellipsis overflow-hidden">{props?.siteName ? capitalize(props?.siteName)?.split("-")?.join(" ") : "JCK Consulting."}</h5>
 					</Link>
 					{/* Nav Items */}
 					<ul className="flex space-x-6 xs:hidden md:flex">

@@ -19,14 +19,14 @@ export default function HomeHeaderSection() {
 					<div className="p-5 py-10">
 						<h1 className="font-bold xs:text-[36px] md:text-[42px] text-white">Tech Career Accelerator: Empowering Your Journey in the Digital World</h1>
 						<p className="my-5 text-white xs:text-md md:text-lg">Unleash Your Potential, Master New Skills, and Forge a Path to Success in the Ever-Evolving Tech Landscape.</p>
-						<Link href="#next__h_courses" className="p-3 rounded-full w-fit mt-10  bg-secondary text-white shadow-lg flex items-center" role="button">
+						<Link href="#next__h_courses" className="p-3 rounded-full w-fit mt-10  bg-secondary text-primary shadow-lg flex items-center" role="button">
 							Let&apos;s Get Started
 						</Link>
 					</div>
 
 					<Link
 						href="#next__h_whoweare"
-						className="p-3 rounded-full w-fit shadow-lg backdrop-blur bg-white/50 absolute left-auto top-auto right-0 bottom-0 animate__animated animate__heartBeat animate__infinite"
+						className="p-3 rounded-full w-fit shadow-lg backdrop-blur bg-white/50 absolute left-auto top-auto right-0 bottom-0 animate__animated animate__heartBeat animate__infinite md:visible xs:invisible"
 						role="button"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

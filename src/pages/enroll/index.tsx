@@ -2,23 +2,28 @@ import Image from "next/image"
 import React from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 
-import AuthBackground from "@JCKConsultant/assets/img/auth/draw2.webp"
-import { ReviewValidationSchema } from "@JCKConsultant/lib/validator/reviewValidator"
-import IconGoogle from "@JCKConsultant/components/icons/IconGoogle"
 import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { uniqueId } from "@JCKConsultant/lib/utils"
 import OrderSummary from "@JCKConsultant/components/misc/OrderSummary"
+import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
+import { AppConfigs, Meta } from "@JCKConsultant/types"
 
 type InitDataTypes = {
 	username?: string
 	password?: string
 }
 
-export default function EnrollCourse() {
+export default function EnrollCourse({ configs }: AppConfigs) {
+	const metaData: Meta = {
+		title: configs?.settings?.name,
+		description: configs?.settings?.desc,
+		logo: configs?.settings?.logo
+	}
+
 	return (
-		<MainLayout>
+		<MainLayout meta={metaData} siteConfigs={configs} title="Enroll Course">
 			<div className=" h-full xs:p-3 md:p-10">
 				<div className=" w-full text-neutral-800">
 					<div className="w-full">
@@ -148,4 +153,8 @@ export default function EnrollCourse() {
 			</div>
 		</MainLayout>
 	)
+}
+
+export async function getServerSideProps(context: any) {
+	return prefetchConfigs(context)
 }

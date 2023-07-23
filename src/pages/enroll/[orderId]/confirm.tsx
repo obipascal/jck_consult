@@ -8,14 +8,22 @@ import Pending from "@JCKConsultant/assets/img/icons/pending-icon.png"
 import Image from "next/image"
 import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
+import { AppConfigs, Meta } from "@JCKConsultant/types"
 
 export const SuccessIcon = Success
 export const ErrorIcon = Error
 export const PendingIcon = Pending
 
-export default function EnrollSuccess() {
+export default function EnrollSuccess({ configs }: AppConfigs) {
+	const metaData: Meta = {
+		title: configs?.settings?.name,
+		description: configs?.settings?.desc,
+		logo: configs?.settings?.logo
+	}
+
 	return (
-		<MainLayout>
+		<MainLayout meta={metaData} siteConfigs={configs} title="Confirm Course Enrollment">
 			<div className=" h-full xs:p-3 md:p-10">
 				<div className=" w-full text-neutral-800">
 					<div className="w-full flex justify-center items-center">
@@ -63,4 +71,8 @@ export default function EnrollSuccess() {
 			</div>
 		</MainLayout>
 	)
+}
+
+export async function getServerSideProps(context: any) {
+	return prefetchConfigs(context)
 }

@@ -1,13 +1,21 @@
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
 import { uniqueId } from "@JCKConsultant/lib/utils"
+import { AppConfigs, Meta } from "@JCKConsultant/types"
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 
-export default function OurCourses() {
+export default function OurCourses({ configs }: AppConfigs) {
+	const metaData: Meta = {
+		title: configs?.settings?.name,
+		description: configs?.settings?.desc,
+		logo: configs?.settings?.logo
+	}
+
 	return (
-		<MainLayout>
+		<MainLayout meta={metaData} siteConfigs={configs} title="Courses">
 			<section className="bg-[url('/img/bg/Frame_bg_flip.png')] bg-fixed bg-no-repeat bg-cover bg-center min-h-screen">
 				<div className="bg-white/80 py-24 sm:py-32">
 					<div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -30,7 +38,7 @@ export default function OurCourses() {
 												</a>
 											</h3>
 											<p className="mt-1 text-sm text-gray-500">{product?.desc}</p>
-											<Link href={ROUTES?.enroll.index(product.name)} className="p-2 px-3 rounded-full w-fit mt-3 block bg-secondary text-white" role="button">
+											<Link href={ROUTES?.enroll.index(product.name)} className="p-2 px-3 rounded-full w-fit mt-3 block bg-secondary text-primary" role="button">
 												Enroll course
 											</Link>
 										</div>
@@ -203,3 +211,7 @@ const products = [
 
 	// More products...
 ]
+
+export async function getServerSideProps(context: any) {
+	return prefetchConfigs(context)
+}

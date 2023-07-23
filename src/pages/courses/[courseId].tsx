@@ -1,10 +1,18 @@
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
+import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
+import { AppConfigs, Meta } from "@JCKConsultant/types"
 import Image from "next/image"
 import React from "react"
 
-export default function CourseInfo() {
+export default function CourseInfo({ configs }: AppConfigs) {
+	const metaData: Meta = {
+		title: configs?.settings?.name,
+		description: configs?.settings?.desc,
+		logo: configs?.settings?.logo
+	}
+
 	return (
-		<MainLayout>
+		<MainLayout meta={metaData} siteConfigs={configs} title="Course Info">
 			<section className="bg-[url('/img/bg/Frame_bg.png')] bg-fixed bg-no-repeat bg-cover bg-center my-0" id="next__h_courses">
 				<div className="bg-white/80 py-24 sm:py-32">
 					{/* <!-- Container for demo purpose --> */}
@@ -42,4 +50,8 @@ export default function CourseInfo() {
 			</section>
 		</MainLayout>
 	)
+}
+
+export async function getServerSideProps(context: any) {
+	return prefetchConfigs(context)
 }

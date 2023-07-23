@@ -9,19 +9,37 @@ import OurCourses from "@JCKConsultant/components/home/OurCourses"
 import HomeFAQs from "@JCKConsultant/components/home/HomeFAQs"
 import Testimonies from "@JCKConsultant/components/home/Testimonies"
 import ContactInfo from "@JCKConsultant/components/home/ContactInfo"
+import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
+import { AppConfigs, Meta, SiteConfigs } from "@JCKConsultant/types"
+import { useRouter } from "next/router"
+import Loader from "@JCKConsultant/components/sites/Loader"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default function Home() {
+export default function Home({ configs }: AppConfigs) {
+	const router = useRouter()
+
+	if (router.isFallback) return <Loader />
+
+	const metaData: Meta = {
+		title: configs?.settings?.name,
+		description: configs?.settings?.desc,
+		logo: configs?.settings?.logo
+	}
+
 	return (
-		<MainLayout>
+		<MainLayout meta={metaData} siteConfigs={configs} title="Home">
 			<HomeHeaderSection />
 			<HomeWhoweareSection />
 			<WhyUs />
 			<OurCourses />
 			<HomeFAQs />
 			<Testimonies />
-			<ContactInfo />
+			<ContactInfo settings={configs?.settings} />
 		</MainLayout>
 	)
+}
+
+export async function getServerSideProps(context: any) {
+	return prefetchConfigs(context)
 }

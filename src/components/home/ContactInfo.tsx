@@ -4,13 +4,15 @@ import IconArrowRight from "../icons/IconArrowRight"
 import IconTelephoneFill from "../icons/IconTelephoneFill"
 import IconEnvelope from "../icons/IconEnvelope"
 import IconMapMarkerRadius from "../icons/IconMapMarkerRadius"
+import { ROUTES } from "@JCKConsultant/configs/routes"
+import { SiteConfigs } from "@JCKConsultant/types"
 
-export default function ContactInfo() {
+export default function ContactInfo({ settings }: SiteConfigs) {
 	return (
 		<section className="bg-white bg-no-repeat bg-cover bg-center">
 			<div className="py-[50px] px-[25px] grid grid-cols-1 gap-6">
 				<div data-aos="fade-up" className="flex items-center justify-start">
-					<Link href="#" className="p-3 rounded-full w-fit bg-gradient-to-r from-indigo-500 to-blue text-white shadow-lg flex items-center" role="button">
+					<Link href={ROUTES.contact} className="p-3 rounded-full w-fit bg-gradient-to-r from-indigo-500 to-blue text-white shadow-lg flex items-center" role="button">
 						Contact Us <IconArrowRight className="ml-1" />
 					</Link>
 				</div>
@@ -24,7 +26,9 @@ export default function ContactInfo() {
 							</span>
 							<div className="ml-3">
 								<h1 className="font-bold text-blue">Phone Number</h1>
-								<p className="font-normal ">+234 9125256272</p>
+								<p className="font-normal text-gray-700">
+									<a href={`tel:${settings?.phone_number}`}>{settings?.phone_number}</a>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -37,7 +41,9 @@ export default function ContactInfo() {
 
 						<div className="ml-3">
 							<h1 className="font-bold text-blue">Email</h1>
-							<p className="font-normal ">support@jckconsulting.co.uk</p>
+							<p className="font-normal text-gray-700">
+								<a href={`mailto:${settings?.email}`}>{settings?.email}</a>
+							</p>
 						</div>
 					</div>
 
@@ -49,7 +55,7 @@ export default function ContactInfo() {
 
 						<div className="ml-3">
 							<h1 className="font-bold text-blue">Address</h1>
-							<p className="font-normal ">No 26 Ebenezer street, Byazhin Across, Kubwa</p>
+							<p className="font-normal text-gray-700">{settings?.line_address}</p>
 						</div>
 					</div>
 				</div>

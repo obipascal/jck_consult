@@ -24,10 +24,14 @@ export interface ApplicationSettingsProps {
 }
 
 export interface SiteConfigs {
-	faqs: PaginationResponse<FAQResponseInterface>
-	settings: ApplicationSettingsProps
+	faqs?: PaginationResponse<FAQResponseInterface>
+	settings?: ApplicationSettingsProps
 }
 
 export type DashboardProps = {
-	configs: SiteConfigs
+	configs?: SiteConfigs
+}
+
+export type AppConfigs = {
+	configs?: SiteConfigs
 }
