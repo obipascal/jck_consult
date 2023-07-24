@@ -139,9 +139,9 @@ export default function Contact({ configs }: AppConfigs) {
 								<div className="bg-gradient-to-r from-blue-800 to-blue flex flex-col justify-start items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
 									<div className="px-4 py-6 md:mx-6 text-white md:p-12">
 										<h4 className="mb-6 text-3xl font-bold text-secondary">Get In Touch</h4>
-										<p className="text-sm">We would love to speak with you. Feel free to reach out using the below details.</p>
+										<p className="text-sm">We are eager to connect with you. Please don&apos;t hesitate to get in touch using the contact information provided below.</p>
 									</div>
-									<div data-aos="fade-up" className=" grid grid-cols-1 justify-between pl-2">
+									<div data-aos="fade-up" className=" grid grid-cols-1 items-start justify-between pl-2">
 										{/* Phone number */}
 										<div className="flex">
 											<div className="w-fit flex items-center text-white">
@@ -150,7 +150,7 @@ export default function Contact({ configs }: AppConfigs) {
 												</span>
 												<div className="ml-3">
 													<h1 className="font-bold ">Phone Number</h1>
-													<p className="font-normal md:text-md xs:text-xs ">+234 9125256272</p>
+													<p className="font-normal md:text-md xs:text-xs ">{configs?.settings?.phone_number}</p>
 												</div>
 											</div>
 										</div>
@@ -163,7 +163,7 @@ export default function Contact({ configs }: AppConfigs) {
 
 											<div className="ml-3">
 												<h1 className="font-bold md:text-md xs:text-xs">Email</h1>
-												<p className="font-normal ">support@jckconsulting.co.uk</p>
+												<p className="font-normal ">{configs?.settings?.email}</p>
 											</div>
 										</div>
 
@@ -175,7 +175,7 @@ export default function Contact({ configs }: AppConfigs) {
 
 											<div className="ml-3">
 												<h1 className="font-bold md:text-md xs:text-xs">Address</h1>
-												<p className="font-normal ">No 26 Ebenezer street, Byazhin Across, Kubwa</p>
+												<p className="font-normal ">{configs?.settings?.line_address}</p>
 											</div>
 										</div>
 									</div>

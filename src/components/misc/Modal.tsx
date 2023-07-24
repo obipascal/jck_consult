@@ -17,6 +17,7 @@ type ModalProps = {
 	cancelBtnClass?: string
 	onConfirm?: () => void
 	onCancel?: () => void
+	isLoading?: boolean
 }
 export default function Modal({
 	title = "Modal title",
@@ -29,18 +30,30 @@ export default function Modal({
 	cancelText = "Cancel",
 	cancelBtnClass = "bg-white ring-1 ring-inset ring-gray-300 hover:bg-gray-50",
 	onConfirm,
-	onCancel
+	onCancel,
+	isLoading
 }: ModalProps) {
 	const show = useSelector(getModal)
 	const dispatcher = useDispatch()
 
 	const _closeModal = () => dispatcher(toggleModal(false))
+	const _handleConfirm = () => {
+		if (typeof onConfirm === "function") onConfirm()
+
+		_closeModal()
+	}
+
+	const _handleCancel = () => {
+		if (typeof onCancel === "function") onCancel()
+
+		_closeModal()
+	}
 
 	const cancelButtonRef = useRef(null)
 
 	return (
 		<Transition.Root show={show} as={Fragment}>
-			<Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={_closeModal}>
+			<Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => {}}>
 				<Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
 					<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 				</Transition.Child>
@@ -79,22 +92,24 @@ export default function Modal({
 											<Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
 												{title}
 											</Dialog.Title>
-											<div className="mt-2">{message}</div>
+											<div className="mt-2 text-black">{message}</div>
 										</div>
 									</div>
 								</div>
 								<div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
 									<button
+										disabled={isLoading}
 										type="button"
 										className={`inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto  ${confirmBtnClass}`}
-										onClick={typeof onConfirm === "function" ? onConfirm : _closeModal}
+										onClick={_handleConfirm}
 									>
 										{confirmText}
 									</button>
 									<button
+										disabled={isLoading}
 										type="button"
-										className={`mt-3 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold  shadow-sm sm:mt-0 sm:w-auto ${cancelBtnClass}`}
-										onClick={typeof onCancel === "function" ? onCancel : _closeModal}
+										className={`mt-3 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm text-black font-semibold  shadow-sm sm:mt-0 sm:w-auto ${cancelBtnClass}`}
+										onClick={_handleCancel}
 										ref={cancelButtonRef}
 									>
 										{cancelText}

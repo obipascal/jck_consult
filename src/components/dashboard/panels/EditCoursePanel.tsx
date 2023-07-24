@@ -5,16 +5,40 @@ import { useDispatch, useSelector } from "react-redux"
 import { getEditCoursePanel, toggleEditCoursePanel } from "@JCKConsultant/redux/reducers/panelsSlice"
 import CreateOrEditCourseForm from "../courses/CreateOrEditCourseForm"
 import dynamic from "next/dynamic"
+import EditCourseLoader from "@JCKConsultant/components/loaders/EditCourseLoader"
+import { useMutation } from "react-query"
+import { FetchCourse } from "@JCKConsultant/services/course/course.apis"
+import { CourseInterface } from "@JCKConsultant/types/course"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
+import React from "react"
+import { ServerErrors } from "@JCKConsultant/lib/_toaster"
+import { emitFetchCourses } from "@JCKConsultant/redux/reducers/appEventsSlice"
 
 export default function EditCoursePanel() {
 	const editCoursePanel = useSelector(getEditCoursePanel)
 	const { show, data, params } = editCoursePanel
+	const [course, setCourse] = React.useState<CourseInterface>()
 	const dispatcher = useDispatch()
 
 	const _closePanel = () => {
 		dispatcher(toggleEditCoursePanel({ status: false }))
 	}
+
+	const fetchCourseApi = useMutation(FetchCourse, {
+		onSuccess(res: any) {
+			if (res?.status) {
+				setCourse(res?.data)
+			}
+		},
+		onError(error, variables, context) {
+			ServerErrors("Course Fetchhing Error", error)
+		}
+	})
+	const isLoading = fetchCourseApi.isLoading
+
+	React.useEffect(() => {
+		if (params) fetchCourseApi.mutateAsync(params)
+	}, [params])
 
 	return (
 		<Transition.Root show={show} as={Fragment}>
@@ -57,8 +81,13 @@ export default function EditCoursePanel() {
 											<Dialog.Title className="text-base font-semibold leading-6 text-gray-900">Edit Course</Dialog.Title>
 										</div>
 										<div className="relative mt-6 flex-1 px-4 sm:px-6">
-											<InitTailwindUI />
-											<CreateOrEditCourseForm submitBtnText={"Update Course"} />
+											{isLoading && <EditCourseLoader />}
+											{!isLoading && (
+												<>
+													<InitTailwindUI />
+													<CreateOrEditCourseForm canCreate={false} data={course} />
+												</>
+											)}
 										</div>
 									</div>
 								</Dialog.Panel>

@@ -10,6 +10,7 @@ import Spinner from "@JCKConsultant/components/home/Spinner"
 import AppSettingLogoUploader from "./AppSettingLogoUploader"
 import { useSelector } from "react-redux"
 import { getConfigs } from "@JCKConsultant/redux/reducers/appSlice"
+import { SiteConfigs } from "@JCKConsultant/types"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type InitValsProps = {
@@ -25,20 +26,18 @@ type InitValsProps = {
 	whatsapp_handle: string
 }
 
-export default function ApplicationSettings() {
-	const configs = useSelector(getConfigs)
-
+export default function ApplicationSettings({ settings }: SiteConfigs) {
 	const initVals: InitValsProps = {
-		name: configs?.settings?.name ?? "",
-		desc: configs?.settings?.desc ?? "",
-		phone_number: configs?.settings?.phone_number ?? "",
-		email: configs?.settings?.email ?? "",
-		line_address: configs?.settings?.line_address ?? "",
-		facebook_handle: configs?.settings?.facebook_handle ?? "",
-		instagram_handle: configs?.settings?.instagram_handle ?? "",
-		twitter_handle: configs?.settings?.twitter_handle ?? "",
-		linkedin_handle: configs?.settings?.linkedin_handle ?? "",
-		whatsapp_handle: configs?.settings?.whatsapp_handle ?? ""
+		name: settings?.name ?? "",
+		desc: settings?.desc ?? "",
+		phone_number: settings?.phone_number ?? "",
+		email: settings?.email ?? "",
+		line_address: settings?.line_address ?? "",
+		facebook_handle: settings?.facebook_handle ?? "",
+		instagram_handle: settings?.instagram_handle ?? "",
+		twitter_handle: settings?.twitter_handle ?? "",
+		linkedin_handle: settings?.linkedin_handle ?? "",
+		whatsapp_handle: settings?.whatsapp_handle ?? ""
 	}
 
 	const createSettingApi = useMutation(CreateSettings, {
@@ -78,7 +77,7 @@ export default function ApplicationSettings() {
 		<div className="mt-6 border-t border-gray-100">
 			<InitTailwindUI />
 
-			<AppSettingLogoUploader defaultLogo={configs?.settings?.logo} />
+			<AppSettingLogoUploader defaultLogo={settings?.logo} />
 
 			<Formik initialValues={initVals} onSubmit={_handleSubmit} validationSchema={appValidatorScheme}>
 				{({ handleChange, values }) => (
@@ -88,7 +87,7 @@ export default function ApplicationSettings() {
 							<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
 								<dt className="text-sm font-medium leading-6 text-gray-900">
 									<h1 className="font-semibold text-gray-600 text-lg">Website Name</h1>
-									<h2 className="font-medium text-md text-gray-500">{configs?.settings?.name}</h2>
+									<h2 className="font-medium text-md text-gray-500">{settings?.name}</h2>
 								</dt>
 								<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
 									<div>
@@ -118,7 +117,7 @@ export default function ApplicationSettings() {
 							<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
 								<dt className="text-sm font-medium leading-6 text-gray-900">
 									<h1 className="font-semibold text-gray-600 text-lg">Description</h1>
-									<p className="font-medium text-md text-gray-500">{configs?.settings?.desc}</p>
+									<p className="font-medium text-md text-gray-500">{settings?.desc}</p>
 								</dt>
 								<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
 									<div>
@@ -361,7 +360,7 @@ export default function ApplicationSettings() {
 					<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
 						<div>
 							<div className="relative mb-4">
-								<WYSIWYGEditor value={configs?.settings?.about} inputName="about" />
+								<WYSIWYGEditor value={settings?.about} inputName="about" />
 							</div>
 						</div>
 					</dd>

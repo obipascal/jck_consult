@@ -5,9 +5,12 @@ import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import Image from "next/image"
 import { signOut } from "next-auth/react"
-import { useSelector } from "react-redux"
-import { getConfigs } from "@JCKConsultant/redux/reducers/appSlice"
-import Logo from "@JCKConsultant/assets/img/logo.png"
+import { SiteConfigs } from "@JCKConsultant/types"
+import { AppLogo } from "@JCKConsultant/components/sites/MainNav"
+import { useUser } from "@JCKConsultant/hooks/useUser"
+
+import FemaleAvatar from "@JCKConsultant/assets/img/avatar/femaile-avatar.jpg"
+import MaleAvatar from "@JCKConsultant/assets/img/avatar/male-avatar.webp"
 
 // @ts-ignore
 function classNames(...classes) {
@@ -24,22 +27,27 @@ const isCurrentPage = (pageName: string, targetpage: string) => {
 
 type DashboardNavbarProps = {
 	pageName?: string
+	configs?: SiteConfigs
 }
 
 const navigation: Array<NavigationProps> = [
 	{ name: "Dashboard", href: ROUTES?.dashboard.index },
 	{ name: "Courses", href: ROUTES.dashboard.courses.index },
 	{ name: "Users", href: ROUTES.dashboard.users.index },
-	{ name: "Transactions", href: ROUTES.dashboard.transactions.index }
+	{ name: "Transactions", href: ROUTES.dashboard.transactions.index },
+	{ name: "Enquiries", href: ROUTES.dashboard.enquiries.index }
 ]
 
-export default function DashboardNavbar({ pageName = "Dashboard" }: DashboardNavbarProps) {
-	const configs = useSelector(getConfigs)
+export default function DashboardNavbar({ pageName = "Dashboard", configs }: DashboardNavbarProps) {
+	const user = useUser()
+
+	const Avatar = user?.gender === "female" ? FemaleAvatar : MaleAvatar
 
 	const _handleSignout = () => {
 		sessionStorage.clear()
 		signOut()
 	}
+
 	return (
 		<Disclosure as="nav" className="bg-gradient-to-r from-blue-800 to-blue-900 shadow-lg backdrop-blur">
 			{({ open }) => (
@@ -55,8 +63,20 @@ export default function DashboardNavbar({ pageName = "Dashboard" }: DashboardNav
 							</div>
 							<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
 								<div className="flex flex-shrink-0 items-center">
-									<Image width={100} height={100} className="block h-10 rounded w-auto lg:hidden" src={(configs?.settings?.logo as string) ?? Logo} alt={(configs?.settings?.name as string) ?? ""} />
-									<Image width={100} height={100} className="hidden h-10 rounded w-auto lg:block" src={(configs?.settings?.logo as string) ?? Logo} alt={(configs?.settings?.name as string) ?? ""} />
+									<Image
+										width={100}
+										height={100}
+										className="block h-10 rounded w-auto lg:hidden"
+										src={(configs?.settings?.logo as string) ?? AppLogo}
+										alt={(configs?.settings?.name as string) ?? ""}
+									/>
+									<Image
+										width={100}
+										height={100}
+										className="hidden h-10 rounded w-auto lg:block"
+										src={(configs?.settings?.logo as string) ?? AppLogo}
+										alt={(configs?.settings?.name as string) ?? ""}
+									/>
 								</div>
 								<div className="hidden sm:ml-6 sm:block">
 									<div className="flex space-x-4">
@@ -90,13 +110,7 @@ export default function DashboardNavbar({ pageName = "Dashboard" }: DashboardNav
 									<div>
 										<Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 											<span className="sr-only">Open user menu</span>
-											<Image
-												width={100}
-												height={100}
-												className="h-8 w-8 rounded-full"
-												src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-												alt=""
-											/>
+											<Image width={100} height={100} className="h-8 w-8 rounded-full" src={Avatar} alt={user?.first_name} />
 										</Menu.Button>
 									</div>
 									<Transition

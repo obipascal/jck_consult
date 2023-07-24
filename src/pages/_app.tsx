@@ -1,5 +1,6 @@
 import "animate.css"
 import "@JCKConsultant/styles/globals.scss"
+// import "tw-elements-react/dist/css/tw-elements-react.min.css"
 
 import { SessionProvider } from "next-auth/react"
 import type { Session } from "next-auth"

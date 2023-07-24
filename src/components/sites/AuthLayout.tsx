@@ -1,34 +1,21 @@
-import React from "react"
-import DashboardNavbar from "./DashboardNavbar"
-import dynamic from "next/dynamic"
-import EditCoursePanel from "../panels/EditCoursePanel"
-import TransactionDetailsPanel from "../panels/TransactionDetailsPanel"
-import { useUser } from "@JCKConsultant/hooks/useUser"
-import { useDispatch } from "react-redux"
-import { useMutation } from "react-query"
-import { FetchConfigs } from "@JCKConsultant/services/settings/settings.apis"
-import { setConfigs } from "@JCKConsultant/redux/reducers/appSlice"
-import { ServerErrors } from "@JCKConsultant/lib/_toaster"
-import { Meta, SiteConfigs, WithChildren } from "@JCKConsultant/types"
 import Head from "next/head"
-const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
+import React from "react"
 
-interface DashboardLayoutProps extends WithChildren {
+import type { Meta, SiteConfigs, WithChildren } from "@JCKConsultant/types"
+import dynamic from "next/dynamic"
+import Image from "next/image"
+import { AppLogo } from "./MainNav"
+
+const InitTailwindUI = dynamic(() => import("./initTailwindUI"), { ssr: false })
+
+interface AuthLayoutProps extends WithChildren {
 	meta?: Meta
 	title?: string
-	pageName?: string
+	heading?: string
 	siteConfigs?: SiteConfigs
 }
 
-export default function DashboardLayout({ children, pageName = "Dashboard", meta, title, siteConfigs }: DashboardLayoutProps) {
-	const User = useUser()
-
-	React.useEffect(() => {
-		if (User?.api_token) {
-			sessionStorage.setItem("api_token", User?.api_token)
-		}
-	}, [User?.api_token])
-
+export default function AuthLayout({ meta, children, title, heading, siteConfigs }: AuthLayoutProps) {
 	return (
 		<>
 			<InitTailwindUI />
@@ -86,14 +73,13 @@ export default function DashboardLayout({ children, pageName = "Dashboard", meta
 				<meta name="twitter:description" content={meta?.description} />
 				<meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 			</Head>
-			<section className="min-h-screen">
-				<DashboardNavbar configs={siteConfigs} pageName={pageName} />
+			<div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+				<div className="sm:mx-auto sm:w-full sm:max-w-sm">
+					<Image className="mx-auto h-20 w-20 rounded-md" src={meta?.logo ? meta?.logo : AppLogo} alt={meta?.title as string} />
+					<h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">{heading ? heading : "Administrator Console"}</h2>
+				</div>
 				{children}
-			</section>
-
-			{/* Panels */}
-			<EditCoursePanel />
-			<TransactionDetailsPanel />
+			</div>
 		</>
 	)
 }

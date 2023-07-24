@@ -3,8 +3,8 @@ export const courseEndpoints = {
 	UPDATE: (id: string) => `protected:/v1/courses/${id}`,
 	LOGO: (id: string) => `protected:/v1/courses/${id}`,
 	SHOW: (id: string) => `public:/v1/courses/${id}`,
-	INDEX: (perPage: any) => `protected:/v1/courses?perPage=${perPage}`,
+	INDEX: (perPage: any, page: any = 1) => `protected:/v1/courses?perPage=${perPage}&page=${page}`,
 	DELETE: (id: string) => `protected:/v1/courses/${id}`,
 	SEARCH: (sq: string, perPage: any = 50) => `public:/v1/courses/search?sq=${sq}&perPage=${perPage}`,
-	ACTIVE: (perPage: any = 50) => `public:/v1/courses/active?perPage=${perPage}`
+	ACTIVE: (perPage: any = 50, page: any = 1) => `public:/v1/courses/active?perPage=${perPage}&page=${page}`
 }

@@ -1,9 +1,10 @@
-import FAQs from "@JCKConsultant/components/about/FAQs"
+const FAQs = dynamic(() => import("@JCKConsultant/components/about/FAQs"), { ssr: false })
 import WhoWeAre from "@JCKConsultant/components/about/WhoWeAre"
 import WhyChooseUs from "@JCKConsultant/components/about/WhyChooseUs"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
 import { AppConfigs, Meta } from "@JCKConsultant/types"
+import dynamic from "next/dynamic"
 import React from "react"
 
 export default function about({ configs }: AppConfigs) {
@@ -15,9 +16,9 @@ export default function about({ configs }: AppConfigs) {
 
 	return (
 		<MainLayout meta={metaData} siteConfigs={configs} title="About Us">
-			<WhoWeAre />
+			<WhoWeAre content={configs?.settings?.about} />
 			<WhyChooseUs />
-			<FAQs />
+			<FAQs faqs={configs?.faqs} settings={configs?.settings} />
 		</MainLayout>
 	)
 }

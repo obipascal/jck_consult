@@ -6,16 +6,16 @@ export const authorizedOnly = async (context: any) => {
 	const { resolvedUrl } = context
 	const _session = await getSession(context)
 
+	if (!_session)
+		return {
+			redirect: {
+				destination: resolvedUrl && resolvedUrl !== ROUTES.login ? `${ROUTES.login}?callback=${resolvedUrl}` : ROUTES.login,
+				permanent: false
+			}
+		}
+
 	try {
 		const _data = await FetchConfigs()
-
-		if (!_session)
-			return {
-				redirect: {
-					destination: resolvedUrl && resolvedUrl !== ROUTES.login ? `${ROUTES.login}?callback=${resolvedUrl}` : ROUTES.login,
-					permanent: false
-				}
-			}
 
 		return {
 			props: {
@@ -24,14 +24,6 @@ export const authorizedOnly = async (context: any) => {
 			}
 		}
 	} catch (error) {
-		if (!_session)
-			return {
-				redirect: {
-					destination: resolvedUrl && resolvedUrl !== ROUTES.login ? `${ROUTES.login}?callback=${resolvedUrl}` : ROUTES.login,
-					permanent: false
-				}
-			}
-
 		return {
 			props: {
 				session: _session,
@@ -52,9 +44,21 @@ export const unauthorizedOnly = async (context: any) => {
 			}
 		}
 
-	return {
-		props: {
-			session: _session
+	try {
+		const _data = await FetchConfigs()
+
+		return {
+			props: {
+				session: _session,
+				configs: _data?.data
+			}
+		}
+	} catch (error) {
+		return {
+			props: {
+				session: _session,
+				configs: null
+			}
 		}
 	}
 }

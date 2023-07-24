@@ -1,7 +1,7 @@
 import DashboardContent from "@JCKConsultant/components/dashboard/layout/DashboardContent"
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
 import { authorizedOnly } from "@JCKConsultant/lib/authSession"
-import { DashboardProps } from "@JCKConsultant/types"
+import { DashboardProps, Meta } from "@JCKConsultant/types"
 import { CurrencyPoundIcon } from "@heroicons/react/20/solid"
 import { BookOpenIcon, UsersIcon } from "@heroicons/react/24/outline"
 import dynamic from "next/dynamic"
@@ -9,8 +9,14 @@ import dynamic from "next/dynamic"
 const DashboardUsersStatistics = dynamic(() => import("@JCKConsultant/components/dashboard/statistics/DashboardUsersStatistics"), { ssr: false })
 
 export default function Dashboard({ configs }: DashboardProps) {
+	const metaData: Meta = {
+		title: configs?.settings?.name,
+		description: configs?.settings?.desc,
+		logo: configs?.settings?.logo
+	}
+
 	return (
-		<DashboardLayout>
+		<DashboardLayout meta={metaData} title="Dashboard" pageName="Dashboard" siteConfigs={configs}>
 			<DashboardContent title="Dashboard">
 				<section className="grid md:grid-cols-3 xs:grid-cols-1 gap-4 mb-5">
 					<div className=" bg-gradient-to-r from-secondary to-blue md:rounded  xs:rounded-none shadow min-h-[72px] relative mb-4 p-4">

@@ -13,7 +13,7 @@ export interface UserInterface {
 	last_name: string
 	email: string
 	phone_number: string
-	gender: string
+	gender: "male" | "female" | "others"
 	qualification: string
 	email_verified_at: string
 	created_at: string

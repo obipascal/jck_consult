@@ -30,10 +30,10 @@ export default function Home({ configs }: AppConfigs) {
 	return (
 		<MainLayout meta={metaData} siteConfigs={configs} title="Home">
 			<HomeHeaderSection />
-			<HomeWhoweareSection />
+			<HomeWhoweareSection content={configs?.settings?.about} />
 			<WhyUs />
-			<OurCourses />
-			<HomeFAQs />
+			<OurCourses siteId={configs?.settings?.site_id} />
+			<HomeFAQs faqs={configs?.faqs} />
 			<Testimonies />
 			<ContactInfo settings={configs?.settings} />
 		</MainLayout>

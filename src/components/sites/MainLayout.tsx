@@ -12,13 +12,13 @@ import AOS from "aos"
 
 const InitTailwindUI = dynamic(() => import("./initTailwindUI"), { ssr: false })
 
-interface LayoutLayoutProps extends WithChildren {
+interface LayoutProps extends WithChildren {
 	meta?: Meta
 	title?: string
 	siteConfigs?: SiteConfigs
 }
 
-export default function MainLayout({ meta, children, title, siteConfigs }: LayoutLayoutProps) {
+export default function MainLayout({ meta, children, title, siteConfigs }: LayoutProps) {
 	const [scrolled, setScrolled] = useState(false)
 	const dispatcher = useDispatch()
 
@@ -48,18 +48,18 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 			<div className={classNames({ "h-full min-h-screen": true })}>
 				<InitTailwindUI />
 				<Head>
-					<title>{title ? `${title} - ${meta?.title}` : meta?.title}</title>
+					<title>{title ? `${title} - ${meta?.title ? meta?.title : "JCK Consulting."}` : meta?.title ? meta?.title : "JCK Consulting."}</title>
 
-					<meta name="theme-color" content="#7b46f6" />
+					<meta name="theme-color" content="rgb(30 58 138)" />
 
 					<meta charSet="utf-8" />
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 					{/* Application configuration on how it will appear on mobile device */}
-					<meta name="application-name" content={meta?.title} />
+					<meta name="application-name" content={meta?.title ? meta?.title : "JCK Consulting."} />
 					<meta name="apple-mobile-web-app-capable" content="yes" />
 					<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-					<meta name="apple-mobile-web-app-title" content={meta?.title} />
+					<meta name="apple-mobile-web-app-title" content={meta?.title ? meta?.title : "JCK Consulting."} />
 					<meta name="description" content={meta?.description} />
 					<meta name="format-detection" content="telephone=no" />
 					<meta name="mobile-web-app-capable" content="yes" />
@@ -84,11 +84,11 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 					<link rel="manifest" href={`${process.env.NEXT_PUBLIC_URL}/manifest.json`} />
 					{/* End */}
 
-					<meta itemProp="name" content={meta?.title} />
+					<meta itemProp="name" content={meta?.title ? meta?.title : "JCK Consulting."} />
 					<meta itemProp="description" content={meta?.description} />
 					<meta itemProp="image" content={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 					<meta name="description" content={meta?.description} />
-					<meta property="og:title" content={meta?.title} />
+					<meta property="og:title" content={meta?.title ? meta?.title : "JCK Consulting."} />
 					<meta property="og:description" content={meta?.description} />
 					<meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
 					<meta property="og:image" content={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
@@ -97,7 +97,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 					<meta name="twitter:card" content="summary_large_image" />
 					<meta name="twitter:site" content="@jckconsulting" />
 					<meta name="twitter:creator" content="@jckconsulting" />
-					<meta name="twitter:title" content={meta?.title} />
+					<meta name="twitter:title" content={meta?.title ? meta?.title : "JCK Consulting."} />
 					<meta name="twitter:description" content={meta?.description} />
 					<meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 				</Head>

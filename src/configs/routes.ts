@@ -30,6 +30,9 @@ export const ROUTES = {
 		},
 		settings: {
 			index: "/dashboard/settings"
+		},
+		enquiries: {
+			index: "/dashboard/enquiries"
 		}
 	},
 
