@@ -40,6 +40,6 @@ export const AuthSlice = createSlice({
 export const { setAuthUser } = AuthSlice.actions
 
 export const getAuthUser = (state: AppState) => state?.auth?.user
-export const getAuthStatus = (state: AppState) => state?.auth?.isActive
+export const getAuth = (state: AppState) => state?.auth
 
 export default AuthSlice

@@ -119,13 +119,6 @@ export default function EnrollCourse({ configs }: AppConfigs) {
 												</label>
 											</div>
 										</form>
-										<br />
-										<hr />
-										<br />
-
-										<p className="mb-4">Your order summary</p>
-
-										<OrderSummary />
 
 										<Link
 											href={ROUTES.enroll.confirm(uniqueId())}
@@ -142,7 +135,7 @@ export default function EnrollCourse({ configs }: AppConfigs) {
 								{/* <!-- Right column container with background and description--> */}
 								<div className="bg-gradient-to-r from-blue-800 to-blue flex justify-center items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
 									<div className="px-4 py-6 md:mx-6 text-white md:p-12">
-										<h4 className="mb-6 text-xl font-semibold">Over 200 candidates are already enrolled in this course</h4>
+										<h4 className="mb-6 text-xl font-semibold">Over 200 students are already enrolled in this course</h4>
 										<p className="text-sm">Join our amazing community and happy students who are already enrolled.</p>
 									</div>
 								</div>

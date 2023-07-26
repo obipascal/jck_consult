@@ -57,10 +57,10 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 													<div className="mt-4 flex justify-between p-3">
 														<div>
 															<h3 className="text-sm font-semibold text-gray-700">
-																<a href={ROUTES.courses.details(product?.course_id)}>
+																<Link href={ROUTES.courses.details(product?.course_id)}>
 																	{/* <span aria-hidden="true" className="absolute inset-0" /> */}
 																	{product.title}
-																</a>
+																</Link>
 															</h3>
 															<p className="mt-1 text-sm text-gray-500">{product?.desc}</p>
 															<Link href={ROUTES.enroll.index(product?.course_id)} className="p-2 px-3 rounded-full w-fit mt-3 block bg-secondary text-primary" role="button">

@@ -1,10 +1,41 @@
+import CourseInfoLoader from "@JCKConsultant/components/loaders/CourseInfoLoader"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
+import { ServerErrors } from "@JCKConsultant/lib/_toaster"
 import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
+import { toDateString } from "@JCKConsultant/lib/utils"
+import { FetchCourse } from "@JCKConsultant/services/course/course.apis"
 import { AppConfigs, Meta } from "@JCKConsultant/types"
+import { CourseInterface } from "@JCKConsultant/types/course"
 import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/router"
 import React from "react"
+import { useMutation } from "react-query"
+import { ROUTES } from "@JCKConsultant/configs/routes"
 
 export default function CourseInfo({ configs }: AppConfigs) {
+	const router = useRouter()
+	const { courseId } = router?.query
+
+	const [course, setCourse] = React.useState<CourseInterface>()
+
+	const fetchCourseApi = useMutation(FetchCourse, {
+		onSuccess(res: any) {
+			if (res?.status) {
+				setCourse(res?.data)
+			}
+		},
+		onError(error, variables, context) {
+			ServerErrors("Error", error)
+		}
+	})
+
+	const isFetching = fetchCourseApi.isLoading
+
+	React.useEffect(() => {
+		if (courseId) fetchCourseApi.mutateAsync(courseId)
+	}, [courseId])
+
 	const metaData: Meta = {
 		title: configs?.settings?.name,
 		description: configs?.settings?.desc,
@@ -18,32 +49,33 @@ export default function CourseInfo({ configs }: AppConfigs) {
 					{/* <!-- Container for demo purpose --> */}
 					<div className="container mx-auto md:p-6 bg-white rounded shadow-lg">
 						{/* <!-- Section: Design Block --> */}
-						<section className="mb-32">
-							<Image width={100} height={100} src="https://mdbcdn.b-cdn.net/img/new/slides/198.jpg" className="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20" alt="image" />
+						{!isFetching && (
+							<section className="mb-32 text-black">
+								{/* <Image width={100} height={100} src="https://mdbcdn.b-cdn.net/img/new/slides/198.jpg" className="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20" alt="image" /> */}
 
-							<div className="mb-6 flex items-center">
-								<Image width={50} height={50} src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (23).jpg" className="mr-2 rounded-full" alt="avatar" loading="lazy" />
-								<div>
-									<span>
-										{" "}
-										Published <u>15.07.2020</u> by{" "}
-									</span>
-									<a href="#!" className="font-medium">
-										Anna Maria Doe
-									</a>
+								<div className="mb-6 flex items-center">
+									<div>
+										<span>
+											{" "}
+											Published <em>on</em> <u>{toDateString(course?.created_at as any as Date)}</u>
+										</span>
+									</div>
 								</div>
-							</div>
 
-							<h1 className="mb-6 text-3xl font-bold">An intriguing title for an interesting article</h1>
+								<h1 className="mb-6 text-3xl font-bold">{course?.title}</h1>
 
-							<p>
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi harum tempore cupiditate asperiores provident, itaque, quo ex iusto rerum voluptatum delectus corporis quisquam
-								maxime a ipsam nisi sapiente qui optio! Dignissimos harum quod culpa officiis suscipit soluta labore! Expedita quas, nesciunt similique autem, sunt, doloribus pariatur maxime qui sint
-								id enim. Placeat, maxime labore. Dolores ex provident ipsa impedit, omnis magni earum. Sed fuga ex ducimus consequatur corporis, architecto nesciunt vitae ipsum consequuntur
-								perspiciatis nulla esse voluptatem quos dolorum delectus similique eum vero in est velit quasi pariatur blanditiis incidunt quam.
-							</p>
-						</section>
+								<div dangerouslySetInnerHTML={{ __html: course?.body as string }}></div>
+
+								<div className="rounded-md p-3 bg-sky-100/[.25] mt-7 flex items-center">
+									<p className="text-gray-400 mr-3 text-2xl">Not yet enrolled?</p>{" "}
+									<Link href={ROUTES.enroll.index(course?.course_id)} className="bg-primary text-white p-2 rounded-lg">
+										Enroll now!
+									</Link>
+								</div>
+							</section>
+						)}
 						{/* <!-- Section: Design Block --> */}
+						{isFetching && <CourseInfoLoader />}
 					</div>
 					{/* <!-- Container for demo purpose --> */}
 				</div>

@@ -44,7 +44,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 
 	return (
 		<>
-			<MainNav siteName={meta?.title} siteLogo={meta?.logo} />
+			<MainNav siteId={siteConfigs?.settings?.site_id} siteName={meta?.title} siteLogo={meta?.logo} />
 			<div className={classNames({ "h-full min-h-screen": true })}>
 				<InitTailwindUI />
 				<Head>

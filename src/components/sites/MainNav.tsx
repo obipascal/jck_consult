@@ -8,10 +8,13 @@ import IconFilterRight from "../icons/IconFilterRight"
 import IconCloseOutline from "../icons/IconCloseOutline"
 import Link from "next/link"
 
-import { capitalize } from "@JCKConsultant/lib/utils"
+import { capitalize, uniqueId } from "@JCKConsultant/lib/utils"
 import { ROUTES } from "@JCKConsultant/configs/routes"
-import MainDarkmodeToggle from "./MainDarkmodeToggle"
 import MainSidebar from "./MainSidebar"
+import { FetchPublishedCourses } from "@JCKConsultant/services/course/course.apis"
+import { useMutation } from "react-query"
+import { PaginationResponse } from "@JCKConsultant/types"
+import { CourseInterface } from "@JCKConsultant/types/course"
 
 export const AppLogo = Logo
 
@@ -22,12 +25,33 @@ export const navStyle = {
 type MainNavProps = {
 	siteName?: string
 	siteLogo?: string
+	siteId?:string 
 }
 export default function MainNav(props: MainNavProps) {
 	const dispatcher = useDispatch()
 	const isNavMenuShown = useSelector(getNavMenuState)
 
 	const toggleNavMenuVisibility = () => dispatcher(toggleNavMenu(!isNavMenuShown))
+
+
+	const [courses, setCourses] = React.useState<PaginationResponse<CourseInterface>>()
+
+	const fetchCourseApi = useMutation(FetchPublishedCourses, {
+		onSuccess(res: any) {
+			if (res?.status) setCourses(res?.data)
+		}
+	})
+
+	const isFetching = fetchCourseApi.isLoading
+
+	React.useEffect(() => {
+		if (props?.siteId) {
+			fetchCourseApi.mutateAsync({ perPage: 10, page: 1 })
+		}
+	}, [props?.siteId])
+
+	const products = courses?.data
+
 
 	return (
 		<>
@@ -70,13 +94,24 @@ export default function MainNav(props: MainNavProps) {
 								</span>
 							</Link>
 							<div className="absolute group-hover/nav-dropdown:visible  hover:visible flex flex-col top-[50px] bg-neutral-100 transition duration-150 ease-in-out invisible z-[1000] float-left overflow-hidden rounded-lg min-w-full">
-								<a
-									className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
-									href="#"
-									data-te-dropdown-item-ref
-								>
-									Item 1
-								</a>
+								{products && (
+									<>
+										{products?.length > 0 && (
+											<>
+											{products?.map(product => (
+												<Link
+												key={uniqueId()}
+												className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
+												href={ROUTES.enroll.index(product?.course_id)}
+												data-te-dropdown-item-ref
+											>
+												{product?.title}
+											</Link>
+											))}
+											</>
+										)}
+									</>
+								)}
 							</div>
 						</li>
 						<li className={navStyle.navItems}>

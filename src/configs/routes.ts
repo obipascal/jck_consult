@@ -39,5 +39,13 @@ export const ROUTES = {
 	forgotPassword: "/forgotPassword",
 	verifyPasswordReset: "/confirmResetPassword",
 	changePassword: (resetToken: string) => `/changePassword?reset_token=${resetToken}`,
-	login: "/login"
+	login: "/login",
+
+	// ----------> [User routes]
+	user: {
+		signin: "/auth",
+		signup: "/auth/signup",
+		forgetPassword: "/auth/fgpwd",
+		verify: "/auth/verify"
+	}
 }

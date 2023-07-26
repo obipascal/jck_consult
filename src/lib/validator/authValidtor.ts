@@ -6,6 +6,10 @@ export const loginValidatorScheme = yup.object().shape({
 	username: yup.string().email("Username must be an email.").required("Username is required")
 })
 
+export const signUpValidatorScheme = yup.object().shape({
+	email: yup.string().email("Email must be a valid email address.").required("Email is required")
+})
+
 export const FgpwdValidatorScheme = yup.object().shape({
 	email: yup.string().email("Invalid email address.").required("Email is required")
 })

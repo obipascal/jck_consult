@@ -14,7 +14,7 @@ export const UpdateCourseImage = async (params: UpdateRequestParams) => {
 	return await POST(courseEndpoints.UPDATE(params?.id), params?.data)
 }
 
-export const FetchCourse = async (params: string) => {
+export const FetchCourse = async (params: any) => {
 	return await GET(courseEndpoints.SHOW(params))
 }
 
@@ -22,7 +22,7 @@ export const FetchCourses = async (params: PaginationRequestParams) => {
 	return await GET(courseEndpoints.INDEX(params?.perPage, params?.page))
 }
 
-export const DeleteCourse = async (params: string) => {
+export const DeleteCourse = async (params: any) => {
 	return await DROP(courseEndpoints.DELETE(params))
 }
 
