@@ -1,11 +1,6 @@
 import Image from "next/image"
 import React from "react"
-import Persons from "@JCKConsultant/assets/img/look_mob-4 1.png"
-import Link from "next/link"
-import IconArrowRight from "../icons/IconArrowRight"
-import { ROUTES } from "@JCKConsultant/configs/routes"
-
-export const WhoWeAreImg = Persons
+import FounderImageCropped from "@JCKConsultant/assets/img/avatar/owner-img-cropped.png"
 
 type HomeWhoweareSectionProps = {
 	content?: string
@@ -18,7 +13,7 @@ export default function HomeWhoweareSection({ content }: HomeWhoweareSectionProp
 			</header>
 			<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 px-10">
 				<div data-aos="zoom-in-right" className="flex items-center justify-center">
-					<Image src={Persons} alt="" className="m-auto block wow zoomInUp" data-wow-duration="2s" data-wow-delay="5s" data-wow-offset="10" />
+					<Image src={FounderImageCropped} alt="" className="m-auto block wow zoomInUp" data-wow-duration="2s" data-wow-delay="5s" data-wow-offset="10" />
 				</div>
 				<div data-aos="fade-up" className="md:col-span-2 xs:col-span-1 text-black " dangerouslySetInnerHTML={{ __html: content as string }}></div>
 			</div>

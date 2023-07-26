@@ -22,3 +22,17 @@ export interface UserInterface {
 	role: "admin" | "user"
 	billing_info: string
 }
+
+export interface ReviewerInterface {
+	id: number
+	review_id: number
+	reviewer_name: string
+	reviewer_email: string
+	reviewer_role: string
+	reviewer_company: string
+	reviewer_image: string
+	reviewer_message: string
+	status: "moderation" | "published"
+	created_at: string
+	updated_at: string
+}

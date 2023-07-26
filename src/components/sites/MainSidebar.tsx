@@ -11,7 +11,7 @@ export default function MainSidebar() {
 	const isMenuShown = useSelector(getNavMenuState)
 	const dispatcher = useDispatch()
 
-	const toggleNavMenuVisibility = () => waitUntil(3000).then(() => dispatcher(toggleNavMenu(false)))
+	const toggleNavMenuVisibility = () => waitUntil(100).then(() => dispatcher(toggleNavMenu(false)))
 	return (
 		// {/* Side bar */}
 		<section

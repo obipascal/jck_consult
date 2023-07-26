@@ -1,6 +1,7 @@
 export const ROUTES = {
 	home: "/",
 	about: "/about",
+	review: "/review",
 	courses: {
 		index: "/courses",
 		details: (courseId: any) => `/courses/${courseId}`
@@ -45,7 +46,14 @@ export const ROUTES = {
 	user: {
 		signin: "/auth",
 		signup: "/auth/signup",
-		forgetPassword: "/auth/fgpwd",
-		verify: "/auth/verify"
+		verify: "/auth/verify",
+		onboard: "/auth/onboard",
+		forgetPassword: {
+			index: "/auth/forget-password",
+			confirm: "/auth/forget-password/confirm",
+			reset: "/auth/forget-password/reset"
+		},
+
+		dashboard: "/user"
 	}
 }

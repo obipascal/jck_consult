@@ -34,7 +34,7 @@ export default function Home({ configs }: AppConfigs) {
 			<WhyUs />
 			<OurCourses siteId={configs?.settings?.site_id} />
 			<HomeFAQs faqs={configs?.faqs} />
-			<Testimonies />
+			<Testimonies siteId={configs?.settings?.site_id} />
 			<ContactInfo settings={configs?.settings} />
 		</MainLayout>
 	)

@@ -9,11 +9,13 @@ import { useMutation } from "react-query"
 import { ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 import dynamic from "next/dynamic"
-import Link from "next/link"
-import { OTPCodeValidatorScheme, loginValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
 import { ROUTES } from "@JCKConsultant/configs/routes"
-import { dropdownOptions } from "@JCKConsultant/components/dashboard/settings/ProfileSettings"
-import { uniqueId } from "@JCKConsultant/lib/utils"
+import { waitUntil } from "@JCKConsultant/lib/utils"
+import { UpdateAccount } from "@JCKConsultant/services/account/account.apis"
+import { useRouter } from "next/router"
+import { useDispatch } from "react-redux"
+import { destroySession } from "@JCKConsultant/redux/reducers/AuthSlice"
+import { onboardAccountValidatorScheme } from "@JCKConsultant/lib/validator/accountValidator"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type InitValsProps = {
@@ -27,6 +29,9 @@ type InitValsProps = {
 }
 
 export default function OnboardPage({ configs }: AppConfigs) {
+	const router = useRouter()
+	const dispatcher = useDispatch()
+
 	const initData: InitValsProps = {
 		first_name: "",
 		last_name: "",
@@ -36,7 +41,23 @@ export default function OnboardPage({ configs }: AppConfigs) {
 		password: ""
 	}
 
+	const onboardAccountApi = useMutation(UpdateAccount, {
+		onSuccess(res: any) {
+			if (res?.status) {
+				Success("Profile Updated", "Account created successfully, you can now login to enroll in your desired course.")
+				dispatcher(destroySession(true))
+
+				waitUntil(100).then(() => router?.push(ROUTES.user?.signin))
+			}
+		},
+		onError(error, variables, context) {
+			ServerErrors("Onboarding", error)
+		}
+	})
+	const isLoading = onboardAccountApi.isLoading
+
 	const _handleSubmit = (values: InitValsProps, helpers: FormikHelpers<InitValsProps>) => {
+		onboardAccountApi.mutateAsync({ data: values })
 		helpers?.resetForm()
 	}
 
@@ -57,7 +78,7 @@ export default function OnboardPage({ configs }: AppConfigs) {
 								{/* <!-- Left column container--> */}
 								<div className="px-4 md:px-0">
 									<div className="xs:mx-6 xs:py-10 md:p-12 flex items-center justify-center">
-										<Formik initialValues={initData} onSubmit={_handleSubmit} validationSchema={OTPCodeValidatorScheme}>
+										<Formik initialValues={initData} onSubmit={_handleSubmit} validationSchema={onboardAccountValidatorScheme}>
 											{({ handleChange, values }) => (
 												<Form className="space-y-6 rounded-lg shadow p-5 min-w-[52%]">
 													<p className="mb-2 font-bold text-2xl">Account Onboarding</p>
@@ -129,6 +150,7 @@ export default function OnboardPage({ configs }: AppConfigs) {
 															<option value="">Gender</option>
 															<option value="male">Male</option>
 															<option value="female">Female</option>
+															<option value="others">Others</option>
 														</Field>
 
 														<ErrorMessage name="gender" component={"p"} className="text-red-600 mt-2 p-2" />
@@ -173,12 +195,14 @@ export default function OnboardPage({ configs }: AppConfigs) {
 													</div>
 
 													<button
-														className="bg-gradient-to-r from-blue-800 to-blue mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+														disabled={isLoading}
+														className="bg-gradient-to-r from-blue-800 to-blue disabled:from-blue-800/50 disabled:to-blue/50 mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
 														type="submit"
 														data-te-ripple-init
 														data-te-ripple-color="light"
 													>
-														Update Profile
+														{!isLoading && "Update Account"}
+														{isLoading && <Spinner />}
 													</button>
 												</Form>
 											)}

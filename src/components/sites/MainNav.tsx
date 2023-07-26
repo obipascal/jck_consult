@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React from "react"
+import React, { Fragment } from "react"
 import Logo from "@JCKConsultant/assets/img/logox180.png"
 import { useDispatch, useSelector } from "react-redux"
 import { getNavMenuState, toggleNavMenu } from "@JCKConsultant/redux/reducers/appSlice"
@@ -15,6 +15,12 @@ import { FetchPublishedCourses } from "@JCKConsultant/services/course/course.api
 import { useMutation } from "react-query"
 import { PaginationResponse } from "@JCKConsultant/types"
 import { CourseInterface } from "@JCKConsultant/types/course"
+import { BellIcon } from "@heroicons/react/24/outline"
+import { Menu, Transition } from "@headlessui/react"
+import FemaleAvatar from "@JCKConsultant/assets/img/avatar/femaile-avatar.jpg"
+import MaleAvatar from "@JCKConsultant/assets/img/avatar/male-avatar.webp"
+import { useUser } from "@JCKConsultant/hooks/useUser"
+import { signOut } from "next-auth/react"
 
 export const AppLogo = Logo
 
@@ -25,14 +31,72 @@ export const navStyle = {
 type MainNavProps = {
 	siteName?: string
 	siteLogo?: string
-	siteId?:string 
+	siteId?: string
+}
+
+const UserDropdown = () => {
+	const user = useUser()
+
+	const Avatar = user?.gender === "female" ? FemaleAvatar : MaleAvatar
+
+	const _handleSignout = () => {
+		sessionStorage.clear()
+		signOut()
+	}
+
+	return (
+		<div className="inset-y-0   flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+			{/* Profile dropdown */}
+			<Menu as="div" className="relative ml-3">
+				<div>
+					<Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+						<span className="sr-only">Open user menu</span>
+						<Image width={100} height={100} className="h-8 w-8 rounded-full" src={Avatar} alt={user?.first_name} />
+					</Menu.Button>
+				</div>
+				<Transition
+					as={Fragment}
+					enter="transition ease-out duration-100"
+					enterFrom="transform opacity-0 scale-95"
+					enterTo="transform opacity-100 scale-100"
+					leave="transition ease-in duration-75"
+					leaveFrom="transform opacity-100 scale-100"
+					leaveTo="transform opacity-0 scale-95"
+				>
+					<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+						<Menu.Item>
+							{({ active }) => (
+								<Link href={`${ROUTES.dashboard.settings.index}`} className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
+									Your Profile
+								</Link>
+							)}
+						</Menu.Item>
+						<Menu.Item>
+							{({ active }) => (
+								<Link href={ROUTES.dashboard.settings.index} className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
+									Settings
+								</Link>
+							)}
+						</Menu.Item>
+						<Menu.Item>
+							{({ active }) => (
+								<Link onClick={_handleSignout} href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
+									Sign out
+								</Link>
+							)}
+						</Menu.Item>
+					</Menu.Items>
+				</Transition>
+			</Menu>
+		</div>
+	)
 }
 export default function MainNav(props: MainNavProps) {
 	const dispatcher = useDispatch()
 	const isNavMenuShown = useSelector(getNavMenuState)
+	const user = useUser()
 
 	const toggleNavMenuVisibility = () => dispatcher(toggleNavMenu(!isNavMenuShown))
-
 
 	const [courses, setCourses] = React.useState<PaginationResponse<CourseInterface>>()
 
@@ -51,7 +115,6 @@ export default function MainNav(props: MainNavProps) {
 	}, [props?.siteId])
 
 	const products = courses?.data
-
 
 	return (
 		<>
@@ -98,16 +161,16 @@ export default function MainNav(props: MainNavProps) {
 									<>
 										{products?.length > 0 && (
 											<>
-											{products?.map(product => (
-												<Link
-												key={uniqueId()}
-												className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
-												href={ROUTES.enroll.index(product?.course_id)}
-												data-te-dropdown-item-ref
-											>
-												{product?.title}
-											</Link>
-											))}
+												{products?.map(product => (
+													<Link
+														key={uniqueId()}
+														className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 "
+														href={ROUTES.enroll.index(product?.course_id)}
+														data-te-dropdown-item-ref
+													>
+														{product?.title}
+													</Link>
+												))}
 											</>
 										)}
 									</>
@@ -124,9 +187,20 @@ export default function MainNav(props: MainNavProps) {
 								Contact Us
 							</Link>
 						</li>
+
+						{user && (
+							<li className={navStyle.navItems}>
+								<UserDropdown />
+							</li>
+						)}
 					</ul>
 
 					<ul className="flex space-x-6 xs:flex md:hidden">
+						{user && (
+							<li className={navStyle.navItems}>
+								<UserDropdown />
+							</li>
+						)}
 						<li className={navStyle.navItems}>
 							{isNavMenuShown && <IconCloseOutline onClick={toggleNavMenuVisibility} className={classNames({ "cursor-pointer animate__animated animate__fadeIn": true })} width="2em" height="2em" />}
 							{!isNavMenuShown && <IconFilterRight onClick={toggleNavMenuVisibility} className={classNames({ "cursor-pointer animate__animated animate__fadeIn": true })} width="2em" height="2em" />}

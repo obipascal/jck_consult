@@ -1,18 +1,21 @@
-import Image from "next/image"
 import React from "react"
 
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
 import { AppConfigs, Meta } from "@JCKConsultant/types"
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik"
-import { enquiryValidatorScheme } from "@JCKConsultant/lib/validator/enquiriesValidator"
 import { useMutation } from "react-query"
 import { ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { loginValidatorScheme, signUpValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
+import { signUpValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { CreateAccount } from "@JCKConsultant/services/auth/auth.apis"
+import { useDispatch } from "react-redux"
+import { setApiToken } from "@JCKConsultant/redux/reducers/AuthSlice"
+import { useRouter } from "next/router"
+import { waitUntil } from "@JCKConsultant/lib/utils"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type InitValsProps = {
@@ -20,11 +23,31 @@ type InitValsProps = {
 }
 
 export default function SignUpPage({ configs }: AppConfigs) {
+	const dispatcher = useDispatch()
+	const router = useRouter()
+
 	const initData: InitValsProps = {
 		email: ""
 	}
 
+	const signupApi = useMutation(CreateAccount, {
+		onSuccess(res: any, params) {
+			if (res?.status) {
+				Success("Sign Up", res?.message)
+				dispatcher(setApiToken(res?.data?.api_token))
+
+				waitUntil(100).then(() => router?.push(`${ROUTES?.user?.verify}?email=${params?.email}`))
+			}
+		},
+		onError(error, variables, context) {
+			ServerErrors("Sign Up", error)
+		}
+	})
+
+	const isLoading = signupApi.isLoading
+
 	const _handleSubmit = (values: InitValsProps, helpers: FormikHelpers<InitValsProps>) => {
+		signupApi.mutateAsync(values)
 		helpers?.resetForm()
 	}
 
@@ -70,12 +93,14 @@ export default function SignUpPage({ configs }: AppConfigs) {
 													</div>
 
 													<button
-														className="bg-gradient-to-r from-blue-800 to-blue mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+														disabled={isLoading}
+														className="bg-gradient-to-r from-blue-800 to-blue disabled:from-blue-800/50 disabled:to-blue/50 mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
 														type="submit"
 														data-te-ripple-init
 														data-te-ripple-color="light"
 													>
-														Sign Up
+														{!isLoading && "Sign Up"}
+														{isLoading && <Spinner />}
 													</button>
 
 													<p className="my-8">

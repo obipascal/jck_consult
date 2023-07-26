@@ -24,6 +24,16 @@ export const AuthSlice = createSlice({
 			state.user = action?.payload
 		},
 
+		setApiToken(state, action) {
+			state.api_token = action?.payload
+			sessionStorage?.setItem("api_token", action?.payload)
+		},
+
+		destroySession(state, action) {
+			state.api_token = ""
+			sessionStorage?.clear()
+		},
+
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
 		extraReducers: {
 			// @ts-ignore
@@ -37,7 +47,7 @@ export const AuthSlice = createSlice({
 	}
 })
 
-export const { setAuthUser } = AuthSlice.actions
+export const { setAuthUser, setApiToken, destroySession } = AuthSlice.actions
 
 export const getAuthUser = (state: AppState) => state?.auth?.user
 export const getAuth = (state: AppState) => state?.auth

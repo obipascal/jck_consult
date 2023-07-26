@@ -9,18 +9,17 @@ import { useMutation } from "react-query"
 import { ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 import dynamic from "next/dynamic"
-import Link from "next/link"
-import { OTPCodeValidatorScheme, loginValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
+import { OTPCodeValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import { useRouter } from "next/router"
-import { VerifyAccount } from "@JCKConsultant/services/auth/auth.apis"
+import { VerifyAccount, VerifyPasswordReset } from "@JCKConsultant/services/auth/auth.apis"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type InitValsProps = {
 	otp_code: string
 }
 
-export default function VerifyAccountPage({ configs }: AppConfigs) {
+export default function ConfirmResetPasswordPage({ configs }: AppConfigs) {
 	const router = useRouter()
 	const { email } = router?.query
 
@@ -28,11 +27,11 @@ export default function VerifyAccountPage({ configs }: AppConfigs) {
 		otp_code: ""
 	}
 
-	const verifyAccountApi = useMutation(VerifyAccount, {
+	const verifyPasswordResetApi = useMutation(VerifyPasswordReset, {
 		onSuccess(res: any) {
 			if (res?.status) {
 				Success("Verification", res?.message)
-				router?.push(ROUTES?.user?.onboard)
+				router?.push(`${ROUTES?.user?.forgetPassword?.reset}?token=${res?.data?.reset_token}`)
 			}
 		},
 		onError(error, variables, context) {
@@ -40,10 +39,10 @@ export default function VerifyAccountPage({ configs }: AppConfigs) {
 		}
 	})
 
-	const isLoading = verifyAccountApi.isLoading
+	const isLoading = verifyPasswordResetApi.isLoading
 
 	const _handleSubmit = (values: InitValsProps, helpers: FormikHelpers<InitValsProps>) => {
-		verifyAccountApi.mutateAsync(values)
+		verifyPasswordResetApi.mutateAsync(values)
 		helpers?.resetForm()
 	}
 
@@ -54,7 +53,7 @@ export default function VerifyAccountPage({ configs }: AppConfigs) {
 	}
 
 	return (
-		<MainLayout meta={metaData} siteConfigs={configs} title="Verify Account">
+		<MainLayout meta={metaData} siteConfigs={configs} title="Confirm Account Password Reset">
 			<InitTailwindUI />
 			<div className=" h-full xs:p-3 md:p-10">
 				<div className=" w-full text-neutral-800">
@@ -67,9 +66,9 @@ export default function VerifyAccountPage({ configs }: AppConfigs) {
 										<Formik initialValues={initData} onSubmit={_handleSubmit} validationSchema={OTPCodeValidatorScheme}>
 											{({ handleChange, values }) => (
 												<Form className="space-y-6 rounded-lg shadow p-5">
-													<p className="mb-2 font-bold text-2xl">Verify Account</p>
+													<p className="mb-2 font-bold text-2xl">Confirm Account Password Reset</p>
 													<p className="mb-4">
-														Please enter the OTP Code sent to <span className="font-bold">{email}</span>.
+														We&apos;ve sent a One-time Password (OTP) to <span className="font-bold">{email}</span>.
 													</p>
 
 													<div className="relative mb-4" data-te-input-wrapper-init>
@@ -85,7 +84,7 @@ export default function VerifyAccountPage({ configs }: AppConfigs) {
 															htmlFor="authForm_otpInput"
 															className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
 														>
-															One-time Password (OTP) code
+															Enter OTP Code
 														</label>
 														<ErrorMessage name="otp_code" component={"p"} className="text-red-600 mt-2 p-2" />
 													</div>
@@ -97,7 +96,7 @@ export default function VerifyAccountPage({ configs }: AppConfigs) {
 														data-te-ripple-init
 														data-te-ripple-color="light"
 													>
-														{!isLoading && "Verify Account"}
+														{!isLoading && "Confirm"}
 														{isLoading && <Spinner />}
 													</button>
 												</Form>

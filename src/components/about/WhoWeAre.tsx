@@ -1,6 +1,8 @@
 import Image from "next/image"
 import React from "react"
-import { WhoWeAreImg } from "../home/HomeWhoweareSection"
+import FounderImage from "@JCKConsultant/assets/img/avatar/owner-img.jpg"
+
+export const Founder = FounderImage
 
 type WhoWeAreProps = {
 	content?: string
@@ -19,7 +21,7 @@ export default function WhoWeAre({ content }: WhoWeAreProps) {
 					</div>
 
 					<div>
-						<Image src={WhoWeAreImg} className="w-full rounded-lg shadow-lg " alt="image" />
+						<Image src={FounderImage} className="w-full rounded-lg shadow-lg " alt="image" />
 					</div>
 				</div>
 			</div>

@@ -103,6 +103,12 @@ export default function MainFooter({ settings }: SiteConfigs) {
 								Terms & Conditions
 							</Link>
 						</p>
+
+						<p className="mb-4">
+							<Link href={ROUTES.review} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
+								Write a review
+							</Link>
+						</p>
 					</div>
 					{/* <!-- Contact section --> */}
 					<div>

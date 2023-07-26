@@ -2,55 +2,58 @@ import Image from "next/image"
 import React from "react"
 
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
-import { prefetchConfigsUnauthorizedOnly } from "@JCKConsultant/lib/prefetch"
+import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
 import { AppConfigs, Meta } from "@JCKConsultant/types"
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik"
-import { enquiryValidatorScheme } from "@JCKConsultant/lib/validator/enquiriesValidator"
 import { useMutation } from "react-query"
-import { Info, ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
+import { ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 import dynamic from "next/dynamic"
-import Link from "next/link"
-import { loginValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
 import { ROUTES } from "@JCKConsultant/configs/routes"
-import { useRouter } from "next/router"
-import { signIn } from "next-auth/react"
 import { waitUntil } from "@JCKConsultant/lib/utils"
+import { UpdateAccount } from "@JCKConsultant/services/account/account.apis"
+import { useRouter } from "next/router"
+import { useDispatch } from "react-redux"
+import { destroySession } from "@JCKConsultant/redux/reducers/AuthSlice"
+import { changePasswordValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
+import { ResetAccountPassword } from "@JCKConsultant/services/auth/auth.apis"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type InitValsProps = {
-	username: string
+	reset_token: string
 	password: string
+	password_confirmation?: string
 }
 
-export default function SignInPage({ configs }: AppConfigs) {
-	const [error, setError] = React.useState<string>("")
-	const [isLoading, setLoading] = React.useState<boolean>(false)
+export default function ResetPasswordPage({ configs }: AppConfigs) {
 	const router = useRouter()
-	const { callback } = router?.query
+	const { token } = router?.query
+	const dispatcher = useDispatch()
 
 	const initData: InitValsProps = {
-		username: "",
-		password: ""
+		reset_token: token as string,
+		password: "",
+		password_confirmation: ""
 	}
 
-	const _handleSubmit = async (values: InitValsProps, helpers: FormikHelpers<InitValsProps>) => {
-		setLoading(!isLoading)
-		const res = await signIn("credentials", {
-			...values,
-			redirect: false
-		})
-		if (res?.error) {
-			setError(res?.error)
-			setLoading(false)
-		} else {
-			setLoading(!isLoading)
-			helpers?.resetForm()
+	const resetAccountApi = useMutation(ResetAccountPassword, {
+		onSuccess(res: any) {
+			if (res?.status) {
+				Success("Password Reset!", res?.message)
+				dispatcher(destroySession(true))
 
-			if (callback) {
-				waitUntil(100).then(() => router.push(callback as any))
-			} else waitUntil(100).then(() => router.push(ROUTES.user.dashboard))
+				waitUntil(100).then(() => router?.push(ROUTES.user?.signin))
+			}
+		},
+		onError(error, variables, context) {
+			ServerErrors("Reset Password", error)
 		}
+	})
+	const isLoading = resetAccountApi.isLoading
+
+	const _handleSubmit = (values: InitValsProps, helpers: FormikHelpers<InitValsProps>) => {
+		resetAccountApi.mutateAsync(values)
+		helpers?.resetForm()
 	}
 
 	const metaData: Meta = {
@@ -60,61 +63,58 @@ export default function SignInPage({ configs }: AppConfigs) {
 	}
 
 	return (
-		<MainLayout meta={metaData} siteConfigs={configs} title="Sign-in">
+		<MainLayout meta={metaData} siteConfigs={configs} title="Reset Account Password">
 			<InitTailwindUI />
 			<div className=" h-full xs:p-3 md:p-10">
 				<div className=" w-full text-neutral-800">
 					<div className="w-full">
-						<div className="block rounded-lg bg-white shadow-lg ">
+						<div className="block rounded-lg bg-white shadow-lg">
 							<div className="grid grid-cols-1">
 								{/* <!-- Left column container--> */}
 								<div className="px-4 md:px-0">
 									<div className="xs:mx-6 xs:py-10 md:p-12 flex items-center justify-center">
-										<Formik initialValues={initData} onSubmit={_handleSubmit} validationSchema={loginValidatorScheme}>
+										<Formik initialValues={initData} onSubmit={_handleSubmit} validationSchema={changePasswordValidatorScheme}>
 											{({ handleChange, values }) => (
-												<Form className="space-y-6 rounded-lg shadow p-5">
-													<p className="mb-4 font-bold text-2xl">Sign-in Account</p>
-													<p className="mb-4">You must be sign-in to enroll in a course.</p>
+												<Form className="space-y-6 rounded-lg shadow p-5 min-w-[52%]">
+													<p className="mb-2 font-bold text-2xl">Change Password</p>
+													<p className="mb-4">Create new account password.</p>
 
 													<div className="relative mb-4" data-te-input-wrapper-init>
 														<Field
-															id="signinForm_username"
-															name="username"
-															type="text"
-															value={values?.username}
-															onChange={handleChange}
-															className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-														/>
-														<label
-															htmlFor="signinForm_username"
-															className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
-														>
-															Email address
-														</label>
-														<ErrorMessage name="username" component={"p"} className="text-red-600 mt-2 p-2" />
-													</div>
-
-													<p className="text-end">
-														<Link href={ROUTES.user.forgetPassword.index} className="font-semibold text-primary">
-															Forgot Password?
-														</Link>
-													</p>
-													<div className="relative mb-4" data-te-input-wrapper-init>
-														<Field
-															id="signinForm_password"
 															name="password"
-															type="password"
-															value={values?.password}
 															onChange={handleChange}
+															value={values?.password}
+															type="password"
 															className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+															id="authForm_newPassword"
+															placeholder="New Password"
 														/>
 														<label
-															htmlFor="signinForm_password"
+															htmlFor="authForm_newPassword"
 															className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
 														>
-															Password
+															Create Password
 														</label>
 														<ErrorMessage name="password" component={"p"} className="text-red-600 mt-2 p-2" />
+													</div>
+
+													<div className="relative mb-4" data-te-input-wrapper-init>
+														<Field
+															name={"password_confirmation"}
+															onChange={handleChange}
+															value={values?.password_confirmation}
+															type="password"
+															className="peer block min-h-[50px] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 text-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+															id="authForm_confirmPassword"
+															placeholder="Confirm Password"
+														/>
+														<label
+															htmlFor="authForm_confirmPassword"
+															className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+														>
+															Confirm Password
+														</label>
+														<ErrorMessage name="password_confirmation" component={"p"} className="text-red-600 mt-2 p-2" />
 													</div>
 
 													<button
@@ -124,16 +124,9 @@ export default function SignInPage({ configs }: AppConfigs) {
 														data-te-ripple-init
 														data-te-ripple-color="light"
 													>
-														{!isLoading && "Login"}
+														{!isLoading && "Reset Password"}
 														{isLoading && <Spinner />}
 													</button>
-
-													<p className="my-8">
-														Don&apos;t have account?
-														<Link href={ROUTES.user.signup} className="font-extrabold ml-2 text-primary">
-															Sign Up
-														</Link>
-													</p>
 												</Form>
 											)}
 										</Formik>
@@ -149,5 +142,5 @@ export default function SignInPage({ configs }: AppConfigs) {
 }
 
 export async function getServerSideProps(context: any) {
-	return prefetchConfigsUnauthorizedOnly(context)
+	return prefetchConfigs(context)
 }

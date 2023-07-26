@@ -1,6 +1,7 @@
 import "animate.css"
 import "@JCKConsultant/styles/globals.scss"
-// import "tw-elements-react/dist/css/tw-elements-react.min.css"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 import { SessionProvider } from "next-auth/react"
 import type { Session } from "next-auth"
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
 		<Provider store={store}>
 			<SessionProvider session={session}>
 				<QueryClientProvider client={queryClient}>
+					<ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
 					<Component {...pageProps} />
 					<DarkModeHandler />
 				</QueryClientProvider>
