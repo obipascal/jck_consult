@@ -1,6 +1,12 @@
+import { formatNumber } from "@JCKConsultant/lib/utilities"
 import React from "react"
 
-export default function OrderSummary() {
+type OrderSummaryProps = {
+	productName?: string
+	productPrice?: number
+	productDiscount?: number
+}
+export default function OrderSummary({ productName, productDiscount = 0, productPrice = 0 }: OrderSummaryProps) {
 	return (
 		<div className="flex flex-col my-3">
 			<div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -9,43 +15,30 @@ export default function OrderSummary() {
 						<table className="min-w-full text-left text-sm font-light">
 							<thead className="border-b bg-white font-medium">
 								<tr>
-									<th scope="col" className="px-6 py-4">
-										Item
+									<th scope="col" className="px-6 py-4 font-bold text-2xl">
+										Summary
 									</th>
-									<th scope="col" className="px-6 py-4">
-										Desc
-									</th>
+									<th scope="col" className="px-6 py-4"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr className="border-b bg-neutral-100">
 									<td className="whitespace-nowrap px-6 py-4 font-bold">Course:</td>
-									<td className="whitespace-nowrap px-6 py-4">Data Analysis</td>
+									<td className="whitespace-nowrap px-6 py-4">{productName}</td>
 								</tr>
 								<tr className="border-b bg-white">
-									<td className="whitespace-nowrap px-6 py-4 font-bold">Amount:</td>
-									<td className="whitespace-nowrap px-6 py-4">&pound; 1,000.00</td>
+									<td className="whitespace-nowrap px-6 py-4 font-bold">Original Price:</td>
+									<td className="whitespace-nowrap px-6 py-4">&pound;{formatNumber(productPrice)}</td>
 								</tr>
 
 								<tr className="border-b bg-neutral-100">
-									<td className="whitespace-nowrap px-6 py-4 font-bold">Discount:</td>
-									<td className="whitespace-nowrap px-6 py-4">0% (&pound; 0)</td>
-								</tr>
-
-								<tr className="border-b">
-									<td className="whitespace-nowrap px-6 py-4 font-bold text-end">Subtotal:</td>
-									<td className="whitespace-nowrap px-6 py-4">&pound; 1,000.00</td>
+									<td className="whitespace-nowrap px-6 py-4 font-bold">Discounts:</td>
+									<td className="whitespace-nowrap px-6 py-4">-&pound;{formatNumber(productDiscount)}</td>
 								</tr>
 
 								<tr className="">
 									<td className="whitespace-nowrap px-6 py-4 font-bold text-end">Total:</td>
-									<td className="whitespace-nowrap px-6 py-4">&pound; 1,000.00</td>
-								</tr>
-								<tr className="">
-									<td className="whitespace-nowrap px-6 py-4 font-bold text-end">Status:</td>
-									<td className="whitespace-nowrap px-6 py-4">
-										<span className="text-red-500 uppercase font-extrabold text-lg">Unpaid</span>
-									</td>
+									<td className="whitespace-nowrap px-6 py-4">&pound;{formatNumber(productPrice - productDiscount)}</td>
 								</tr>
 							</tbody>
 						</table>

@@ -9,7 +9,7 @@ export const ROUTES = {
 	testimonies: "/testimonies",
 
 	enroll: {
-		index: (course: any) => `/enroll?_course=${course}`,
+		index: (course: any) => `/enroll/${course}`,
 		confirm: (orderId: any) => `/enroll/${orderId}/confirm`
 	},
 

@@ -48,6 +48,20 @@ export default function CourseCardsLoader({ items = 9 }: CourseCardsLoaderProps)
 					<p className="p-3 h-10 w-16 bg-gray-200 animate-pulse rounded-md"></p>
 				</div>
 			</div>
+
+			<div key={uniqueId()} className="group relative bg-white rounded shadow-lg">
+				<div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+					<div className="h-16 w-full bg-gray-200 animate-pulse rounded-md"></div>
+				</div>
+				<div className="mt-4 flex gap-4 justify-between p-3">
+					<div className="w-full">
+						<h3 className="p-3 bg-gray-200 animate-pulse rounded-md w-full"></h3>
+						<p className="mt-1 bg-gray-200 animate-pulse rounded-md h-16"></p>
+						<span className="h-10 w-16 rounded-full mt-3 block bg-gray-200 animate-pulse rounded-md"></span>
+					</div>
+					<p className="p-3 h-10 w-16 bg-gray-200 animate-pulse rounded-md"></p>
+				</div>
+			</div>
 		</div>
 	)
 }
