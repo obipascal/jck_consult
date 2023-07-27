@@ -12,6 +12,7 @@ import { useRouter } from "next/router"
 import React from "react"
 import { useMutation } from "react-query"
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { formatNumber } from "@JCKConsultant/lib/utilities"
 
 export default function CourseInfo({ configs }: AppConfigs) {
 	const router = useRouter()
@@ -64,10 +65,10 @@ export default function CourseInfo({ configs }: AppConfigs) {
 
 								<h1 className="mb-6 text-3xl font-bold">{course?.title}</h1>
 
-								<div dangerouslySetInnerHTML={{ __html: course?.body as string }}></div>
+								<div className="p-4" dangerouslySetInnerHTML={{ __html: course?.body as string }}></div>
 
-								<div className="rounded-md p-3 bg-sky-100/[.25] mt-7 flex items-center">
-									<p className="text-gray-400 mr-3 text-2xl">Not yet enrolled?</p>{" "}
+								<div className="rounded-md p-3 bg-sky-100/[.25] mt-12 flex flex-col gap-5 items-center">
+									<p className="text-gray-800 mr-3 text-2xl">Fee: &pound;{formatNumber(course?.price)}</p>
 									<Link href={ROUTES.enroll.index(course?.course_id)} className="bg-primary text-white p-2 rounded-lg">
 										Enroll now!
 									</Link>

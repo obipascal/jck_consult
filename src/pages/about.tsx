@@ -1,6 +1,7 @@
 const FAQs = dynamic(() => import("@JCKConsultant/components/about/FAQs"), { ssr: false })
 import WhoWeAre from "@JCKConsultant/components/about/WhoWeAre"
 import WhyChooseUs from "@JCKConsultant/components/about/WhyChooseUs"
+import ContactInfo from "@JCKConsultant/components/home/ContactInfo"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
 import { AppConfigs, Meta } from "@JCKConsultant/types"
@@ -19,6 +20,7 @@ export default function about({ configs }: AppConfigs) {
 			<WhoWeAre content={configs?.settings?.about} />
 			<WhyChooseUs />
 			<FAQs faqs={configs?.faqs} settings={configs?.settings} />
+			<ContactInfo settings={configs?.settings} />
 		</MainLayout>
 	)
 }

@@ -1,8 +1,8 @@
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import React, { useState } from "react"
 
 export type ProductCatalogViewerTypes = {
-	images: Array<string>
+	images: Array<StaticImageData>
 }
 const ProductCatalogViewer = ({ images }: ProductCatalogViewerTypes) => {
 	const [currentImage, setCurrentImage] = useState(0)

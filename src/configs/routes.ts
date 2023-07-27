@@ -10,7 +10,8 @@ export const ROUTES = {
 
 	enroll: {
 		index: (course: any) => `/enroll/${course}`,
-		confirm: (orderId: any) => `/enroll/${orderId}/confirm`
+		checkout: (course: any) => `/enroll/${course}/checkout`,
+		confirm: (course: any) => `/enroll/${course}/confirm`
 	},
 
 	contact: "/contact",

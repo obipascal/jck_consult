@@ -44,32 +44,36 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 					{isFetching && <CourseCardsLoader />}
 
 					{!isFetching && (
-						<div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+						<div className="mt-6 grid lg:grid-cols-4 sm:grid-cols-3 sm-4:grid-cols-2 md:grid-cols-4 gap-4">
 							{products && (
 								<>
 									{products?.length > 0 && (
 										<>
 											{products.map(product => (
-												<div data-aos="fade-up" key={product.course_id} className="group relative bg-white rounded shadow-lg">
-													<div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-														<Image width={100} height={100} data-aos="fade-up" src={product.image} alt={product.title} className="h-full w-full object-cover lg:h-full lg:w-full" />
-													</div>
-													<div className="mt-4 flex justify-between p-3">
-														<div>
-															<h3 className="text-sm font-semibold text-gray-700">
-																<Link href={ROUTES.courses.details(product?.course_id)}>
-																	{/* <span aria-hidden="true" className="absolute inset-0" /> */}
-																	{product.title}
-																</Link>
-															</h3>
-															<p className="mt-1 text-sm text-gray-500">{product?.desc}</p>
-															<Link href={ROUTES.enroll.index(product?.course_id)} className="p-2 px-3 rounded-full w-fit mt-3 block bg-secondary text-primary" role="button">
-																Enroll course
-															</Link>
+												<>
+													<article data-aos="fade-up" key={product?.course_id} className="relative shadow-md group/product rounded-lg bg-white">
+														{/* product image */}
+														<div className="relative">
+															<div className="object-fill h-72 w-full rounded bg-center bg-no-repeat bg-cover" style={{ backgroundImage: `url(${product?.image})` }}></div>
 														</div>
-														<p className="text-sm font-medium text-gray-900">&pound;{formatNumber(product.price)}</p>
-													</div>
-												</div>
+														{/* product body */}
+														<div className="p-3">
+															<div className="flex justify-between pt-2 mb-3">
+																<h3 className="font-semibold truncate text-ellipsis p-1 text-2xl max-w-xs text-black">
+																	<Link href={ROUTES.courses.details(product?.course_id)} className="hover:underline hover:decoration-secondary hover:transition-all">
+																		{product?.title}
+																	</Link>
+																</h3>
+															</div>
+															<div className="">
+																<p className="text-sm text-gray-500 mb-4">{product?.desc}</p>
+																<Link href={ROUTES.courses.details(product?.course_id)} className="p-2 px-3 rounded-full font-medium w-fit mt-3 block bg-primary text-white" role="button">
+																	Learn more
+																</Link>
+															</div>
+														</div>
+													</article>
+												</>
 											))}
 										</>
 									)}

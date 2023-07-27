@@ -4,13 +4,10 @@ import dynamic from "next/dynamic"
 import EditCoursePanel from "../panels/EditCoursePanel"
 import TransactionDetailsPanel from "../panels/TransactionDetailsPanel"
 import { useUser } from "@JCKConsultant/hooks/useUser"
-import { useDispatch } from "react-redux"
-import { useMutation } from "react-query"
-import { FetchConfigs } from "@JCKConsultant/services/settings/settings.apis"
-import { setConfigs } from "@JCKConsultant/redux/reducers/appSlice"
-import { ServerErrors } from "@JCKConsultant/lib/_toaster"
 import { Meta, SiteConfigs, WithChildren } from "@JCKConsultant/types"
 import Head from "next/head"
+import { signOut } from "next-auth/react"
+import { Warning } from "@JCKConsultant/lib/_toaster"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 interface DashboardLayoutProps extends WithChildren {
@@ -24,6 +21,12 @@ export default function DashboardLayout({ children, pageName = "Dashboard", meta
 	const User = useUser()
 
 	React.useEffect(() => {
+		if (User?.role !== "admin") {
+			Warning("Authorized Access", "Your're not allowed to view this section of the site.")
+
+			signOut()
+		}
+
 		if (User?.api_token) {
 			sessionStorage.setItem("api_token", User?.api_token)
 		}

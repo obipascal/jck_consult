@@ -66,7 +66,7 @@ export default function Contact({ configs }: AppConfigs) {
 							<div className="grid xs:grid-cols-1 md:grid-cols-2 gap-4">
 								{/* <!-- Left column container--> */}
 								<div className="px-4 md:px-0">
-									<div className="xs:mx-6 xs:py-10 md:p-12">
+									<div className="xs:mx-6 xs:py-10">
 										<Formik initialValues={initData} onSubmit={_handleSubmit} validationSchema={enquiryValidatorScheme}>
 											{({ handleChange, values }) => (
 												<Form className="space-y-6">
@@ -186,12 +186,12 @@ export default function Contact({ configs }: AppConfigs) {
 
 													<button
 														disabled={isLoading}
-														className="bg-gradient-to-r from-blue-800 to-blue mb-3 inline-block w-fit rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+														className="bg-gradient-to-r from-blue-800 to-blue mb-3 inline-block  rounded-full p-4 min-w-[35%] text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
 														type="submit"
 														data-te-ripple-init
 														data-te-ripple-color="light"
 													>
-														{!isLoading && "Send message"}
+														{!isLoading && "Send"}
 														{isLoading && <Spinner />}
 													</button>
 												</Form>
@@ -201,12 +201,12 @@ export default function Contact({ configs }: AppConfigs) {
 								</div>
 
 								{/* <!-- Right column container with background and description--> */}
-								<div className="bg-gradient-to-r from-blue-800 to-blue flex flex-col justify-start items-center rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
-									<div className="px-4 py-6 md:mx-6 text-white md:p-12">
+								<div className="bg-gradient-to-r from-blue-800 to-blue  rounded-b-lg  lg:rounded-r-lg lg:rounded-bl-none">
+									<div className="px-4 py-6 md:mx-6 text-white">
 										<h4 className="mb-6 text-3xl font-bold text-secondary">Get In Touch</h4>
 										<p className="text-sm">We are eager to connect with you. Please don&apos;t hesitate to get in touch using the contact information provided below.</p>
 									</div>
-									<div data-aos="fade-up" className=" grid grid-cols-1 items-start justify-between pl-2">
+									<div data-aos="fade-up" className="px-4 py-6 md:mx-6 text-white md:p-12 grid grid-cols-1 items-start justify-between pl-2">
 										{/* Phone number */}
 										<div className="flex">
 											<div className="w-fit flex items-center text-white">
@@ -243,6 +243,12 @@ export default function Contact({ configs }: AppConfigs) {
 												<p className="font-normal ">{configs?.settings?.line_address}</p>
 											</div>
 										</div>
+									</div>
+									<div className="px-4 py-6 md:mx-6 text-white">
+										<h4 className="mb-6 text-3xl font-bold text-secondary">We&apos;re Open</h4>
+										<p className="text-sm">
+											<span className="font-bold">From:</span> Monday <span className="font-bold">To:</span> Friday, 9:00AM - 5:00PM UK Time.
+										</p>
 									</div>
 								</div>
 							</div>

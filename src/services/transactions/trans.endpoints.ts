@@ -1,3 +1,3 @@
 export const transEndpoints = {
-	CREATE: "public:/v1/transactions/checkout"
+	CREATE: "protected:/v1/transactions/checkout"
 }

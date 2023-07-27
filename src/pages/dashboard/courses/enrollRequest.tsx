@@ -2,7 +2,7 @@ import DashboardContent from "@JCKConsultant/components/dashboard/layout/Dashboa
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
 import React from "react"
 import { UserHeader } from "../users/[userId]"
-import OrderSummary from "@JCKConsultant/components/misc/OrderSummary"
+import OrderSummary from "@JCKConsultant/components/checkout/OrderSummary"
 import { authorizedOnly } from "@JCKConsultant/lib/authSession"
 
 export default function enrollRequest() {

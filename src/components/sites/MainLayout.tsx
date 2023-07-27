@@ -2,13 +2,21 @@ import Head from "next/head"
 import React, { useState, useEffect, useCallback } from "react"
 
 import type { Meta, SiteConfigs, WithChildren } from "@JCKConsultant/types"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { toggleNavMenu } from "@JCKConsultant/redux/reducers/appSlice"
 import classNames from "classnames"
 import dynamic from "next/dynamic"
 import MainNav from "./MainNav"
 import MainFooter from "./MainFooter"
 import AOS from "aos"
+import { loadStripe } from "@stripe/stripe-js"
+import { getPayIntentClientSecret } from "@JCKConsultant/redux/reducers/checkoutFlowSlice"
+import { StripeElementsOptions } from "@stripe/stripe-js"
+import { Elements } from "@stripe/react-stripe-js"
+import { useUser } from "@JCKConsultant/hooks/useUser"
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB_KEY as string)
 
 const InitTailwindUI = dynamic(() => import("./initTailwindUI"), { ssr: false })
 
@@ -20,21 +28,26 @@ interface LayoutProps extends WithChildren {
 
 export default function MainLayout({ meta, children, title, siteConfigs }: LayoutProps) {
 	const [scrolled, setScrolled] = useState(false)
+	const payIntent = useSelector(getPayIntentClientSecret)
+	const stripeOptions: StripeElementsOptions = {
+		// passing the client secret obtained from the server
+		clientSecret: payIntent
+	}
+
 	const dispatcher = useDispatch()
 
 	React.useEffect(() => {
 		AOS.init()
 		AOS.refresh()
-	}, [])
+	})
 
-	const onScroll = useCallback(() => {
-		setScrolled(window.pageYOffset > 20)
-	}, [])
+	const User = useUser()
 
-	useEffect(() => {
-		window.addEventListener("scroll", onScroll)
-		return () => window.removeEventListener("scroll", onScroll)
-	}, [onScroll])
+	React.useEffect(() => {
+		if (User?.api_token) {
+			sessionStorage.setItem("api_token", User?.api_token)
+		}
+	}, [User?.api_token])
 
 	useEffect(() => {
 		if (localStorage.getItem("navbarMenu")) {
@@ -43,7 +56,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 	})
 
 	return (
-		<>
+		<Elements stripe={stripePromise} options={stripeOptions}>
 			<MainNav siteId={siteConfigs?.settings?.site_id} siteName={meta?.title} siteLogo={meta?.logo} />
 			<div className={classNames({ "h-full min-h-screen": true })}>
 				<InitTailwindUI />
@@ -104,6 +117,6 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 				<section className="pt-[4rem]">{children}</section>
 				<MainFooter settings={siteConfigs?.settings} />
 			</div>
-		</>
+		</Elements>
 	)
 }

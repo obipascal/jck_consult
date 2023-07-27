@@ -5,24 +5,30 @@ import { AppConfigs, Meta } from "@JCKConsultant/types"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import UserDashLayout from "@JCKConsultant/components/user/layout/UserDashLayout"
-import OrderSummary from "@JCKConsultant/components/misc/OrderSummary"
+import OrderSummary from "@JCKConsultant/components/checkout/OrderSummary"
 import { ErrorMessage, Field, Form, Formik } from "formik"
-import { loginValidatorScheme } from "@JCKConsultant/lib/validator/authValidtor"
-import { CourseInterface, DiscountCodeInterface, PromotionInterface } from "@JCKConsultant/types/course"
+import { CourseInterface, DiscountCodeInterface } from "@JCKConsultant/types/course"
 import { useMutation } from "react-query"
 import { FetchCourse } from "@JCKConsultant/services/course/course.apis"
 import { Info, ServerErrors } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 import { ApplyPromoCode } from "@JCKConsultant/services/promo/promo.apis"
 import { promoCodeValidatorScheme } from "@JCKConsultant/lib/validator/miscValidators"
+import { CheckoutTrans } from "@JCKConsultant/services/transactions/trans.apis"
+import { ROUTES } from "@JCKConsultant/configs/routes"
+import { useDispatch } from "react-redux"
+import { setPayIntentClientSecret } from "@JCKConsultant/redux/reducers/checkoutFlowSlice"
+import { waitUntil } from "@JCKConsultant/lib/utils"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 type InitValsProps = {
 	code: string
 	course_id?: string
 }
-export default function UserDashboard({ configs }: AppConfigs) {
+export default function EnrollCourseSummaryPage({ configs }: AppConfigs) {
 	const router = useRouter()
+	const dispatcher = useDispatch()
+
 	const { courseId, DiscoutCode } = router?.query
 	const [course, setCourse] = React.useState<CourseInterface>()
 	const [promo, setPromo] = React.useState<DiscountCodeInterface>()
@@ -64,6 +70,27 @@ export default function UserDashboard({ configs }: AppConfigs) {
 	const initVals: InitValsProps = {
 		code: DiscoutCode as string
 	}
+
+	// ----------------------> [Checking out the course]
+
+	const checkoutCourseApi = useMutation(CheckoutTrans, {
+		onSuccess(res: any) {
+			if (res?.status) {
+				Info("Checkout", res?.message)
+
+				dispatcher(setPayIntentClientSecret(res?.data?.cs_code))
+
+				waitUntil(100).then(() => router?.push(ROUTES?.enroll.checkout(courseId)))
+			}
+		},
+
+		onError(error, variables, context) {
+			ServerErrors("Checkout", error)
+		}
+	})
+	const isCheckingout = checkoutCourseApi.isLoading
+
+	const _handleChekcoutClick = () => checkoutCourseApi.mutateAsync({ course: courseId, promo_id: promo?.promo_id ?? "" })
 
 	const metaData: Meta = {
 		title: configs?.settings?.name,
@@ -122,12 +149,15 @@ export default function UserDashboard({ configs }: AppConfigs) {
 							</div>
 
 							<button
+								onClick={_handleChekcoutClick}
+								disabled={isCheckingout || isApplying}
 								className="bg-gradient-to-r from-blue-800 to-blue disabled:from-blue-800/50 disabled:to-blue/50 mb-3 inline-block w-fit rounded p-4 text-md font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
 								type="submit"
 								data-te-ripple-init
 								data-te-ripple-color="light"
 							>
-								Checkout
+								{!isCheckingout && "Checkout"}
+								{isCheckingout && <Spinner />}
 							</button>
 						</>
 					)}
