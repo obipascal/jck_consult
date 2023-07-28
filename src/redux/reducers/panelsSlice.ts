@@ -10,6 +10,7 @@ export interface PanelsStateProps {
 	transDetailsPanel: PanelState
 	addFAQPanel: PanelState
 	updateFAQPanel: PanelState
+	uploadMaterialPanel: PanelState
 }
 
 // Initial state
@@ -22,7 +23,8 @@ const initialState: PanelsStateProps = {
 	editCoursePanel: panelInitState,
 	transDetailsPanel: panelInitState,
 	addFAQPanel: panelInitState,
-	updateFAQPanel: panelInitState
+	updateFAQPanel: panelInitState,
+	uploadMaterialPanel: panelInitState
 }
 
 // Actual Slice
@@ -70,6 +72,15 @@ export const PanelsSlice = createSlice({
 			if (data) state.updateFAQPanel.data = data
 		},
 
+		toggleUploadMaterialPanel(state, action) {
+			const { params, data, status } = action?.payload
+
+			if (typeof status === "boolean") state.uploadMaterialPanel.show = status
+
+			if (params) state.uploadMaterialPanel.params = params
+
+			if (data) state.uploadMaterialPanel.data = data
+		},
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
 		extraReducers: {
 			// @ts-ignore
@@ -83,11 +94,12 @@ export const PanelsSlice = createSlice({
 	}
 })
 
-export const { toggleEditCoursePanel, toggleTransDetailsPanel, toggleAddFAQPanel, toggleUpdateFAQPanel } = PanelsSlice.actions
+export const { toggleEditCoursePanel, toggleTransDetailsPanel, toggleAddFAQPanel, toggleUpdateFAQPanel, toggleUploadMaterialPanel } = PanelsSlice.actions
 
 export const getEditCoursePanel = (state: AppState) => state?.panels?.editCoursePanel
 export const getTransDetailsPanel = (state: AppState) => state?.panels?.transDetailsPanel
 export const getAddFAQPanel = (state: AppState) => state?.panels?.addFAQPanel
 export const getUpdateFAQPanel = (state: AppState) => state?.panels?.updateFAQPanel
+export const getUploadMaterialPanel = (state: AppState) => state?.panels?.uploadMaterialPanel
 
 export default PanelsSlice

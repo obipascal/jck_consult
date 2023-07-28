@@ -1,4 +1,4 @@
-import CourseListItem from "@JCKConsultant/components/dashboard/courses/CourseListItem"
+const CourseListItem = dynamic(() => import("@JCKConsultant/components/dashboard/courses/CourseListItem"), { ssr: false })
 import DashboardContent from "@JCKConsultant/components/dashboard/layout/DashboardContent"
 import DashboardLayout from "@JCKConsultant/components/dashboard/layout/DashboardLayout"
 import { ROUTES } from "@JCKConsultant/configs/routes"
@@ -14,6 +14,7 @@ import { ServerErrors } from "@JCKConsultant/lib/_toaster"
 import CourseListItemLoader from "@JCKConsultant/components/loaders/CourseListItemLoader"
 import { useDispatch, useSelector } from "react-redux"
 import { emitFetchCourses, getCourseEvents } from "@JCKConsultant/redux/reducers/appEventsSlice"
+import dynamic from "next/dynamic"
 
 const CreateButton = () => {
 	return (
@@ -89,6 +90,7 @@ export default function DashboardCourses({ configs }: DashboardProps) {
 							<>
 								{_data?.map(course => (
 									<CourseListItem
+										data={course}
 										image={course?.image}
 										status={course?.status}
 										courseId={course?.course_id}

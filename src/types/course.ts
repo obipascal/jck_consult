@@ -22,6 +22,7 @@ export interface CourseInterface {
 	created_at: string
 	updated_at: string
 	last_modified: string
+	materials: Array<CourseMaterialFileInterface>
 }
 
 export interface PromotionInterface {
@@ -41,6 +42,18 @@ export interface DiscountCodeInterface {
 	account_id: number
 	discounted_amount: number
 	status: "applied" | "used" | "expired"
+	created_at: string
+	updated_at: string
+}
+
+export interface CourseMaterialFileInterface {
+	id: number
+	course_id: number
+	material_id: number
+	title: string
+	type: string
+	size: string
+	file: string
 	created_at: string
 	updated_at: string
 }
