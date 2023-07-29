@@ -1,4 +1,4 @@
-import Pagination from "@JCKConsultant/components/misc/Pagination"
+import Pagination from "@JCKConsultant/components/misc/LinkPagination"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import { uniqueId } from "@JCKConsultant/lib/utils"
 import { ChevronRightIcon } from "@heroicons/react/24/solid"

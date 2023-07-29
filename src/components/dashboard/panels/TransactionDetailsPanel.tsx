@@ -1,20 +1,40 @@
-import { Fragment } from "react"
+import React, { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 import { useDispatch, useSelector } from "react-redux"
 import { getTransDetailsPanel, toggleTransDetailsPanel } from "@JCKConsultant/redux/reducers/panelsSlice"
-import OrderSummary from "@JCKConsultant/components/checkout/OrderSummary"
 import Image from "next/image"
 import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import { uniqueId } from "@JCKConsultant/lib/utils"
+import { useMutation } from "react-query"
+import { FetchTran } from "@JCKConsultant/services/transactions/trans.apis"
+import { TransactionInterface } from "@JCKConsultant/types"
+import { ServerErrors } from "@JCKConsultant/lib/_toaster"
+import { formatNumber } from "@JCKConsultant/lib/utilities"
+import TransactionDetailsLoader from "@JCKConsultant/components/loaders/TransactionDetailsLoader"
+import { FemaleAvatar, MaleAvatar } from "@JCKConsultant/pages/dashboard/users/[userId]"
 
 export default function TransactionDetailsPanel() {
 	const { show, data, params } = useSelector(getTransDetailsPanel)
+	const [transaction, setTransaction] = React.useState<TransactionInterface>()
 
 	const dispatcher = useDispatch()
 
 	const _closePanel = () => dispatcher(toggleTransDetailsPanel({ status: false }))
+
+	const fetchTransactionApi = useMutation(FetchTran, {
+		onSuccess: (res: any) => setTransaction(res?.data),
+		onError: error => ServerErrors("Error", error)
+	})
+
+	const isFetching = fetchTransactionApi.isLoading
+
+	React.useEffect(() => {
+		if (params) {
+			fetchTransactionApi.mutateAsync(params)
+		}
+	}, [params])
 
 	return (
 		<Transition.Root show={show} as={Fragment}>
@@ -56,24 +76,65 @@ export default function TransactionDetailsPanel() {
 										<div className="px-4 sm:px-6">
 											<Dialog.Title className="text-base font-semibold leading-6 text-gray-900">Transaction Details</Dialog.Title>
 										</div>
-										<div className="relative mt-6 flex-1 px-4 sm:px-6">
-											<OrderSummary />
+										<div className="relative mt-6 flex-1 px-4 sm:px-6 text-black">
+											{isFetching && <TransactionDetailsLoader />}
 
-											<hr className="my-4" />
+											{!isFetching && (
+												<>
+													<dl className="divide-y divide-gray-300">
+														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+															<dt className="text-sm font-semibold leading-6 text-gray-900">ID</dt>
+															<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0 pl-3">{transaction?.trans_id}</dd>
+														</div>
 
-											<div className="">
-												<h1 className="font-semibold text-lg mb-3">Customer</h1>
-												<Link onClick={_closePanel} href={ROUTES.dashboard.users.info(uniqueId())} className="flex items-center justify-start gap-x-4 block w-full text-gray-500 hover:text-blue">
-													<Image
-														width={100}
-														height={100}
-														className="h-12 w-12 flex-none rounded-full bg-gray-50"
-														src={"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
-														alt=""
-													/>
-													<h1 className="font-bold text-lg ">Obi Pascal Banjuare</h1>
-												</Link>
-											</div>
+														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+															<dt className="text-sm font-semibold leading-6 text-gray-900">Reference</dt>
+															<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0 pl-3">{transaction?.reference}</dd>
+														</div>
+
+														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+															<dt className="text-sm font-semibold leading-6 text-gray-900">Course</dt>
+															<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0 pl-3">{transaction?.course?.title}</dd>
+														</div>
+
+														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+															<dt className="text-sm font-semibold leading-6 text-gray-900">Course Price</dt>
+															<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0 pl-3">&pound;{formatNumber(transaction?.course?.price)}</dd>
+														</div>
+
+														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+															<dt className="text-sm font-semibold leading-6 text-gray-900">Discount</dt>
+															<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0 pl-3">&pound;{formatNumber(transaction?.discount)}</dd>
+														</div>
+
+														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+															<dt className="text-sm font-semibold leading-6 text-gray-900">Total Paid</dt>
+															<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0 pl-3">&pound;{formatNumber(transaction?.amount)}</dd>
+														</div>
+
+														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+															<dt className="text-sm font-semibold leading-6 text-gray-900">Status</dt>
+															<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0 pl-3">{transaction?.status?.toUpperCase()}</dd>
+														</div>
+													</dl>
+
+													<hr className="my-4" />
+
+													<div className="">
+														<h1 className="font-semibold text-lg mb-3">Customer</h1>
+														<Link
+															onClick={_closePanel}
+															href={ROUTES.dashboard.users.info(transaction?.user?.account_id)}
+															className="flex items-center justify-start gap-x-4 block w-full text-gray-500 hover:text-blue"
+														>
+															<Image width={100} height={100} className="h-12 w-12 flex-none rounded-full bg-gray-50" src={transaction?.user?.gender === "female" ? FemaleAvatar : MaleAvatar} alt="" />
+															<h1 className="font-bold text-lg ">
+																{transaction?.user?.first_name} {transaction?.user?.last_name}
+															</h1>
+														</Link>
+													</div>
+												</>
+											)}
 										</div>
 									</div>
 								</Dialog.Panel>

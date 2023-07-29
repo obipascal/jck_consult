@@ -8,13 +8,19 @@ export interface AppEventsStateProps {
 	course: {
 		canFetchCourses: boolean
 	}
+	promotions: { canFetchPromotions: boolean }
+	reviews: { canFetchReviews: boolean }
 }
 
 // Initial state
 const initialState: AppEventsStateProps = {
 	course: {
 		canFetchCourses: false
-	}
+	},
+	promotions: {
+		canFetchPromotions: false
+	},
+	reviews: { canFetchReviews: false }
 }
 
 // Actual Slice
@@ -27,6 +33,14 @@ export const AppEventsSlice = createSlice({
 		 */
 		emitFetchCourses(state, action) {
 			state.course.canFetchCourses = action?.payload
+		},
+
+		emitFetchPromotions(state, action) {
+			state.promotions.canFetchPromotions = action?.payload
+		},
+
+		emitFetchReviews(state, action) {
+			state.reviews.canFetchReviews = action?.payload
 		},
 
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
@@ -42,8 +56,10 @@ export const AppEventsSlice = createSlice({
 	}
 })
 
-export const { emitFetchCourses } = AppEventsSlice.actions
+export const { emitFetchCourses, emitFetchPromotions, emitFetchReviews } = AppEventsSlice.actions
 
 export const getCourseEvents = (state: AppState) => state?.appEvents?.course
+export const getPromotionEvents = (state: AppState) => state?.appEvents?.promotions
+export const getReviewsEvents = (state: AppState) => state?.appEvents?.reviews
 
 export default AppEventsSlice

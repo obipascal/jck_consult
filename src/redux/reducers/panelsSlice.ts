@@ -11,6 +11,8 @@ export interface PanelsStateProps {
 	addFAQPanel: PanelState
 	updateFAQPanel: PanelState
 	uploadMaterialPanel: PanelState
+	promotionPanel: PanelState
+	reviewPanel: PanelState
 }
 
 // Initial state
@@ -24,7 +26,9 @@ const initialState: PanelsStateProps = {
 	transDetailsPanel: panelInitState,
 	addFAQPanel: panelInitState,
 	updateFAQPanel: panelInitState,
-	uploadMaterialPanel: panelInitState
+	uploadMaterialPanel: panelInitState,
+	promotionPanel: panelInitState,
+	reviewPanel: panelInitState
 }
 
 // Actual Slice
@@ -81,6 +85,26 @@ export const PanelsSlice = createSlice({
 
 			if (data) state.uploadMaterialPanel.data = data
 		},
+
+		togglePromotionPanel(state, action) {
+			const { params, data, status } = action?.payload
+
+			if (typeof status === "boolean") state.promotionPanel.show = status
+
+			if (params) state.promotionPanel.params = params
+
+			if (data) state.promotionPanel.data = data
+		},
+
+		toggleReviewPanel(state, action) {
+			const { params, data, status } = action?.payload
+
+			if (typeof status === "boolean") state.reviewPanel.show = status
+
+			if (params) state.reviewPanel.params = params
+
+			if (data) state.reviewPanel.data = data
+		},
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
 		extraReducers: {
 			// @ts-ignore
@@ -94,12 +118,14 @@ export const PanelsSlice = createSlice({
 	}
 })
 
-export const { toggleEditCoursePanel, toggleTransDetailsPanel, toggleAddFAQPanel, toggleUpdateFAQPanel, toggleUploadMaterialPanel } = PanelsSlice.actions
+export const { toggleEditCoursePanel, toggleTransDetailsPanel, toggleAddFAQPanel, toggleUpdateFAQPanel, toggleUploadMaterialPanel, togglePromotionPanel, toggleReviewPanel } = PanelsSlice.actions
 
 export const getEditCoursePanel = (state: AppState) => state?.panels?.editCoursePanel
 export const getTransDetailsPanel = (state: AppState) => state?.panels?.transDetailsPanel
 export const getAddFAQPanel = (state: AppState) => state?.panels?.addFAQPanel
 export const getUpdateFAQPanel = (state: AppState) => state?.panels?.updateFAQPanel
 export const getUploadMaterialPanel = (state: AppState) => state?.panels?.uploadMaterialPanel
+export const getPromotionPanel = (state: AppState) => state?.panels?.promotionPanel
+export const getReviewPanel = (state: AppState) => state?.panels?.reviewPanel
 
 export default PanelsSlice
