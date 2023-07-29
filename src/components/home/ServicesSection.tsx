@@ -26,7 +26,7 @@ export default function ServicesSection({ content }: HomeWhoweareSectionProps) {
 							<IconBxCodeCurly className="text-white m-auto block" width={"10em"} height={"10em"} />
 							<h2 className="text-white text-[20px] font-bold">software development</h2>
 						</div>
-						<p className="text-[18px] text-whihte text-center">
+						<p className="text-[18px] text-white text-center">
 							Our Software Development service turns innovative ideas into robust, user-centric software solutions. Our skilled developers and engineers work closely with you to create tailored
 							software solutions that exceed expectations.
 						</p>
@@ -36,7 +36,7 @@ export default function ServicesSection({ content }: HomeWhoweareSectionProps) {
 							<IconPersonChalkboard className="text-white m-auto block" width={"10em"} height={"10em"} />
 							<h2 className="text-white text-[20px] font-bold">Agile Coaching</h2>
 						</div>
-						<p className="text-[18px] text-whihte text-center">
+						<p className="text-[18px] text-white text-center">
 							Our Agile Scrum Coaching service equips individuals and teams with the agility required to adapt, innovate, and deliver projects efficiently. You&apos;ll learn the principles, best
 							practices, and methodologies that drive successful project management.
 						</p>
@@ -46,7 +46,7 @@ export default function ServicesSection({ content }: HomeWhoweareSectionProps) {
 							<IconMortarboardFill className="text-white m-auto block" width={"10em"} height={"10em"} />
 							<h2 className="text-white text-[20px] font-bold">IT Training</h2>
 						</div>
-						<p className="text-[18px] text-whihte text-center">
+						<p className="text-[18px] text-white text-center">
 							Our IT Training service empowers individuals with technical expertise to excel in the digital landscape. We offer a diverse range of training programs that cover various IT disciplines.
 							From programming languages to cybersecurity, and cloud computing to data analytics.
 						</p>
