@@ -34,8 +34,8 @@ const navigation: Array<NavigationProps> = [
 	{ name: "Dashboard", href: ROUTES?.dashboard.index },
 	{ name: "Courses", href: ROUTES.dashboard.courses.index },
 	{ name: "Users", href: ROUTES.dashboard.users.index },
-	{ name: "Transactions", href: ROUTES.dashboard.transactions.index },
-	{ name: "Enquiries", href: ROUTES.dashboard.enquiries.index }
+	{ name: "Transactions", href: ROUTES.dashboard.transactions.index }
+	// { name: "Enquiries", href: ROUTES.dashboard.enquiries.index }
 ]
 
 export default function DashboardNavbar({ pageName = "Dashboard", configs }: DashboardNavbarProps) {

@@ -1,4 +1,5 @@
 const FAQs = dynamic(() => import("@JCKConsultant/components/about/FAQs"), { ssr: false })
+import Team from "@JCKConsultant/components/about/Team"
 import WhoWeAre from "@JCKConsultant/components/about/WhoWeAre"
 import WhyChooseUs from "@JCKConsultant/components/about/WhyChooseUs"
 import ContactInfo from "@JCKConsultant/components/home/ContactInfo"
@@ -18,6 +19,7 @@ export default function about({ configs }: AppConfigs) {
 	return (
 		<MainLayout meta={metaData} siteConfigs={configs} title="About Us">
 			<WhoWeAre content={configs?.settings?.about} />
+			<Team />
 			<WhyChooseUs />
 			<FAQs faqs={configs?.faqs} settings={configs?.settings} />
 			<ContactInfo settings={configs?.settings} />

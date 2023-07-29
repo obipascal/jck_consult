@@ -12,13 +12,13 @@ export default function HomeFAQs({ faqs }: SiteConfigs) {
 	const _data = faqs?.data
 
 	return (
-		<section className="bg-[url('/img/bg/Frame_bg.png')] bg-no-repeat bg-cover bg-center my-0">
-			<div className="bg-white/80 py-24 sm:py-32">
+		<section className="bg-[url('/img/bg/Frame_bg.png')] bg-no-repeat bg-cover bg-center my-0 ">
+			<div className="bg-white/80 py-24 sm:py-32 pb-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
-					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-						<h1 className="font-bold text-[50px] text-blue">Support & FAQs</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-600 font-semibold capitalize">Got Questions? We Have Answers! Explore Our Frequently Asked Questions</p>
-					</div>
+					<header data-aos="fade-up" className="px-10 mb-20 text-center">
+						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 uppercase">SUPPORT AND FAQ</h1>
+						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Got Questions? We Have Answers! Explore Our Frequently Asked Questions</p>
+					</header>
 					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
 						<div>
 							{_data?.length && (

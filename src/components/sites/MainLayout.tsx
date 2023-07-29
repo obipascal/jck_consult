@@ -56,7 +56,8 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 	})
 
 	return (
-		<Elements stripe={stripePromise} options={stripeOptions}>
+		<>
+			<Elements stripe={stripePromise} options={stripeOptions}>
 			<MainNav siteId={siteConfigs?.settings?.site_id} siteName={meta?.title} siteLogo={meta?.logo} />
 			<div className={classNames({ "h-full min-h-screen": true })}>
 				<InitTailwindUI />
@@ -117,6 +118,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 				<section className="pt-[4rem]">{children}</section>
 				<MainFooter settings={siteConfigs?.settings} />
 			</div>
-		</Elements>
+			</Elements>
+		</>
 	)
 }

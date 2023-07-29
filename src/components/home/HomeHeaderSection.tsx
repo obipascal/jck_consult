@@ -17,14 +17,25 @@ export default function HomeHeaderSection() {
 	const images = [HeaderLady, Asset1, Asset2, Asset3, Asset4, Asset5]
 
 	return (
-		<section className="bg-gradient-to-r from-indigo-500 to-blue-900  pt-20" data-aos="fade-up">
+		<section className="bg-gradient-to-r from-indigo-500 to-blue-900  pt-20 " data-aos="fade-up">
 			<div className=" grid sm:grid-cols-1 md:grid-cols-2 gap-4 md:px-10 xs:px-5">
 				<div className="flex justify-start relative">
 					<div className="p-5 py-10">
-						<h1 className="font-bold xs:text-[40px] md:text-[64px] text-white tracking-tight">Digital Career Catalyst: Empowering Your Journey</h1>
-						<p className="my-5 text-white xs:text-md md:text-lg">Embrace the Power of Innovation: Equip Yourself with Top Digital Skills to Stand Out with JCK Consulting.</p>
-						<Link href={ROUTES?.contact} className="p-4 rounded-full w-fit mt-10  bg-white text-primary font-medium shadow-lg flex items-center" role="button">
-							Let&apos;s Get You Started
+						<h1 className="font-bold text-white tracking-tight">
+							<span className="xs:text-[20px] md:text-[25px]">Welcome to JCK Consulting </span>
+							<br />
+							<span className="xs:text-[40px] md:text-[64px]">Transition into tech with our Scrum Agile Experts</span>
+						</h1>
+						<p className="my-5 text-white xs:text-md md:text-lg">
+							Are you ready to embark on an exciting journey into the world of technology? At JCKConsulting, we&apos;re dedicated to empowering individuals like you to transition seamlessly into the
+							tech industry through our top-notch Agile Scrum training programs.
+						</p>
+						<Link
+							href={ROUTES?.contact}
+							className="hover:bg-secondary hover:text-primary transition ease-in duration-300 p-4 rounded-full w-fit mt-10  bg-white text-primary font-medium shadow-lg flex items-center"
+							role="button"
+						>
+							Learn more
 						</Link>
 					</div>
 				</div>

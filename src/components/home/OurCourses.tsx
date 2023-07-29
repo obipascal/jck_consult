@@ -34,13 +34,14 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 	const products = courses?.data
 
 	return (
-		<section className="bg-[url('/img/bg/Frame_bg_flip.png')] bg-no-repeat bg-cover bg-center my-0" id="next__h_courses">
-			<div className="bg-white/80 py-24 sm:py-32">
+		<section className="bg-[url('/img/bg/Frame_bg_flip.png')] bg-no-repeat bg-cover bg-center " id="next__h_courses">
+			<div className="bg-white/80 py-24 sm:py-32 pt-24">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
-					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-						<h1 className=" font-bold text-[50px] text-blue">Our Courses</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-600 font-semibold">Unleashing Your Full Potential with Cutting-Edge Courses</p>
-					</div>
+					<header data-aos="fade-up" className="px-10 mb-20 text-center">
+						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 uppercase">Our Courses</h1>
+						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Explore our courses</p>
+					</header>
+
 					{isFetching && <CourseCardsLoader />}
 
 					{!isFetching && (
@@ -67,7 +68,11 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 															</div>
 															<div className="">
 																<p className="text-sm text-gray-500 mb-4">{product?.desc}</p>
-																<Link href={ROUTES.courses.details(product?.course_id)} className="p-2 px-3 rounded-full font-medium w-fit mt-3 block bg-primary text-white" role="button">
+																<Link
+																	href={ROUTES.courses.details(product?.course_id)}
+																	className="hover:bg-secondary hover:text-primary transition ease-in duration-300  p-2 px-3 rounded-full font-medium w-fit mt-3 block bg-primary text-white"
+																	role="button"
+																>
 																	Learn more
 																</Link>
 															</div>

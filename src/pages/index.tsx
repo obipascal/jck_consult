@@ -13,6 +13,7 @@ import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
 import { AppConfigs, Meta, SiteConfigs } from "@JCKConsultant/types"
 import { useRouter } from "next/router"
 import Loader from "@JCKConsultant/components/sites/Loader"
+import ServicesSection from "@JCKConsultant/components/home/ServicesSection"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -30,6 +31,7 @@ export default function Home({ configs }: AppConfigs) {
 	return (
 		<MainLayout meta={metaData} siteConfigs={configs} title="Home">
 			<HomeHeaderSection />
+			<ServicesSection />
 			<HomeWhoweareSection content={configs?.settings?.about} />
 			<WhyUs />
 			<OurCourses siteId={configs?.settings?.site_id} />

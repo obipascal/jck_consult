@@ -9,32 +9,32 @@ export default function WhyUs() {
 		<section className="bg-gradient-to-r from-indigo-500 to-primary">
 			<div className="py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
-					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-						<h1 className=" font-bold xs:text-[40px] md:text-[65px] text-white">Why Us</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-200 font-semibold">Empowering Success Through Expertise, Customization, Practicality, and Support</p>
-					</div>
+					<header data-aos="fade-up" className="px-10 mb-20 text-center">
+						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-gray-300 uppercase">WHY CHOOSE JCKCONSULTING?</h1>
+						<p className="font-bold xs:text-[36px] md:text-[50px] text-white">Empowering Success Through Expertise, Customization, Practicality, and Support</p>
+					</header>
 					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
 						<dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
 							{features.map(feature => (
 								<div data-aos="fade-up" key={feature.name} className="relative pl-16">
-									<dt className="font-bold text-secondary text-[40px] ">
+									<dt className="font-bold text-secondary text-[16px] ">
 										<div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg ">
 											<feature.icon className="h-8 w-8 text-white" aria-hidden="true" />
 										</div>
 										{feature.name}
 									</dt>
-									<dd className="mt-2 text-gray-200 font-medium">{feature.description}</dd>
+									<dd className="mt-2 text-[18px] text-whihte font-medium">{feature.description}</dd>
 								</div>
 							))}
 						</dl>
 					</div>
-					<Link
+					{/* <Link
 						href={`${ROUTES.about}#why-us`}
-						className="p-3 rounded-full w-fit mt-10  bg-white  text-slate-800 hover:bg-secondary  border-2 text-primary m-auto block shadow-lg flex items-center"
+						className="hover:bg-secondary hover:text-primary transition ease-in duration-300 p-4 rounded-full w-fit mt-10 m-auto block  bg-white text-primary font-medium shadow-lg flex items-center"
 						role="button"
 					>
 						Read more <IconArrowRight className="ml-1" />
-					</Link>
+					</Link> */}
 				</div>
 			</div>
 		</section>
@@ -44,22 +44,26 @@ export default function WhyUs() {
 const features = [
 	{
 		name: "Expert Guidance",
-		description: "Benefit from our team of seasoned industry professionals who bring a wealth of expertise and real-world experience.",
+		description:
+			"Paragraph - Our trainers at JCKConsulting are not just instructors; they are seasoned professionals with years of experience in Agile Scrum and the tech industry. Learning from the best ensures you gain invaluable insights and knowledge that can elevate your career.",
 		icon: UserGroupIcon
 	},
 	{
 		name: "Tailored Solutions",
-		description: "We understand that every organization is unique. Our approach involves customizing our services to align with your specific goals, culture, and industry.",
+		description:
+			"At JCKConsulting, we believe in learning by doing. Our courses provide practical experience through real-world projects, giving you the confidence and skills needed to excel in the dynamic tech workspace.",
 		icon: Cog6ToothIcon
 	},
 	{
 		name: "Practical Training",
-		description: "Gain hands-on experience through our immersive training programs.",
+		description:
+			"We value your unique goals and aspirations. With our personalized approach, we take the time to understand your individual needs and tailor our training programs to ensure you get the most relevant and effective learning experience possible.",
 		icon: CodeBracketIcon
 	},
 	{
 		name: "Continuous Support",
-		description: "Our commitment to your success extends beyond the training room.",
+		description:
+			"At JCKConsulting, our commitment to your success extends beyond the completion of our courses. We offer continuous support to our students, providing guidance and assistance as you navigate your tech career, ensuring you have the resources and encouragement you need to thrive in the ever-evolving tech industry.",
 		icon: ArrowPathRoundedSquareIcon
 	}
 ]
