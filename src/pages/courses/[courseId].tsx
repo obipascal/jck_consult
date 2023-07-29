@@ -67,12 +67,12 @@ export default function CourseInfo({ configs }: AppConfigs) {
 
 								<div className="p-4" dangerouslySetInnerHTML={{ __html: course?.body as string }}></div>
 
-								<div className="rounded-md p-3 bg-sky-100/[.25] mt-12 flex flex-col gap-5 items-center">
+								{/* <div className="rounded-md p-3 bg-sky-100/[.25] mt-12 flex flex-col gap-5 items-center">
 									<p className="text-gray-800 mr-3 text-2xl">Fee: &pound;{formatNumber(course?.price)}</p>
 									<Link href={ROUTES.enroll.index(course?.course_id)} className="bg-primary text-white p-2 rounded-lg">
 										Enroll now!
 									</Link>
-								</div>
+								</div> */}
 							</section>
 						)}
 						{/* <!-- Section: Design Block --> */}
