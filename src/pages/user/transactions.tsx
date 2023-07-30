@@ -5,7 +5,7 @@ import { AppConfigs, Meta } from "@JCKConsultant/types"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import UserDashLayout from "@JCKConsultant/components/user/layout/UserDashLayout"
-const UserEnrolledCourses = dynamic(() => import("@JCKConsultant/components/user/course/UserEnrolledCourses"), { ssr: false })
+import ListUserTransactions from "@JCKConsultant/components/dashboard/transaction/ListUserTransactions"
 
 export default function UserDashboard({ configs }: AppConfigs) {
 	const router = useRouter()
@@ -17,13 +17,13 @@ export default function UserDashboard({ configs }: AppConfigs) {
 	}
 
 	return (
-		<MainLayout meta={metaData} siteConfigs={configs} title="Dashboard">
+		<MainLayout meta={metaData} siteConfigs={configs} title="Transactions">
 			<UserDashLayout>
 				<div className="py-5">
-					<h1 className="font-bold text-2xl p-2">Courses Enrolled In</h1>
+					<h1 className="font-bold text-2xl p-2">Transactions</h1>
 					<hr className="my-5" />
 				</div>
-				<UserEnrolledCourses />
+				<ListUserTransactions />
 			</UserDashLayout>
 		</MainLayout>
 	)

@@ -5,7 +5,7 @@ import { formatNumber } from "@JCKConsultant/lib/utilities"
 import { toDateString, uniqueId } from "@JCKConsultant/lib/utils"
 import { ErrorIcon, PendingIcon, SuccessIcon } from "@JCKConsultant/pages/enroll/[courseId]/confirm"
 import { toggleTransDetailsPanel } from "@JCKConsultant/redux/reducers/panelsSlice"
-import { FetchTrans } from "@JCKConsultant/services/transactions/trans.apis"
+import { FetchTrans, FetchUserTrans } from "@JCKConsultant/services/transactions/trans.apis"
 import { LinksPaginationResponse, SiteConfigs, TransactionInterface } from "@JCKConsultant/types"
 import { ChevronRightIcon } from "@heroicons/react/24/solid"
 import Image from "next/image"
@@ -14,22 +14,25 @@ import React from "react"
 import { useMutation } from "react-query"
 import { useDispatch } from "react-redux"
 import TransactionDetailsPanel from "../panels/TransactionDetailsPanel"
+import { useUser } from "@JCKConsultant/hooks/useUser"
 
-export default function TransactionList({ settings }: SiteConfigs) {
+export default function ListUserTransactions() {
 	const dispatcher = useDispatch()
+	const user = useUser()
+
 	const [transactions, setTransactions] = React.useState<LinksPaginationResponse<TransactionInterface>>()
 
 	const _openPanel = (param: any) => dispatcher(toggleTransDetailsPanel({ status: true, params: param }))
 
-	const fetchTransactionsApi = useMutation(FetchTrans, {
+	const fetchTransactionsApi = useMutation(FetchUserTrans, {
 		onSuccess: (res: any) => setTransactions(res?.data),
 		onError: err => ServerErrors("Error", err)
 	})
 	const isLoading = fetchTransactionsApi?.isLoading
 
 	React.useEffect(() => {
-		if (settings?.site_id) fetchTransactionsApi?.mutateAsync({ perPage: 50, page: 1 })
-	}, [settings?.site_id])
+		if (user && user?.role === "user") fetchTransactionsApi?.mutateAsync({ perPage: 50, page: 1 })
+	}, [user])
 
 	const _data = transactions?.data
 
@@ -55,7 +58,7 @@ export default function TransactionList({ settings }: SiteConfigs) {
 														<p className="text-sm font-semibold leading-6 text-gray-900">{transaction?.course?.title}</p>
 
 														<p className="mt-1 truncate text-xs leading-5 text-gray-500">
-															<small className="italic mr-1 text-gray-300">by</small> {transaction?.user?.first_name} {transaction?.user?.last_name}
+															<small className="italic mr-1 text-gray-300">billed to</small> {transaction?.user?.first_name} {transaction?.user?.last_name}
 														</p>
 													</div>
 												</div>
@@ -108,7 +111,7 @@ export default function TransactionList({ settings }: SiteConfigs) {
 				)}
 			</div>
 
-			<TransactionDetailsPanel />
+			<TransactionDetailsPanel isAdmin={false} pt={"pt-[3.4rem]"} />
 		</>
 	)
 }

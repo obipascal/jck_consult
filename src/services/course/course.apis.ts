@@ -22,6 +22,10 @@ export const FetchCourses = async (params: PaginationRequestParams) => {
 	return await GET(courseEndpoints.INDEX(params?.perPage, params?.page))
 }
 
+export const FetchUserCoursesEnrolled = async (params: PaginationRequestParams) => {
+	return await GET(courseEndpoints.USER_ENROLLMENTS(params?.perPage, params?.page))
+}
+
 export const DeleteCourse = async (params: any) => {
 	return await DROP(courseEndpoints.DELETE(params))
 }

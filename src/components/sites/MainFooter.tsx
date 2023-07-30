@@ -72,9 +72,15 @@ export default function MainFooter({ settings }: SiteConfigs) {
 								Courses
 							</Link>
 						</p>
-						<p>
+						<p className="mb-4">
 							<Link href={ROUTES.contact} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
 								Contact Us
+							</Link>
+						</p>
+
+						<p className="mb-4">
+							<Link href={ROUTES.user.signin} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
+								Sign-In
 							</Link>
 						</p>
 					</div>

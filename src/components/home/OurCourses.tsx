@@ -70,7 +70,7 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 																<p className="text-sm text-gray-500 mb-4">{product?.desc}</p>
 																<Link
 																	href={ROUTES.courses.details(product?.course_id)}
-																	className="hover:bg-secondary hover:text-primary transition ease-in duration-300  p-2 px-3 rounded-full font-medium w-fit mt-3 block bg-primary text-white"
+																	className="hover:bg-secondary hover:text-primary transition ease-in duration-300  p-2 px-3 rounded-full font-medium w-fit mt-3 block border border-primary hover:border-secondary text-primary"
 																	role="button"
 																>
 																	Learn more
@@ -90,7 +90,7 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 					{products && (
 						<Link
 							href={ROUTES.courses.index}
-							className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-primary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
+							className="hover:bg-secondary hover:text-primary transition ease-in duration-300 p-4 rounded-full w-fit mt-10  bg-primary text-white font-medium shadow-lg flex items-center m-auto block"
 							role="button"
 						>
 							View all courses <IconArrowRight className="ml-1" />

@@ -6,7 +6,7 @@ import { getTransDetailsPanel, toggleTransDetailsPanel } from "@JCKConsultant/re
 import Image from "next/image"
 import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
-import { uniqueId } from "@JCKConsultant/lib/utils"
+import { classNames, uniqueId } from "@JCKConsultant/lib/utils"
 import { useMutation } from "react-query"
 import { FetchTran } from "@JCKConsultant/services/transactions/trans.apis"
 import { TransactionInterface } from "@JCKConsultant/types"
@@ -15,7 +15,11 @@ import { formatNumber } from "@JCKConsultant/lib/utilities"
 import TransactionDetailsLoader from "@JCKConsultant/components/loaders/TransactionDetailsLoader"
 import { FemaleAvatar, MaleAvatar } from "@JCKConsultant/pages/dashboard/users/[userId]"
 
-export default function TransactionDetailsPanel() {
+type TransactionDetailsPanelProps = {
+	pt?: string
+	isAdmin?: boolean
+}
+export default function TransactionDetailsPanel({ isAdmin = true, pt }: TransactionDetailsPanelProps) {
 	const { show, data, params } = useSelector(getTransDetailsPanel)
 	const [transaction, setTransaction] = React.useState<TransactionInterface>()
 
@@ -76,7 +80,7 @@ export default function TransactionDetailsPanel() {
 										<div className="px-4 sm:px-6">
 											<Dialog.Title className="text-base font-semibold leading-6 text-gray-900">Transaction Details</Dialog.Title>
 										</div>
-										<div className="relative mt-6 flex-1 px-4 sm:px-6 text-black">
+										<div className={classNames("relative mt-6 flex-1 px-4 sm:px-6 text-black", pt)}>
 											{isFetching && <TransactionDetailsLoader />}
 
 											{!isFetching && (
@@ -118,21 +122,31 @@ export default function TransactionDetailsPanel() {
 														</div>
 													</dl>
 
-													<hr className="my-4" />
+													{isAdmin && (
+														<>
+															<hr className="my-4" />
 
-													<div className="">
-														<h1 className="font-semibold text-lg mb-3">Customer</h1>
-														<Link
-															onClick={_closePanel}
-															href={ROUTES.dashboard.users.info(transaction?.user?.account_id)}
-															className="flex items-center justify-start gap-x-4 block w-full text-gray-500 hover:text-blue"
-														>
-															<Image width={100} height={100} className="h-12 w-12 flex-none rounded-full bg-gray-50" src={transaction?.user?.gender === "female" ? FemaleAvatar : MaleAvatar} alt="" />
-															<h1 className="font-bold text-lg ">
-																{transaction?.user?.first_name} {transaction?.user?.last_name}
-															</h1>
-														</Link>
-													</div>
+															<div className="">
+																<h1 className="font-semibold text-lg mb-3">Customer</h1>
+																<Link
+																	onClick={_closePanel}
+																	href={ROUTES.dashboard.users.info(transaction?.user?.account_id)}
+																	className="flex items-center justify-start gap-x-4 block w-full text-gray-500 hover:text-blue"
+																>
+																	<Image
+																		width={100}
+																		height={100}
+																		className="h-12 w-12 flex-none rounded-full bg-gray-50"
+																		src={transaction?.user?.gender === "female" ? FemaleAvatar : MaleAvatar}
+																		alt=""
+																	/>
+																	<h1 className="font-bold text-lg ">
+																		{transaction?.user?.first_name} {transaction?.user?.last_name}
+																	</h1>
+																</Link>
+															</div>
+														</>
+													)}
 												</>
 											)}
 										</div>

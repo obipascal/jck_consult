@@ -245,9 +245,9 @@ export default function Contact({ configs }: AppConfigs) {
 										</div>
 									</div>
 									<div className="px-4 py-6 md:mx-6 text-white">
-										<h4 className="mb-6 text-3xl font-bold text-secondary">We&apos;re Open</h4>
+										<h4 className="mb-6 text-3xl font-bold text-white">We&apos;re Open</h4>
 										<p className="text-sm">
-											<span className="font-bold">From:</span> Monday <span className="font-bold">To:</span> Friday, 9:00AM - 5:00PM UK Time.
+											<span className="font-bold">From:</span> Monday <span className="font-bold">To:</span> Friday, 9:00AM - 5:00PM.
 										</p>
 									</div>
 								</div>

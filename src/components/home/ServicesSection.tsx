@@ -27,7 +27,7 @@ export default function ServicesSection({ content }: HomeWhoweareSectionProps) {
 							<h2 className="text-white text-[20px] font-bold">software development</h2>
 						</div>
 						<p className="text-[18px] text-white text-center">
-							Our Software Development service turns innovative ideas into robust, user-centric software solutions. Our skilled developers and engineers work closely with you to create tailored
+							Our software development service turns innovative ideas into robust, user-centric software solutions. Our skilled developers and engineers work closely with you to create tailored
 							software solutions that exceed expectations.
 						</p>
 					</div>

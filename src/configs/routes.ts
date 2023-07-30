@@ -59,6 +59,7 @@ export const ROUTES = {
 			reset: "/auth/forget-password/reset"
 		},
 
-		dashboard: "/user"
+		dashboard: "/user",
+		transactions: "/user/transactions"
 	}
 }

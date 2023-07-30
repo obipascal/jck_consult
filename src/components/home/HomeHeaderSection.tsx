@@ -24,10 +24,10 @@ export default function HomeHeaderSection() {
 						<h1 className="font-bold text-white tracking-tight">
 							<span className="xs:text-[20px] md:text-[25px]">Welcome to JCK Consulting </span>
 							<br />
-							<span className="xs:text-[40px] md:text-[64px]">Transition into tech with our Scrum Agile Experts</span>
+							<span className="xs:text-[40px] md:text-[64px]">Transition into tech with our Agile Scrum Experts</span>
 						</h1>
 						<p className="my-5 text-white xs:text-md md:text-lg">
-							Are you ready to embark on an exciting journey into the world of technology? At JCKConsulting, we&apos;re dedicated to empowering individuals like you to transition seamlessly into the
+							Are you ready to embark on an exciting journey into the world of technology? At JCK Consulting, we&apos;re dedicated to empowering individuals like you to transition seamlessly into the
 							tech industry through our top-notch Agile Scrum training programs.
 						</p>
 						<Link

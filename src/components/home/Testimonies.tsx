@@ -84,7 +84,7 @@ export default function Testimonies({ siteId }: TestimoniesProps) {
 					</div>
 					<Link
 						href={ROUTES.testimonies}
-						className="p-3 rounded-full w-fit mt-10 border border-blue bg-white  text-slate-800 hover:bg-primary hover:border-primary transition-all hover:text-white m-auto block shadow-lg flex items-center"
+						className="hover:bg-secondary hover:text-primary transition ease-in duration-300 p-4 rounded-full w-fit mt-10  bg-primary text-white font-medium shadow-lg flex items-center m-auto block"
 						role="button"
 					>
 						Show more <IconArrowRight className="ml-1" />

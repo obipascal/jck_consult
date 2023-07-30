@@ -2,7 +2,6 @@ import React from "react"
 import DashboardNavbar from "./DashboardNavbar"
 import dynamic from "next/dynamic"
 import EditCoursePanel from "../panels/EditCoursePanel"
-import TransactionDetailsPanel from "../panels/TransactionDetailsPanel"
 import { useUser } from "@JCKConsultant/hooks/useUser"
 import { Meta, SiteConfigs, WithChildren } from "@JCKConsultant/types"
 import Head from "next/head"
@@ -97,7 +96,7 @@ export default function DashboardLayout({ children, pageName = "Dashboard", meta
 
 			{/* Panels */}
 			<EditCoursePanel />
-			<TransactionDetailsPanel />
+
 			<UploadMaterialPanel />
 		</>
 	)

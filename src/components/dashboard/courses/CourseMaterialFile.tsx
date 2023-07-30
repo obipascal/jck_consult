@@ -13,8 +13,9 @@ const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/ini
 
 type CourseMaterialFileProps = {
 	data?: CourseMaterialFileInterface
+	isAdmin?: boolean
 }
-export default function CourseMaterialFile({ data }: CourseMaterialFileProps) {
+export default function CourseMaterialFile({ isAdmin, data }: CourseMaterialFileProps) {
 	const router = useRouter()
 
 	const [editTitle, setEditTitle] = React.useState<boolean>(false)
@@ -89,30 +90,40 @@ export default function CourseMaterialFile({ data }: CourseMaterialFileProps) {
 					<div className="mt-5 flex lg:ml-4 lg:mt-0">
 						<span className="sm:block">
 							{!editTitle && (
-								<button
-									onClick={() => setEditTitle(!editTitle)}
-									type="button"
-									className="inline-flex items-center cursor-pointer rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-								>
-									<PencilIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-									Edit
-								</button>
+								<>
+									{isAdmin && (
+										<button
+											onClick={() => setEditTitle(!editTitle)}
+											type="button"
+											className="inline-flex items-center cursor-pointer rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+										>
+											<PencilIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+											Edit
+										</button>
+									)}
+								</>
 							)}
 
 							{editTitle && (
-								<button
-									disabled={isUpdating}
-									type="submit"
-									className="inline-flex items-center cursor-pointer rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-								>
-									<CheckCircleIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-									Save changes
-								</button>
+								<>
+									{isAdmin && (
+										<button
+											disabled={isUpdating}
+											type="submit"
+											className="inline-flex items-center cursor-pointer rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+										>
+											<CheckCircleIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+											Save changes
+										</button>
+									)}
+								</>
 							)}
 						</span>
-						<span className="ml-3 sm:block">
-							<CourseReplaceUploadFile materialId={data?.material_id as any as string} />
-						</span>
+						{isAdmin && (
+							<span className="ml-3 sm:block">
+								<CourseReplaceUploadFile materialId={data?.material_id as any as string} />
+							</span>
+						)}
 
 						{/* Dropdown */}
 						<Menu as="div" className="relative ml-3">
@@ -140,17 +151,19 @@ export default function CourseMaterialFile({ data }: CourseMaterialFileProps) {
 										)}
 									</Menu.Item>
 
-									<Menu.Item>
-										{({ active }) => (
-											<a
-												onClick={() => _handleDelete(data?.material_id)}
-												className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700 w-full flex items-center cursor-pointer")}
-											>
-												<TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-												Delete
-											</a>
-										)}
-									</Menu.Item>
+									{isAdmin && (
+										<Menu.Item>
+											{({ active }) => (
+												<a
+													onClick={() => _handleDelete(data?.material_id)}
+													className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700 w-full flex items-center cursor-pointer")}
+												>
+													<TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+													Delete
+												</a>
+											)}
+										</Menu.Item>
+									)}
 								</Menu.Items>
 							</Transition>
 						</Menu>

@@ -28,24 +28,17 @@ export default function WhyUs() {
 							))}
 						</dl>
 					</div>
-					{/* <Link
-						href={`${ROUTES.about}#why-us`}
-						className="hover:bg-secondary hover:text-primary transition ease-in duration-300 p-4 rounded-full w-fit mt-10 m-auto block  bg-white text-primary font-medium shadow-lg flex items-center"
-						role="button"
-					>
-						Read more <IconArrowRight className="ml-1" />
-					</Link> */}
 				</div>
 			</div>
 		</section>
 	)
 }
 
-const features = [
+export const features = [
 	{
 		name: "Expert Guidance",
 		description:
-			"Paragraph - Our trainers at JCKConsulting are not just instructors; they are seasoned professionals with years of experience in Agile Scrum and the tech industry. Learning from the best ensures you gain invaluable insights and knowledge that can elevate your career.",
+			"Our trainers at JCKConsulting are not just instructors; they are seasoned professionals with years of experience in Agile Scrum and the tech industry. Learning from the best ensures you gain invaluable insights and knowledge that can elevate your career.",
 		icon: UserGroupIcon
 	},
 	{

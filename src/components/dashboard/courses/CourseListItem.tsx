@@ -26,9 +26,10 @@ type CourseListItemProps = {
 	status?: "drafted" | "published"
 	image?: string
 	data?: CourseInterface
+	isAdmin?: boolean
 }
 
-export default function CourseListItem({ data, showInfo = true, showActions = true, status, image, courseId, courseName, courseAmount, courseLastModified }: CourseListItemProps) {
+export default function CourseListItem({ isAdmin = true, data, showInfo = true, showActions = true, status, image, courseId, courseName, courseAmount, courseLastModified }: CourseListItemProps) {
 	const dispatcher = useDispatch()
 	const [show, toggle] = React.useState<boolean>(false)
 	const _handleToggle = () => toggle(!show)
@@ -82,14 +83,18 @@ export default function CourseListItem({ data, showInfo = true, showActions = tr
 										&pound;
 										{formatNumber(courseAmount)}
 									</div>
-									<div className="mt-2 flex items-center text-sm text-gray-500">
-										<CalendarIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-										last modified on {toDateString(courseLastModified as any as Date)}
-									</div>
+									{isAdmin && (
+										<>
+											<div className="mt-2 flex items-center text-sm text-gray-500">
+												<CalendarIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+												last modified {courseLastModified}
+											</div>
+										</>
+									)}
 								</div>
 							)}
 						</div>
-						{showActions && (
+						{showActions && isAdmin && (
 							<div className="mt-5 flex lg:ml-4 lg:mt-0">
 								<span className="hidden sm:block">
 									<button
@@ -177,7 +182,7 @@ export default function CourseListItem({ data, showInfo = true, showActions = tr
 				<TECollapse show={show}>
 					{/* course material content */}
 					<div className="min-h-[15vh]">
-						<CourseMaterials courseId={courseId as any as string} courseMaterials={data?.materials} />
+						<CourseMaterials isAdmin={false} courseId={courseId as any as string} courseMaterials={data?.materials} />
 					</div>
 				</TECollapse>
 			</div>

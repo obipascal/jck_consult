@@ -32,7 +32,7 @@ export default function HomeFAQs({ faqs }: SiteConfigs) {
 					</div>
 					<Link
 						href={`${ROUTES.about}#faqs`}
-						className="p-3 rounded-full w-fit mt-10 border border-blue  text-slate-800 hover:bg-primary hover:border-white border-2 transition-all hover:text-white m-auto block shadow-lg flex items-center"
+						className="hover:bg-secondary hover:text-primary transition ease-in duration-300 p-4 rounded-full w-fit mt-10  bg-primary text-white font-medium shadow-lg flex items-center m-auto block"
 						role="button"
 					>
 						Read more <IconArrowRight className="ml-1" />

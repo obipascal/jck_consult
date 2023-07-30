@@ -7,7 +7,7 @@ import { AppConfigs, Meta } from "@JCKConsultant/types"
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik"
 import { enquiryValidatorScheme } from "@JCKConsultant/lib/validator/enquiriesValidator"
 import { useMutation } from "react-query"
-import { Info, ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
+import { Error, Info, ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import Spinner from "@JCKConsultant/components/home/Spinner"
 import dynamic from "next/dynamic"
 import Link from "next/link"
@@ -41,7 +41,7 @@ export default function SignInPage({ configs }: AppConfigs) {
 			redirect: false
 		})
 		if (res?.error) {
-			setError(res?.error)
+			Error("Login", res?.error)
 			setLoading(false)
 		} else {
 			setLoading(!isLoading)

@@ -30,7 +30,7 @@ export default function HomeWhoweareSection({ content }: HomeWhoweareSectionProp
 					</div>
 					<div data-aos="fade-up" className="col-span-1 text-black text-[20px] p-4">
 						<p className="">
-							Welcome to JCK Consultant Ltd, where success in the fast-paced world of technology begins. We are a dedicated team of tech experts who firmly believe in the power of knowledge and
+							Welcome to JCK Consulting Ltd, where success in the fast-paced world of technology begins. We are a dedicated team of tech experts who firmly believe in the power of knowledge and
 							continuous improvement. Our mission is to be your gateway to success by providing a comprehensive suite of courses and workshops that cater to aspiring tech professionals and career
 							transitioners alike.
 							<br />
@@ -38,7 +38,7 @@ export default function HomeWhoweareSection({ content }: HomeWhoweareSectionProp
 							Transformative Training for Your Unique Goals:
 							<br />
 							<br />
-							At JCK Consultant Ltd, we recognize that each individual&apos;s tech journey is unique. That&apos;s why our transformative training programs are carefully tailored to meet your specific
+							At JCK Consulting Ltd, we recognize that each individual&apos;s tech journey is unique. That&apos;s why our transformative training programs are carefully tailored to meet your specific
 							aspirations. Whether you aspire to become a Scrum Master, Agile Coach, or venture into other tech domains, our courses are designed to equip you with the skills and knowledge needed to
 							thrive in today&apos;s ever-evolving landscape...
 						</p>

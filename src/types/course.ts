@@ -57,3 +57,13 @@ export interface CourseMaterialFileInterface {
 	created_at: string
 	updated_at: string
 }
+
+export interface EnrolledCourseInterface {
+	enrollment_id: number
+	trans_id: number
+	account_id: number
+	course_id: number
+	created_at: string
+	updated_at: string
+	course: CourseInterface
+}
