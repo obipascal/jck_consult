@@ -14,7 +14,7 @@ export default function WhyChooseUs() {
 						<dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
 							{features.map(feature => (
 								<div data-aos="fade-up" key={feature.name} className="relative pl-16">
-									<dt className="font-bold text-secondary text-[16px] ">
+									<dt className="font-bold text-white text-[16px] ">
 										<div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg ">
 											<feature.icon className="h-8 w-8 text-white" aria-hidden="true" />
 										</div>
