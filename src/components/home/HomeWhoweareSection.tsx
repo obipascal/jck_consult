@@ -1,11 +1,9 @@
 import Image from "next/image"
 import React from "react"
-import FounderImageCropped from "@JCKConsultant/assets/img/avatar/owner-img-cropped.png"
-import Asset1 from "@JCKConsultant/assets/img/assets/asset-1.jpeg"
+import Asset1 from "@JCKConsultant/assets/img/assets/asset-1.jpg"
 import Asset2 from "@JCKConsultant/assets/img/assets/asset-2.jpg"
 import Asset3 from "@JCKConsultant/assets/img/assets/asset-3.jpg"
 import Asset4 from "@JCKConsultant/assets/img/assets/asset-4.jpg"
-import Asset5 from "@JCKConsultant/assets/img/assets/asset-5.webp"
 import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 type HomeWhoweareSectionProps = {
@@ -15,11 +13,11 @@ export default function HomeWhoweareSection({ content }: HomeWhoweareSectionProp
 	return (
 		<section className="bg-white pb-20 pt-5" id="next__h_whoweare">
 			<section className="mb-24">
-				<header data-aos="fade-up" className="px-10 mb-20 text-center">
-					<h1 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 uppercase">ABOUT</h1>
+				<header data-aos="fade-up" className="xs:px-2 md:px-10 mb-20 text-center">
+					<h1 className="font-medium xs:text-[20px] md:text-[20px] text-primary uppercase">ABOUT</h1>
 					<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Our Experts are the finest</p>
 				</header>
-				<div className="grid xs:grid-cols-1 md:grid-cols-2 gap-4 px-10">
+				<div className="grid xs:grid-cols-1 md:grid-cols-2 gap-4 xs:px-5 md:px-10">
 					<div data-aos="zoom-in-right" className="flex items-center justify-center">
 						<div className="grid grid-cols-2 gap-4">
 							<Image src={Asset1} alt="Product" className="w-[100%] h-[100%] object-fill bg-white p-5 rounded-lg rounded-tl-[50px] rounded-br-[50px] animate__animated animate__fadeIn shadow-2xl" />
@@ -28,7 +26,7 @@ export default function HomeWhoweareSection({ content }: HomeWhoweareSectionProp
 							<Image src={Asset4} alt="Product" className="w-[100%] h-[100%] object-fill bg-white p-5 rounded-lg rounded-tl-[50px] rounded-br-[50px] animate__animated animate__fadeIn shadow-2xl" />
 						</div>
 					</div>
-					<div data-aos="fade-up" className="col-span-1 text-black text-[20px] p-4">
+					<div data-aos="fade-up" className="col-span-1 text-black text-[20px] text-justify">
 						<p className="">
 							Welcome to JCK Consulting Ltd, where success in the fast-paced world of technology begins. We are a dedicated team of tech experts who firmly believe in the power of knowledge and
 							continuous improvement. Our mission is to be your gateway to success by providing a comprehensive suite of courses and workshops that cater to aspiring tech professionals and career

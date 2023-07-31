@@ -43,8 +43,8 @@ export default function OurCourses({ configs }: AppConfigs) {
 				<div className="bg-white/80 py-24 sm:py-32">
 					<div className="mx-auto max-w-7xl px-6 lg:px-8">
 						<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-							<h1 className=" font-bold text-[50px] text-slate-800">Our Courses</h1>
-							<p className="mt-6 text-lg leading-8 text-gray-600">Unleashing Your Full Potential with Cutting-Edge Courses</p>
+							<h1 className=" font-bold text-[50px] text-primary">Our Courses</h1>
+							<p className="mt-6 text-lg leading-8 text-primary">Unleashing Your Full Potential with Cutting-Edge Courses</p>
 						</div>
 
 						{isFetching && <CourseCardsLoader />}

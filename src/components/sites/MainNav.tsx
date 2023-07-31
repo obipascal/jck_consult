@@ -89,6 +89,11 @@ export default function MainNav(props: MainNavProps) {
 								Contact Us
 							</Link>
 						</li>
+						<li className={navStyle.navItems}>
+							<Link className="font-semibold border-b-2 border-transparent transition-all   hover:border-secondary hover:text-primary " href={"#faqs"}>
+								FAQs
+							</Link>
+						</li>
 
 						{user && (
 							<li className={navStyle.navItems}>

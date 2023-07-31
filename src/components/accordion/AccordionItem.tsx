@@ -12,7 +12,7 @@ export default function AccordionItem({ title, content }: AccordionItemProps) {
 	const _handleToggle = () => toggle(!show)
 
 	return (
-		<div className="rounded-none border border-l-0 border-r-0 border-t-0 border-neutral-200 bg-white">
+		<div className="rounded-none border border-l-0 border-r-0 border-t-0 border-secondary bg-white">
 			<h2 className="mb-0">
 				<button
 					onClick={_handleToggle}

@@ -18,6 +18,7 @@ export default function about({ configs }: AppConfigs) {
 
 	return (
 		<MainLayout meta={metaData} siteConfigs={configs} title="About Us">
+			<div className="md:h-[60vh] xs:h-52 bg-no-repeat bg-fixed bg-[url('/img/colleagues-giving-fist-bump.jpg')]"></div>
 			<WhoWeAre content={configs?.settings?.about} />
 			<Team />
 			<WhyChooseUs />

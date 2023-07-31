@@ -37,10 +37,10 @@ export default function FAQs({ faqs, settings }: SiteConfigs) {
 		<section className="bg-white bg-no-repeat bg-cover bg-center my-0" id="faqs">
 			<div className="py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
-					<div data-aos="fade-up" className="mx-auto max-w-2xl lg:text-center">
-						<h1 className=" font-bold text-[50px] text-slate-800">Support & FAQs</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-600">Got Questions? We Have Answers! Explore Our Frequently Asked Questions</p>
-					</div>
+					<header data-aos="fade-up" className="xs:px-2 md:px-10 mb-20 text-center">
+						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-primary uppercase">SUPPORT AND FAQ</h1>
+						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Frequently Asked Questions</p>
+					</header>
 					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
 						<div>
 							{isLoading && <FAQLoader />}

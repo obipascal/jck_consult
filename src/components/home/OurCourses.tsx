@@ -3,13 +3,11 @@ import Link from "next/link"
 import React from "react"
 import IconArrowRight from "../icons/IconArrowRight"
 import { ROUTES } from "@JCKConsultant/configs/routes"
-import { uniqueId } from "@JCKConsultant/lib/utils"
 import { useMutation } from "react-query"
 import { FetchPublishedCourses } from "@JCKConsultant/services/course/course.apis"
 import { PaginationResponse } from "@JCKConsultant/types"
 import { CourseInterface } from "@JCKConsultant/types/course"
 import CourseCardsLoader from "../loaders/CourseCardsLoader"
-import { formatNumber } from "@JCKConsultant/lib/utilities"
 
 type OurCoursesProps = {
 	siteId?: string
@@ -36,16 +34,16 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 	return (
 		<section className="bg-[url('/img/bg/Frame_bg_flip.png')] bg-no-repeat bg-cover bg-center " id="next__h_courses">
 			<div className="bg-white/80 py-24 sm:py-32 pt-24">
-				<div className="mx-auto max-w-7xl px-6 lg:px-8">
-					<header data-aos="fade-up" className="px-10 mb-20 text-center">
-						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 uppercase">Our Courses</h1>
+				<div className="mx-auto max-w-7xl lg:px-8">
+					<header data-aos="fade-up" className="xs:px-2 md:px-10 mb-20 text-center">
+						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-primary uppercase">Our Courses</h1>
 						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Explore our courses</p>
 					</header>
 
 					{isFetching && <CourseCardsLoader />}
 
 					{!isFetching && (
-						<div className="mt-6 grid lg:grid-cols-4 sm:grid-cols-3 sm-4:grid-cols-2 md:grid-cols-4 gap-4">
+						<div className="mt-6 grid lg:grid-cols-4 sm:grid-cols-3 sm-4:grid-cols-2 md:grid-cols-4 gap-4 xs:px-5 md:px-10">
 							{products && (
 								<>
 									{products?.length > 0 && (
@@ -93,7 +91,7 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 							className="hover:bg-secondary hover:text-primary transition ease-in duration-300 p-4 rounded-full w-fit mt-10  bg-primary text-white font-medium shadow-lg flex items-center m-auto block"
 							role="button"
 						>
-							View all courses <IconArrowRight className="ml-1" />
+							Show all courses <IconArrowRight className="ml-1" />
 						</Link>
 					)}
 				</div>

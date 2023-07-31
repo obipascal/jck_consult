@@ -37,12 +37,12 @@ export default function Testimonies({ siteId }: TestimoniesProps) {
 	return (
 		<section className="bg-gradient-to-r from-indigo-500 to-blue bg-no-repeat bg-cover bg-center my-0">
 			<div className="bg-white/80 py-24 sm:py-32">
-				<div className="mx-auto max-w-7xl px-6 lg:px-8">
-					<header data-aos="fade-up" className="px-10 mb-20 text-center">
-						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 uppercase">TESTIMONIALS</h1>
-						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Discover What Our Clients Are Saying: Real Stories, Real Results</p>
+				<div className="mx-auto max-w-7xl lg:px-8">
+					<header data-aos="fade-up" className="xs:px-2 md:px-10 mb-20 text-center">
+						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-primary uppercase">TESTIMONIALS</h1>
+						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">What Our Clients Saying About Us</p>
 					</header>
-					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl xs:px-5 md:px-10">
 						<section className="text-neutral-700 dark:text-neutral-300">
 							{!isLoading && (
 								<div className="grid gap-6 text-center md:grid-cols-3">

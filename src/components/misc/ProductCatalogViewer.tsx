@@ -31,11 +31,11 @@ const ProductCatalogViewer = ({ images }: ProductCatalogViewerTypes) => {
 
 	return (
 		<div>
-			<div id="viewer">
+			<div id="viewer m-auto block">
 				<Image
 					src={images[currentImage]}
 					alt="Product"
-					className="w-[100%] h-[400px] object-fill bg-white p-5 rounded-lg rounded-tl-[50px] rounded-br-[50px] animate__animated animate__fadeIn shadow-2xl"
+					className="md:w-[100%] xs:h-[250px] md:h-[400px] object-fill bg-white p-5 rounded-lg rounded-tl-[50px] rounded-br-[50px] animate__animated animate__fadeIn shadow-2xl"
 				/>
 			</div>
 			{/* <div id="thumbnails">

@@ -6,11 +6,11 @@ import BackgroundDivider from "@JCKConsultant/assets/img/compliment-bg.png"
 import Link from "next/link"
 
 import HeaderLady from "@JCKConsultant/assets/img/swippers/Header_Lady.png"
-import Asset1 from "@JCKConsultant/assets/img/assets/asset-1.jpeg"
+import Asset1 from "@JCKConsultant/assets/img/assets/asset-1.jpg"
 import Asset2 from "@JCKConsultant/assets/img/assets/asset-2.jpg"
 import Asset3 from "@JCKConsultant/assets/img/assets/asset-3.jpg"
 import Asset4 from "@JCKConsultant/assets/img/assets/asset-4.jpg"
-import Asset5 from "@JCKConsultant/assets/img/assets/asset-5.webp"
+import Asset5 from "@JCKConsultant/assets/img/assets/asset-5.jpg"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 
 export default function HomeHeaderSection() {
@@ -20,9 +20,9 @@ export default function HomeHeaderSection() {
 		<section className="bg-gradient-to-r from-indigo-500 to-blue-900  pt-20 " data-aos="fade-up">
 			<div className=" grid sm:grid-cols-1 md:grid-cols-2 gap-4 md:px-10 xs:px-5">
 				<div className="flex justify-start relative">
-					<div className="p-5 py-10">
+					<div className="xs:px-0 md:p-5 py-10">
 						<h1 className="font-bold text-white tracking-tight">
-							<span className="xs:text-[20px] md:text-[25px]">Welcome to JCK Consulting </span>
+							<span className="xs:text-[20px] md:text-[25px] text-secondary">Welcome to JCK Consulting </span>
 							<br />
 							<span className="xs:text-[40px] md:text-[64px]">Transition into tech with our Agile Scrum Experts</span>
 						</h1>
@@ -39,7 +39,7 @@ export default function HomeHeaderSection() {
 						</Link>
 					</div>
 				</div>
-				<div className="flex md:items-center md:justify-center p-3 relative">
+				<div className="flex md:items-center md:justify-center xs:px-0 md:p-3 relative">
 					<ProductCatalogViewer images={images} />
 				</div>
 			</div>

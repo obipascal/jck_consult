@@ -151,12 +151,12 @@ export default function MainFooter({ settings }: SiteConfigs) {
 			<div className="p-6 text-center">
 				<span>&copy; {new Date().getFullYear()} Copyright </span>
 				<a className="font-normal " href={ROUTES.home}>
-					{settings?.name} Ltd
+					{settings?.name} Ltd | Registration Number: 14234356
 				</a>
 			</div>
 
 			<a href={settings?.whatsapp_handle} target="_blank" className="">
-				<IconWhatsappFill width={"4.5em"} height={"4.5em"} className="fixed bottom-10 top-auto left-auto right-10 shadow-3xl text-green-600 bg-white rounded-2xl p-0" />
+				<IconWhatsappFill className="xs:h-12 xs:w-12 md:h-16 md:w-16 fixed bottom-3 top-auto left-auto right-3 shadow-3xl text-green-600 bg-white rounded-full p-1.5 " />
 			</a>
 		</footer>
 	)

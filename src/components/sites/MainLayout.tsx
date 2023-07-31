@@ -39,6 +39,20 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 	React.useEffect(() => {
 		AOS.init()
 		AOS.refresh()
+
+		document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+			anchor.addEventListener("click", function (e) {
+				e.preventDefault()
+
+				// @ts-ignore
+				const tcase = this?.getAttribute("href")
+				const target = tcase?.slice(tcase.indexOf("#"), tcase.length)
+
+				document?.querySelector(target)?.scrollIntoView({
+					behavior: "smooth"
+				})
+			})
+		})
 	})
 
 	const User = useUser()

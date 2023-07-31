@@ -12,14 +12,14 @@ export default function HomeFAQs({ faqs }: SiteConfigs) {
 	const _data = faqs?.data
 
 	return (
-		<section className="bg-[url('/img/bg/Frame_bg.png')] bg-no-repeat bg-cover bg-center my-0 ">
+		<section className="bg-[url('/img/bg/Frame_bg.png')] bg-no-repeat bg-cover bg-center my-0 " id="faqs">
 			<div className="bg-white/80 py-24 sm:py-32 pb-32">
-				<div className="mx-auto max-w-7xl px-6 lg:px-8">
-					<header data-aos="fade-up" className="px-10 mb-20 text-center">
-						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 uppercase">SUPPORT AND FAQ</h1>
-						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Got Questions? We Have Answers! Explore Our Frequently Asked Questions</p>
+				<div className="mx-auto max-w-7xl lg:px-8">
+					<header data-aos="fade-up" className="xs:px-2 md:px-10 mb-20 text-center">
+						<h1 className="font-medium xs:text-[20px] md:text-[20px] text-primary uppercase">SUPPORT AND FAQ</h1>
+						<p className="font-bold xs:text-[36px] md:text-[50px] text-primary">Frequently Asked Questions</p>
 					</header>
-					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+					<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl xs:px-5 md:px-10">
 						<div>
 							{_data?.length && (
 								<>

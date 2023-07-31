@@ -54,6 +54,12 @@ export default function MainSidebar() {
 						Contact Us
 					</Link>
 				</li>
+
+				<li className={`${navStyle.navItems} mb-4`} onClick={toggleNavMenuVisibility}>
+					<Link className="font-semibold border-b-2 border-transparent transition-all dark:hover:border-secondary dark:hover:text-secondary hover:border-secondary hover:text-primary " href={"#faqs"}>
+						FAQs
+					</Link>
+				</li>
 			</ul>
 		</section>
 	)
