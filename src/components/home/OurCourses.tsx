@@ -25,7 +25,7 @@ export default function OurCourses({ siteId }: OurCoursesProps) {
 
 	React.useEffect(() => {
 		if (siteId) {
-			fetchCourseApi.mutateAsync({ perPage: 10, page: 1 })
+			fetchCourseApi.mutateAsync({ perPage: 4, page: 1 })
 		}
 	}, [siteId])
 
