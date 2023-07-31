@@ -1,5 +1,4 @@
 import CourseInfoLoader from "@JCKConsultant/components/loaders/CourseInfoLoader"
-import WYSIWYGEditor from "@JCKConsultant/components/misc/WYSIWYGEditor"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { ServerErrors } from "@JCKConsultant/lib/_toaster"
 import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
@@ -54,8 +53,6 @@ export default function CourseInfo({ configs }: AppConfigs) {
 								<h1 className="mb-10 text-4xl leading-8 font-bold text-secondary">{course?.title}</h1>
 
 								<article className=" _html_viewer text-white text-justify md:text-2xl xs:text-md leading-loose tracking-wide" dangerouslySetInnerHTML={{ __html: course?.body as string }}></article>
-
-								<WYSIWYGEditor />
 							</section>
 						)}
 						{/* <!-- Section: Design Block --> */}
