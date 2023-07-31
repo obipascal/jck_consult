@@ -163,6 +163,13 @@ const UserDropdown = () => {
 								</Link>
 							)}
 						</Menu.Item>
+						<Menu.Item>
+												{({ active }) => (
+													<Link onClick={_handleSignout} href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
+														Sign out
+													</Link>
+												)}
+											</Menu.Item>
 					</Menu.Items>
 				</Transition>
 			</Menu>
