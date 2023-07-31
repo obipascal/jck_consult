@@ -27,3 +27,12 @@ body {
 .__next {
     width: 100% !important;
 }
+
+._html_viewer {
+    p {
+        strong {
+            color: #ffd700;
+        }
+        margin-bottom: 2rem !important;
+    }
+}

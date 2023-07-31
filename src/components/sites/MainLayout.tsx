@@ -110,6 +110,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 						<link rel="shortcut icon" type="image/x-icon" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 
 						<link rel="manifest" href={`${process.env.NEXT_PUBLIC_URL}/manifest.json`} />
+
 						{/* End */}
 
 						<meta itemProp="name" content={meta?.title ? meta?.title : "JCK Consulting."} />
