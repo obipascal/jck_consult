@@ -62,12 +62,29 @@ export default function ApplicationSettings({ settings }: SiteConfigs) {
 		}
 	})
 
+	const updateTermsAndPolicySettingApi = useMutation(CreateSettings, {
+		onSuccess(res: any) {
+			if (res?.status) {
+				Success("Settings", res?.message)
+			}
+		},
+		onError(error, variables, context) {
+			ServerErrors("Error", error)
+		}
+	})
 	const isCreating = createSettingApi.isLoading
 	const isUpdating = updateAboutSettingApi.isLoading
+	const updatingTerms = updateTermsAndPolicySettingApi.isLoading
 
 	const _handleSubmit = (values: InitValsProps) => createSettingApi.mutateAsync(values)
 
 	const _handleUpdateSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const formData = new FormData(e?.target)
+		updateAboutSettingApi.mutateAsync(formData)
+	}
+
+	const _handleTermsAndPolicyUpdateSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const formData = new FormData(e?.target)
 		updateAboutSettingApi.mutateAsync(formData)
@@ -369,6 +386,41 @@ export default function ApplicationSettings({ settings }: SiteConfigs) {
 					<button disabled={isUpdating} type="submit" className="p-3 rounded-lg text-white bg-blue disabled:bg-blue/50">
 						{!isUpdating && "Save Changes"}
 						{isUpdating && <Spinner />}
+					</button>
+				</div>
+			</form>
+			<form onSubmit={_handleTermsAndPolicyUpdateSubmit}>
+				{/* Terms and Policy */}
+				<div className="px-4 mt-5 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+					<dt className="text-sm font-medium leading-6 text-gray-900">
+						<h1 className="font-semibold text-gray-600 text-lg">Terms and Conditions</h1>
+						<p className="font-medium text-md text-gray-500">Site terms and conditions</p>
+					</dt>
+					<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
+						<div>
+							<div className="relative mb-4">
+								<WYSIWYGEditor value={settings?.terms} inputName="terms" />
+							</div>
+						</div>
+					</dd>
+				</div>
+				<div className="px-4 mt-5 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+					<dt className="text-sm font-medium leading-6 text-gray-900">
+						<h1 className="font-semibold text-gray-600 text-lg">Privacy Policy</h1>
+						<p className="font-medium text-md text-gray-500">Website Privacy Policy</p>
+					</dt>
+					<dd className="mt-1 text-sm leading-6 text-gray-700 xs:mt-4 md:mt-0 sm:col-span-2 sm:mt-0">
+						<div>
+							<div className="relative mb-4">
+								<WYSIWYGEditor value={settings?.terms} inputName="policy" />
+							</div>
+						</div>
+					</dd>
+				</div>
+				<div className="my-4">
+					<button disabled={updatingTerms} type="submit" className="p-3 rounded-lg text-white bg-blue disabled:bg-blue/50">
+						{!updatingTerms && "Save Changes"}
+						{updatingTerms && <Spinner />}
 					</button>
 				</div>
 			</form>

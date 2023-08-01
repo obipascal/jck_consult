@@ -3,6 +3,7 @@ import React from "react"
 import NnadiChiomaImg from "@JCKConsultant/assets/img/team/nnadi-chioma.jpg"
 import ObiPascalImg from "@JCKConsultant/assets/img/team/obi-pascal.png"
 import LilianGareldImg from "@JCKConsultant/assets/img/team/lilian-garald.jpg"
+import AyorindeOmoJuwa from "@JCKConsultant/assets/img/team/ayorinde-omojuwa.jpg"
 
 type TeamProps = {
 	content?: string
@@ -40,6 +41,15 @@ export default function Team({ content }: TeamProps) {
 								<h2 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 capitalize italic text-secondary">-Social Media Manager</h2>
 							</div>
 						</div>
+
+						<div className="relative group/card transition ease-in duration-300 min-h-10">
+							<Image src={AyorindeOmoJuwa} alt="Ayorinde Omojuwa" className="rounded-md w-80  transition ease-in duration-300 hover:scale-[1.1]" />
+							<div className="rounded-md bg-gradient-to-r from-indigo-500 to-blue-900 my-4 p-3 w-fit">
+								<h1 className="font-bold xs:text-[16px] md:text-[36px] text-white uppercase">Ayorinde Omojuwa</h1>
+								<h2 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 capitalize italic text-secondary">-Coding Tutor</h2>
+							</div>
+						</div>
+
 
 						<div className="relative group/card transition ease-in duration-300 min-h-10">
 							<Image src={ObiPascalImg} alt="Obi Pascal Banjuare" className="rounded-md w-80 transition ease-in duration-300 hover:scale-[1.1]" />

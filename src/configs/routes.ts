@@ -2,6 +2,8 @@ export const ROUTES = {
 	home: "/",
 	about: "/about",
 	review: "/review",
+	terms: "/terms",
+	policy: "/terms/policy",
 	courses: {
 		index: "/courses",
 		details: (courseId: any) => `/courses/${courseId}`

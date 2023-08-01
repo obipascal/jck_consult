@@ -1,23 +1,37 @@
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { FetchCourse } from "@JCKConsultant/services/course/course.apis"
 import { FetchConfigs } from "@JCKConsultant/services/settings/settings.apis"
 import { getSession } from "next-auth/react"
 
-export const prefetchConfigs = async (context: any) => {
+export const prefetchConfigs = async (context: any, fetchCourse: boolean = false) => {
 	const _session = await getSession(context)
+	let courseData = null
+
 	try {
 		const _data = await FetchConfigs()
 
+		/** Fetch course details */
+		if (fetchCourse) {
+			const { params } = context
+			const courseId = params?.courseId
+			if (courseId) {
+				const courseRes = await FetchCourse(courseId)
+				courseData = courseRes?.data
+			}
+		}
 		return {
 			props: {
 				session: _session,
-				configs: _data?.data
+				configs: _data?.data,
+				course: courseData
 			}
 		}
 	} catch (error) {
 		return {
 			props: {
 				session: _session,
-				configs: null
+				configs: null,
+				course: courseData
 			}
 		}
 	}

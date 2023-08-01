@@ -1,6 +1,7 @@
 import type { User as NextAuthUser } from "next-auth"
 import { PaginationResponse } from "./http"
 import { FAQResponseInterface } from "./faqs"
+import { CourseInterface } from "./course"
 
 export type UserSettings = Pick<NextAuthUser, "name" | "email" | "image">
 
@@ -19,6 +20,8 @@ export interface ApplicationSettingsProps {
 	linkedin_handle: string
 	whatsapp_handle: string
 	logo: string
+	terms: string
+	policy: string
 	created_at: string
 	updated_at: string
 }
@@ -34,4 +37,5 @@ export type DashboardProps = {
 
 export type AppConfigs = {
 	configs?: SiteConfigs
+	course?: CourseInterface
 }

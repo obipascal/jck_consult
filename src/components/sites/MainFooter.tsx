@@ -99,13 +99,13 @@ export default function MainFooter({ settings }: SiteConfigs) {
 						</p>
 
 						<p className="mb-4">
-							<Link href={`#`} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
+							<Link href={ROUTES?.policy} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
 								Privacy Policy
 							</Link>
 						</p>
 
 						<p className="mb-4">
-							<Link href={`#`} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
+							<Link href={ROUTES?.terms} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
 								Terms & Conditions
 							</Link>
 						</p>
