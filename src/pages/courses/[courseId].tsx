@@ -1,5 +1,6 @@
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { POUND_SIGN } from "@JCKConsultant/lib/currency"
 import { prefetchConfigs } from "@JCKConsultant/lib/prefetch"
 import { formatNumber } from "@JCKConsultant/lib/utilities"
 import { AppConfigs, Meta } from "@JCKConsultant/types"
@@ -28,7 +29,10 @@ export default function CourseInfo({ configs, course }: AppConfigs) {
 							<article className=" _html_viewer text-white text-justify md:text-2xl xs:text-md leading-loose tracking-wide mb-8" dangerouslySetInnerHTML={{ __html: course?.body as string }}></article>
 
 							<div className="flex flex-col items-center justify-center gap-4">
-								<h1 className="text-lg font-bold text-gray-100">Total Fee: {formatNumber(course?.price)}</h1>
+								<h1 className="text-lg font-bold text-gray-100">
+									Total Fee: {POUND_SIGN}
+									{formatNumber(course?.price)}
+								</h1>
 
 								<Link
 									href={ROUTES.enroll.index(course?.course_id)}

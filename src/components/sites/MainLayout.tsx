@@ -72,7 +72,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 	return (
 		<>
 			<Elements stripe={stripePromise} options={stripeOptions}>
-				<MainNav siteId={siteConfigs?.settings?.site_id} siteName={meta?.title} siteLogo={meta?.logo} />
+				<MainNav phone={siteConfigs?.settings?.phone_number} email={siteConfigs?.settings?.email} siteId={siteConfigs?.settings?.site_id} siteName={meta?.title} siteLogo={meta?.logo} />
 				<div className={classNames({ "h-full min-h-screen": true })}>
 					<InitTailwindUI />
 					<Head>
