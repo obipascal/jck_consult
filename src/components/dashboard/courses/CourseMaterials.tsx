@@ -28,7 +28,7 @@ export default function CourseMaterials({ isAdmin = true, courseId, courseMateri
 				</button>
 			)}
 
-			{!isAdmin && <h1 className="mb-2 font-bold text-2xl p-2">Course Materials</h1>}
+			{!isAdmin && <h1 className="mb-2 font-bold text-2xl p-2 text-gray-800">Course Materials</h1>}
 
 			<div className="flex divide-y flex-col rounded">
 				{courseMaterials && (
