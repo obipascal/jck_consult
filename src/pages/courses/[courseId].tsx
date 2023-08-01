@@ -7,7 +7,8 @@ export default function CourseInfo({ configs, course }: AppConfigs) {
 	const metaData: Meta = {
 		title: course?.title,
 		description: course?.desc,
-		logo: course?.image
+		logo: configs?.settings?.logo,
+		media: course?.image
 	}
 
 	return (

@@ -97,17 +97,17 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 						{/* End */}
 
 						{/* Apple touch configurations */}
-						<link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
-						<link rel="apple-touch-icon" sizes="152x152" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/152.png`} />
-						<link rel="apple-touch-icon" sizes="180x180" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
-						<link rel="apple-touch-icon" sizes="167x167" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/167.png`} />
+						<link rel="apple-touch-icon" href={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
+						<link rel="apple-touch-icon" sizes="152x152" href={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/152.png`} />
+						<link rel="apple-touch-icon" sizes="180x180" href={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
+						<link rel="apple-touch-icon" sizes="167x167" href={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/167.png`} />
 						{/* End */}
 
 						{/* App Icons configs */}
-						<link rel="icon" type="image/png" sizes="32x32" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/32.png`} />
-						<link rel="icon" type="image/png" sizes="16x16" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/16.png`} />
+						<link rel="icon" type="image/png" sizes="32x32" href={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/32.png`} />
+						<link rel="icon" type="image/png" sizes="16x16" href={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/16.png`} />
 						<link rel="icon" href={`${process.env.NEXT_PUBLIC_URL}/favicon.ico`} />
-						<link rel="shortcut icon" type="image/x-icon" href={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
+						<link rel="shortcut icon" type="image/x-icon" href={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 
 						<link rel="manifest" href={`${process.env.NEXT_PUBLIC_URL}/manifest.json`} />
 
@@ -115,12 +115,12 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 
 						<meta itemProp="name" content={meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta itemProp="description" content={meta?.description} />
-						<meta itemProp="image" content={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
+						<meta itemProp="image" content={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 						<meta name="description" content={meta?.description} />
 						<meta property="og:title" content={meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta property="og:description" content={meta?.description} />
 						<meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
-						<meta property="og:image" content={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
+						<meta property="og:image" content={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 						<meta property="og:type" content="website" />
 
 						<meta name="twitter:card" content="summary_large_image" />
@@ -128,7 +128,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 						<meta name="twitter:creator" content="@jckconsulting" />
 						<meta name="twitter:title" content={meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta name="twitter:description" content={meta?.description} />
-						<meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
+						<meta name="twitter:image" content={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 					</Head>
 					<section className="pt-[4rem]">{children}</section>
 					<MainFooter settings={siteConfigs?.settings} />
