@@ -16,7 +16,7 @@ export default function MainSidebar() {
 		// {/* Side bar */}
 		<section
 			className={classNames({
-				"fixed h-screen top-0 bottom-0 shadow-xl shadow-slate-700 backdrop-blur z-40 left-auto right-0 lg:w-1/4 sm:w-1/2 xs:w-1/2 pt-20 animate__animated bg-slate-50/90 dark:bg-slate-900/90": true,
+				"fixed h-screen top-0 bottom-0 shadow-xl shadow-slate-700 backdrop-blur z-40 left-auto right-0 lg:w-1/4 sm:w-1/2 xs:w-1/2 pt-40 animate__animated bg-slate-50/90 dark:bg-slate-900/90": true,
 				"animate__slideInRight visible": isMenuShown,
 				"animate__slideOutRight invisible": !isMenuShown
 			})}

@@ -182,7 +182,7 @@ export default function CourseListItem({ isAdmin = true, data, showInfo = true, 
 				<TECollapse show={show}>
 					{/* course material content */}
 					<div className="min-h-[15vh]">
-						<CourseMaterials isAdmin={false} courseId={courseId as any as string} courseMaterials={data?.materials} />
+						<CourseMaterials isAdmin={isAdmin} courseId={courseId as any as string} courseMaterials={data?.materials} />
 					</div>
 				</TECollapse>
 			</div>

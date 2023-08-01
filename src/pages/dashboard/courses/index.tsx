@@ -90,6 +90,7 @@ export default function DashboardCourses({ configs }: DashboardProps) {
 							<>
 								{_data?.map(course => (
 									<CourseListItem
+										isAdmin={true}
 										data={course}
 										image={course?.image}
 										status={course?.status}
