@@ -23,7 +23,7 @@ export default function WYSIWYGEditor({ getContents, onChange, value, inputName 
 				onInit={(evt, editor) => (typeof getContents === "function" ? getContents(editor.getContent()) : "")}
 				initialValue={value ? value : ""}
 				init={{
-					height: 200,
+					height: 500,
 					menubar: false,
 					plugins: ["advlist", "lists", "link", "fullscreen", "table", "help", "wordcount"],
 					toolbar:
