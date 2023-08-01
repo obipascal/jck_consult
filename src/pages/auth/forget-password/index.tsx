@@ -25,6 +25,7 @@ type InitValsProps = {
 export default function ForgetPasswordPage({ configs }: AppConfigs) {
 	const dispatcher = useDispatch()
 	const router = useRouter()
+	const { callback } = router?.query
 
 	const initData: InitValsProps = {
 		email: ""
@@ -36,7 +37,9 @@ export default function ForgetPasswordPage({ configs }: AppConfigs) {
 				Success("Forget Password", res?.message)
 				dispatcher(setApiToken(res?.data?.api_token))
 
-				waitUntil(100).then(() => router?.push(`${ROUTES?.user?.forgetPassword.confirm}?email=${params?.email}`))
+				waitUntil(100).then(() =>
+					router?.push(callback ? `${ROUTES?.user?.forgetPassword.confirm}?email=${params?.email}&callback=${callback}` : `${ROUTES?.user?.forgetPassword.confirm}?email=${params?.email}`)
+				)
 			}
 		},
 		onError(error, variables, context) {

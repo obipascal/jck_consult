@@ -25,6 +25,7 @@ type InitValsProps = {
 export default function SignUpPage({ configs }: AppConfigs) {
 	const dispatcher = useDispatch()
 	const router = useRouter()
+	const { callback } = router?.query
 
 	const initData: InitValsProps = {
 		email: ""
@@ -36,7 +37,7 @@ export default function SignUpPage({ configs }: AppConfigs) {
 				Success("Sign Up", res?.message)
 				dispatcher(setApiToken(res?.data?.api_token))
 
-				waitUntil(100).then(() => router?.push(`${ROUTES?.user?.verify}?email=${params?.email}`))
+				waitUntil(100).then(() => router?.push(callback ? `${ROUTES?.user?.verify}?email=${params?.email}&callback=${callback}` : `${ROUTES?.user?.verify}?email=${params?.email}`))
 			}
 		},
 		onError(error, variables, context) {
@@ -105,7 +106,7 @@ export default function SignUpPage({ configs }: AppConfigs) {
 
 													<p className="my-8">
 														Already have account?
-														<Link href={ROUTES.user.signin} className="font-extrabold ml-2 text-primary">
+														<Link href={callback ? `${ROUTES.user.signin}?callback=${callback}` : ROUTES.user.signin} className="font-extrabold ml-2 text-primary">
 															Login
 														</Link>
 													</p>

@@ -22,7 +22,7 @@ type InitValsProps = {
 
 export default function VerifyAccountPage({ configs }: AppConfigs) {
 	const router = useRouter()
-	const { email } = router?.query
+	const { email, callback } = router?.query
 
 	const initData: InitValsProps = {
 		otp_code: ""
@@ -32,7 +32,7 @@ export default function VerifyAccountPage({ configs }: AppConfigs) {
 		onSuccess(res: any) {
 			if (res?.status) {
 				Success("Verification", res?.message)
-				router?.push(ROUTES?.user?.onboard)
+				router?.push(callback ? `${ROUTES?.user?.onboard}?callback=${callback}` : ROUTES?.user?.onboard)
 			}
 		},
 		onError(error, variables, context) {

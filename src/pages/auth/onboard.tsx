@@ -31,6 +31,7 @@ type InitValsProps = {
 export default function OnboardPage({ configs }: AppConfigs) {
 	const router = useRouter()
 	const dispatcher = useDispatch()
+	const { callback } = router?.query
 
 	const initData: InitValsProps = {
 		first_name: "",
@@ -47,7 +48,7 @@ export default function OnboardPage({ configs }: AppConfigs) {
 				Success("Profile Updated", "Account created successfully, you can now login to enroll in your desired course.")
 				dispatcher(destroySession(true))
 
-				waitUntil(100).then(() => router?.push(ROUTES.user?.signin))
+				waitUntil(100).then(() => router?.push(callback ? `${ROUTES.user?.signin}?callback=${callback}` : ROUTES.user?.signin))
 			}
 		},
 		onError(error, variables, context) {

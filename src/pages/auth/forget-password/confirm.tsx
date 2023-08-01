@@ -21,7 +21,7 @@ type InitValsProps = {
 
 export default function ConfirmResetPasswordPage({ configs }: AppConfigs) {
 	const router = useRouter()
-	const { email } = router?.query
+	const { email, callback } = router?.query
 
 	const initData: InitValsProps = {
 		otp_code: ""
@@ -31,7 +31,9 @@ export default function ConfirmResetPasswordPage({ configs }: AppConfigs) {
 		onSuccess(res: any) {
 			if (res?.status) {
 				Success("Verification", res?.message)
-				router?.push(`${ROUTES?.user?.forgetPassword?.reset}?token=${res?.data?.reset_token}`)
+				router?.push(
+					callback ? `${ROUTES?.user?.forgetPassword?.reset}?token=${res?.data?.reset_token}&callback=${callback}` : `${ROUTES?.user?.forgetPassword?.reset}?token=${res?.data?.reset_token}`
+				)
 			}
 		},
 		onError(error, variables, context) {

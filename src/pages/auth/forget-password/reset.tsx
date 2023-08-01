@@ -27,7 +27,7 @@ type InitValsProps = {
 
 export default function ResetPasswordPage({ configs }: AppConfigs) {
 	const router = useRouter()
-	const { token } = router?.query
+	const { token, callback } = router?.query
 	const dispatcher = useDispatch()
 
 	const initData: InitValsProps = {
@@ -42,7 +42,7 @@ export default function ResetPasswordPage({ configs }: AppConfigs) {
 				Success("Password Reset!", res?.message)
 				dispatcher(destroySession(true))
 
-				waitUntil(100).then(() => router?.push(ROUTES.user?.signin))
+				waitUntil(100).then(() => router?.push(callback ? `${ROUTES.user?.signin}?callback=${callback}` : ROUTES.user?.signin))
 			}
 		},
 		onError(error, variables, context) {

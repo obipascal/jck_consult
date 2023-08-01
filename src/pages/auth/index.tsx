@@ -95,7 +95,7 @@ export default function SignInPage({ configs }: AppConfigs) {
 													</div>
 
 													<p className="text-end">
-														<Link href={ROUTES.user.forgetPassword.index} className="font-semibold text-primary">
+														<Link href={callback ? `${ROUTES.user.forgetPassword.index}?callback=${callback}` : ROUTES.user.forgetPassword.index} className="font-semibold text-primary">
 															Forgot Password?
 														</Link>
 													</p>
@@ -130,7 +130,7 @@ export default function SignInPage({ configs }: AppConfigs) {
 
 													<p className="my-8">
 														Don&apos;t have account?
-														<Link href={ROUTES.user.signup} className="font-extrabold ml-2 text-primary">
+														<Link href={callback ? `${ROUTES.user.signup}?callback=${callback}` : ROUTES.user.signup} className="font-extrabold ml-2 text-primary">
 															Sign Up
 														</Link>
 													</p>

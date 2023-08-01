@@ -16,6 +16,7 @@ import MaleAvatar from "@JCKConsultant/assets/img/avatar/male-avatar.webp"
 import { useUser } from "@JCKConsultant/hooks/useUser"
 import { signOut } from "next-auth/react"
 import CourseNavDropdown from "../course/CourseNavDropdown"
+import { AdminDropdown } from "../dashboard/layout/DashboardNavbar"
 
 export const AppLogo = Logo
 
@@ -118,9 +119,15 @@ export default function MainNav(props: MainNavProps) {
 								</Link>
 							</li>
 
-							{user && (
+							{user && user?.role === "user" && (
 								<li className={navStyle.navItems}>
 									<UserDropdown />
+								</li>
+							)}
+
+							{user && user?.role === "admin" && (
+								<li className={navStyle.navItems}>
+									<AdminDropdown />
 								</li>
 							)}
 						</ul>
