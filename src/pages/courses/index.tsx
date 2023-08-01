@@ -72,7 +72,11 @@ export default function OurCourses({ configs }: AppConfigs) {
 															</div>
 															<div className="">
 																<p className="text-sm text-gray-500 mb-4">{product?.desc}</p>
-																<Link href={ROUTES.courses.details(product?.course_id)} className="p-2 px-3 rounded-full font-medium w-fit mt-3 block bg-primary text-white" role="button">
+																<Link
+																	href={ROUTES.courses.details(product?.course_id)}
+																	className="hover:bg-secondary hover:text-primary transition ease-in duration-300  p-2 px-3 rounded-full font-medium w-fit mt-3 block border border-primary hover:border-secondary text-primary"
+																	role="button"
+																>
 																	Learn more
 																</Link>
 															</div>

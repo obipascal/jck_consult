@@ -3,4 +3,5 @@ export interface Meta {
 	title?: string
 	logo?: string
 	media?: string
+	mediaTitle?: string
 }

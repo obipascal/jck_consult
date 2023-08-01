@@ -76,7 +76,15 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 				<div className={classNames({ "h-full min-h-screen": true })}>
 					<InitTailwindUI />
 					<Head>
-						<title>{title ? `${title} - ${meta?.title ? meta?.title : "JCK Consulting."}` : meta?.title ? meta?.title : "JCK Consulting."}</title>
+						<title>
+							{title
+								? `${title} - ${meta?.mediaTitle ? meta?.mediaTitle : meta?.title ? meta?.title : "JCK Consulting."}`
+								: meta?.mediaTitle
+								? meta?.mediaTitle
+								: meta?.title
+								? meta?.title
+								: "JCK Consulting."}
+						</title>
 
 						<meta name="theme-color" content="rgb(30 58 138)" />
 
@@ -84,10 +92,10 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 						<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 						{/* Application configuration on how it will appear on mobile device */}
-						<meta name="application-name" content={meta?.title ? meta?.title : "JCK Consulting."} />
+						<meta name="application-name" content={meta?.mediaTitle ? meta?.mediaTitle : meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta name="apple-mobile-web-app-capable" content="yes" />
 						<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-						<meta name="apple-mobile-web-app-title" content={meta?.title ? meta?.title : "JCK Consulting."} />
+						<meta name="apple-mobile-web-app-title" content={meta?.mediaTitle ? meta?.mediaTitle : meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta name="description" content={meta?.description} />
 						<meta name="format-detection" content="telephone=no" />
 						<meta name="mobile-web-app-capable" content="yes" />
@@ -113,11 +121,11 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 
 						{/* End */}
 
-						<meta itemProp="name" content={meta?.title ? meta?.title : "JCK Consulting."} />
+						<meta itemProp="name" content={meta?.mediaTitle ? meta?.mediaTitle : meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta itemProp="description" content={meta?.description} />
 						<meta itemProp="image" content={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 						<meta name="description" content={meta?.description} />
-						<meta property="og:title" content={meta?.title ? meta?.title : "JCK Consulting."} />
+						<meta property="og:title" content={meta?.mediaTitle ? meta?.mediaTitle : meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta property="og:description" content={meta?.description} />
 						<meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
 						<meta property="og:image" content={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
@@ -126,7 +134,7 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 						<meta name="twitter:card" content="summary_large_image" />
 						<meta name="twitter:site" content="@jckconsulting" />
 						<meta name="twitter:creator" content="@jckconsulting" />
-						<meta name="twitter:title" content={meta?.title ? meta?.title : "JCK Consulting."} />
+						<meta name="twitter:title" content={meta?.mediaTitle ? meta?.mediaTitle : meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta name="twitter:description" content={meta?.description} />
 						<meta name="twitter:image" content={meta?.media ? meta?.media : meta?.logo ? meta?.logo : `${process.env.NEXT_PUBLIC_URL}/AppImages/ios/180.png`} />
 					</Head>
