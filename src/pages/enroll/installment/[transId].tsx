@@ -70,8 +70,8 @@ export default function InstallmentalPaymentPage({ configs }: AppConfigs) {
 	})
 	const isProcessing = installmentPaymentApi.isLoading
 
-	const _handleInstallmentPayment = (transId: any) => {
-		installmentPaymentApi.mutateAsync({ id: transId })
+	const _handleInstallmentPayment = (_transId: any) => {
+		installmentPaymentApi.mutateAsync({ id: _transId, data: null })
 	}
 
 	const metaData: Meta = {
