@@ -2,33 +2,12 @@ import React from "react"
 import MainLayout from "@JCKConsultant/components/sites/MainLayout"
 import { prefetchConfigsAuthorizedOnly } from "@JCKConsultant/lib/prefetch"
 import { AppConfigs, Meta } from "@JCKConsultant/types"
-import dynamic from "next/dynamic"
-import { useRouter } from "next/router"
 import UserDashLayout from "@JCKConsultant/components/user/layout/UserDashLayout"
-import OrderSummary from "@JCKConsultant/components/checkout/OrderSummary"
-import { ErrorMessage, Field, Form, Formik } from "formik"
-import { CourseInterface, DiscountCodeInterface } from "@JCKConsultant/types/course"
-import { useMutation } from "react-query"
-import { FetchCourse } from "@JCKConsultant/services/course/course.apis"
-import { Info, ServerErrors } from "@JCKConsultant/lib/_toaster"
-import Spinner from "@JCKConsultant/components/home/Spinner"
-import { ApplyPromoCode } from "@JCKConsultant/services/promo/promo.apis"
-import { promoCodeValidatorScheme } from "@JCKConsultant/lib/validator/miscValidators"
-import { CheckoutTrans } from "@JCKConsultant/services/transactions/trans.apis"
-import { ROUTES } from "@JCKConsultant/configs/routes"
-import { useDispatch } from "react-redux"
-import { setPayIntentClientSecret } from "@JCKConsultant/redux/reducers/checkoutFlowSlice"
-import { waitUntil } from "@JCKConsultant/lib/utils"
 import CheckoutForm from "@JCKConsultant/components/checkout/CheckoutForm"
-const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
+import StripeLogo from "@JCKConsultant/assets/img/assets/stripe-badge-transparent.png"
+import Image from "next/image"
 
-type InitValsProps = {
-	code: string
-	course_id?: string
-}
 export default function CheckoutCourseEnrollmentPage({ configs }: AppConfigs) {
-	const dispatcher = useDispatch()
-
 	const metaData: Meta = {
 		title: configs?.settings?.name,
 		description: configs?.settings?.desc,
@@ -36,13 +15,15 @@ export default function CheckoutCourseEnrollmentPage({ configs }: AppConfigs) {
 	}
 
 	return (
-		<MainLayout meta={metaData} siteConfigs={configs} title="Dashboard">
+		<MainLayout meta={metaData} siteConfigs={configs} title="Checkout">
 			<UserDashLayout>
 				<div className="flex flex-col gap-8 items-center justify-center min-w-[50%]">
 					<div className="p-3 rounded-md shadow">
 						<h1 className="px-2 py-3 font-bold text-2xl text-primary mb-4">Checkout</h1>
 						<CheckoutForm />
-						<p className="p-2 italic font-semibold text-sm text-gray-500 text-center items-center">Your details are secured by Stripe</p>
+						<div className="pt-4">
+							<Image src={StripeLogo} className="w-96 m-auto block" alt="Secured by stripe" />
+						</div>
 					</div>
 				</div>
 			</UserDashLayout>

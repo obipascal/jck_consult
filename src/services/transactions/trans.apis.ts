@@ -6,6 +6,14 @@ export const CheckoutTrans = async (params: FormData | any) => {
 	return await POST(transEndpoints.CREATE, params)
 }
 
+export const InitiateInstallmentPayment = async (params: UpdateRequestParams) => {
+	return await POST(transEndpoints.INSTALLMENT(params?.id))
+}
+
+export const RequestInstallmentPayment = async (params: any) => {
+	return await GET(transEndpoints.REQUEST(params))
+}
+
 export const FetchTrans = async (params: PaginationRequestParams) => {
 	return await GET(transEndpoints.ALL(params?.perPage, params?.page))
 }

@@ -8,12 +8,13 @@ import Link from "next/link"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import { classNames, uniqueId } from "@JCKConsultant/lib/utils"
 import { useMutation } from "react-query"
-import { FetchTran } from "@JCKConsultant/services/transactions/trans.apis"
+import { FetchTran, RequestInstallmentPayment } from "@JCKConsultant/services/transactions/trans.apis"
 import { TransactionInterface } from "@JCKConsultant/types"
-import { ServerErrors } from "@JCKConsultant/lib/_toaster"
+import { ServerErrors, Success } from "@JCKConsultant/lib/_toaster"
 import { formatNumber } from "@JCKConsultant/lib/utilities"
 import TransactionDetailsLoader from "@JCKConsultant/components/loaders/TransactionDetailsLoader"
 import { FemaleAvatar, MaleAvatar } from "@JCKConsultant/pages/dashboard/users/[userId]"
+import Spinner from "@JCKConsultant/components/home/Spinner"
 
 type TransactionDetailsPanelProps = {
 	pt?: string
@@ -33,6 +34,18 @@ export default function TransactionDetailsPanel({ isAdmin = true, pt }: Transact
 	})
 
 	const isFetching = fetchTransactionApi.isLoading
+
+	const requestPaymentApi = useMutation(RequestInstallmentPayment, {
+		onSuccess(res: any) {
+			if (res?.status) Success("Payment Request", res?.message)
+		},
+		onError(error, variables, context) {
+			ServerErrors("Error", error)
+		}
+	})
+	const isRequesting = requestPaymentApi.isLoading
+
+	const _handleRequestPayment = (transId: any) => requestPaymentApi.mutateAsync(transId)
 
 	React.useEffect(() => {
 		if (params) {
@@ -85,6 +98,21 @@ export default function TransactionDetailsPanel({ isAdmin = true, pt }: Transact
 
 											{!isFetching && (
 												<>
+													{transaction?.payment_type === "first_installment" && (
+														<div className="my-4">
+															<button
+																onClick={() => _handleRequestPayment(transaction?.trans_id)}
+																disabled={isRequesting}
+																className="bg-gradient-to-r from-indigo-500 to-blue disabled:from-blue-800/50 disabled:to-blue/50 mb-3 inline-block w-fit rounded-full p-4 text-md font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+																type="button"
+																data-te-ripple-init
+																data-te-ripple-color="light"
+															>
+																{!isRequesting && "Request Payment"}
+																{isRequesting && <Spinner />}
+															</button>
+														</div>
+													)}
 													<dl className="divide-y divide-gray-300">
 														<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
 															<dt className="text-sm font-semibold leading-6 text-gray-900">ID</dt>

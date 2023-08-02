@@ -7,6 +7,7 @@ export interface TransactionInterface {
 	account_id: number
 	course_id: number
 	amount: number
+	original_amount: number
 	discount: number
 	reference: string
 	status: "pending" | "success" | "failed" | "error"
@@ -14,6 +15,7 @@ export interface TransactionInterface {
 	cs_code: string
 	created_at: string
 	updated_at: string
+	payment_type: "initiated" | "full" | "partial" | "first_installment"
 	course: CourseInterface
 	user: UserInterface
 }

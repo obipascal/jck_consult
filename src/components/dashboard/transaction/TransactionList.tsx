@@ -55,7 +55,8 @@ export default function TransactionList({ settings }: SiteConfigs) {
 														<p className="text-sm font-semibold leading-6 text-gray-900">{transaction?.course?.title}</p>
 
 														<p className="mt-1 truncate text-xs leading-5 text-gray-500">
-															<small className="italic mr-1 text-gray-300">by</small> {transaction?.user?.first_name} {transaction?.user?.last_name}
+															<small className="italic mr-1 text-gray-300">by</small> {transaction?.user?.first_name} {transaction?.user?.last_name} |{" "}
+															{transaction?.payment_type?.split("_")?.join(" ")}
 														</p>
 													</div>
 												</div>
