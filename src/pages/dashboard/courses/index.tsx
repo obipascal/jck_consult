@@ -38,7 +38,7 @@ const EnrollRequestButton = () => {
 	)
 }
 
-const components = [<EnrollRequestButton key={uniqueId()} />, <CreateButton key={uniqueId()} />]
+const components = [<CreateButton key={uniqueId()} />]
 
 export default function DashboardCourses({ configs }: DashboardProps) {
 	const [courses, setCourses] = React.useState<PaginationResponse<CourseInterface>>()

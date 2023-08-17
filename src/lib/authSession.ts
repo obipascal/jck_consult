@@ -1,4 +1,5 @@
 import { ROUTES } from "@JCKConsultant/configs/routes"
+import { FetchAnalysis } from "@JCKConsultant/services/analysis/analysis.apis"
 import { FetchConfigs } from "@JCKConsultant/services/settings/settings.apis"
 import { getSession } from "next-auth/react"
 
@@ -16,18 +17,21 @@ export const authorizedOnly = async (context: any) => {
 
 	try {
 		const _data = await FetchConfigs()
+		const _analysis = await FetchAnalysis()
 
 		return {
 			props: {
 				session: _session,
-				configs: _data?.data
+				configs: _data?.data,
+				analysis: _analysis?.data
 			}
 		}
 	} catch (error) {
 		return {
 			props: {
 				session: _session,
-				configs: null
+				configs: null,
+				analysis: null
 			}
 		}
 	}

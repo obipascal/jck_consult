@@ -2,6 +2,7 @@ import type { User as NextAuthUser } from "next-auth"
 import { PaginationResponse } from "./http"
 import { FAQResponseInterface } from "./faqs"
 import { CourseInterface } from "./course"
+import { AnalysisInterface } from "./analysis"
 
 export type UserSettings = Pick<NextAuthUser, "name" | "email" | "image">
 
@@ -33,6 +34,7 @@ export interface SiteConfigs {
 
 export type DashboardProps = {
 	configs?: SiteConfigs
+	analysis?: AnalysisInterface
 }
 
 export type AppConfigs = {

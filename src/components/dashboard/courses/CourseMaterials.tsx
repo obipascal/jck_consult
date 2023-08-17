@@ -36,7 +36,7 @@ export default function CourseMaterials({ isAdmin = true, courseId, courseMateri
 						{courseMaterials?.length > 0 && (
 							<>
 								{courseMaterials?.map(file => (
-									<CourseMaterialFile key={file?.material_id} data={file} />
+									<CourseMaterialFile key={file?.material_id} data={file} isAdmin={isAdmin} />
 								))}
 							</>
 						)}

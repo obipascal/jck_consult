@@ -72,17 +72,15 @@ export const ServerErrors = (title?: string, error?: any) => {
 			)
 		}
 	} else {
-		{
-			toast(
-				({ closeToast }) => (
-					<div className="flex flex-col gap-4">
-						<h1 className="font-bold text-md black w-full">{title}</h1>
-						<p className="text-gray-600 p-2">{error?.message}</p>
-					</div>
-				),
-				{ type: "error" }
-			)
-		}
+		toast(
+			({ closeToast }) => (
+				<div className="flex flex-col gap-4">
+					<h1 className="font-bold text-md black w-full">{title}</h1>
+					<p className="text-gray-600 p-2">{error?.message}</p>
+				</div>
+			),
+			{ type: "error" }
+		)
 	}
 }
 
