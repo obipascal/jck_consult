@@ -18,7 +18,7 @@ type CourseMaterialFileProps = {
 export default function CourseMaterialFile({ isAdmin = false, data }: CourseMaterialFileProps) {
 	const router = useRouter()
 
-	const [editTitle, setEditTitle] = React.useState<boolean>(isAdmin as boolean)
+	const [editTitle, setEditTitle] = React.useState<boolean>(false)
 	const [title, setTitle] = React.useState<string>(data?.title as string)
 	const _handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTitle(e?.target?.value)
