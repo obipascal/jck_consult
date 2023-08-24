@@ -183,14 +183,16 @@ export default function CourseListItem({ isAdmin = true, data, showInfo = true, 
 				<hr />
 				<TECollapse show={show}>
 					{/* course material content */}
-					<button
-						onClick={_toggleEnrollmentPanel}
-						type="button"
-						className="ml-10 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mb-4"
-					>
-						<UserCircleIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-						Offline User Enrollment
-					</button>
+					{isAdmin && (
+						<button
+							onClick={_toggleEnrollmentPanel}
+							type="button"
+							className="ml-10 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mb-4"
+						>
+							<UserCircleIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+							Offline User Enrollment
+						</button>
+					)}
 					<div className="h-full">
 						<CourseMaterials isAdmin={isAdmin} courseId={courseId as any as string} courseMaterials={data?.materials} />
 					</div>

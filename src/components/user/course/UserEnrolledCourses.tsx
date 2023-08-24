@@ -58,7 +58,7 @@ export default function UserEnrolledCourses() {
 						</>
 					)}
 
-					{(typeof _data?.length !== "undefined" ? _data?.length <= 0 : false) && <p className="text-gray-400">No courses yet. Click on &quot;+ Create&quot; to create a new course </p>}
+					{(typeof _data?.length !== "undefined" ? _data?.length <= 0 : false) && <p className="text-gray-400">You&apos;re not enrolled in any course yet.</p>}
 				</>
 			)}
 
