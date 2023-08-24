@@ -34,11 +34,7 @@ export default function CourseInfo({ configs, course }: AppConfigs) {
 									{formatNumber(course?.price)}
 								</h1>
 
-								<Link
-									href={ROUTES.enroll.index(course?.course_id)}
-									className="bg-secondary text-primary transition ease-in duration-300  p-2 px-3 rounded-full font-medium w-fit mt-3 block"
-									role="button"
-								>
+								<Link href={ROUTES.user.signup} className="bg-secondary text-primary transition ease-in duration-300  p-2 px-3 rounded-full font-medium w-fit mt-3 block" role="button">
 									Register Now
 								</Link>
 							</div>
