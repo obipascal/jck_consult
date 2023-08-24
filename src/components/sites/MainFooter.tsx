@@ -83,6 +83,11 @@ export default function MainFooter({ settings }: SiteConfigs) {
 								Sign-In
 							</Link>
 						</p>
+						<p className="mb-4" id="auth_signup">
+							<Link href={ROUTES.user.signup} className="hover:text-secondary  decoration-2 hover:underline underline-offset-8  hover:decoration-secondary">
+								Sign Up
+							</Link>
+						</p>
 					</div>
 					{/* <!-- Useful links section --> */}
 					<div>
