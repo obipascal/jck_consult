@@ -28,3 +28,7 @@ export const FetchAccounts = async (perPage: number = 10) => {
 export const DeleteAccount = async (accountId: number) => {
 	return await DROP(accountEndpoints.DELETE(accountId))
 }
+
+export const FetchUsers = async () => {
+	return await GET(accountEndpoints.USERS)
+}

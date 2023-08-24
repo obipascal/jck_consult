@@ -8,6 +8,7 @@ import Head from "next/head"
 import { signOut } from "next-auth/react"
 import { Warning } from "@JCKConsultant/lib/_toaster"
 import UploadMaterialPanel from "../panels/UploadMaterialPanel"
+import OfflineEnrollmentPanel from "../panels/OfflineEnrollmentPanel"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
 interface DashboardLayoutProps extends WithChildren {
@@ -96,7 +97,7 @@ export default function DashboardLayout({ children, pageName = "Dashboard", meta
 
 			{/* Panels */}
 			<EditCoursePanel />
-
+			<OfflineEnrollmentPanel />
 			<UploadMaterialPanel />
 		</>
 	)

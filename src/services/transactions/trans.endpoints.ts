@@ -1,5 +1,6 @@
 export const transEndpoints = {
 	CREATE: "protected:/v1/transactions/checkout",
+	OFFLINE: "protected:/v1/transactions/offline",
 	INSTALLMENT: (id: any) => `protected:/v1/transactions/installment_collection/${id}`,
 	REQUEST: (id: any) => `protected:/v1/transactions/request_payment/${id}`,
 	SINGLE: (id: any) => `protected:/v1/transactions/${id}`,

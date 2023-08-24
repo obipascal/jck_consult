@@ -17,7 +17,7 @@ import { checkoutValidatorScheme, promoCodeValidatorScheme } from "@JCKConsultan
 import { CheckoutTrans } from "@JCKConsultant/services/transactions/trans.apis"
 import { ROUTES } from "@JCKConsultant/configs/routes"
 import { useDispatch } from "react-redux"
-import { setPayIntentClientSecret } from "@JCKConsultant/redux/reducers/checkoutFlowSlice"
+import { setPayIntentClientSecret, setTransaction } from "@JCKConsultant/redux/reducers/checkoutFlowSlice"
 import { waitUntil } from "@JCKConsultant/lib/utils"
 const InitTailwindUI = dynamic(() => import("@JCKConsultant/components/sites/initTailwindUI"), { ssr: false })
 
@@ -86,6 +86,7 @@ export default function EnrollCourseSummaryPage({ configs }: AppConfigs) {
 				Info("Checkout", res?.message)
 
 				dispatcher(setPayIntentClientSecret(res?.data?.cs_code))
+				dispatcher(setTransaction(res?.data))
 
 				waitUntil(100).then(() => router?.push(ROUTES?.enroll.checkout(courseId)))
 			}

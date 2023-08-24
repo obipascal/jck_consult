@@ -3,7 +3,7 @@ import { CalendarIcon, CheckIcon, ChevronDownIcon, PencilIcon, TrashIcon } from 
 import { Menu, Transition } from "@headlessui/react"
 import { capitalize, classNames, toDateString } from "@JCKConsultant/lib/utils"
 import { useDispatch } from "react-redux"
-import { toggleEditCoursePanel } from "@JCKConsultant/redux/reducers/panelsSlice"
+import { toggleEditCoursePanel, toggleEnrollmentPanel } from "@JCKConsultant/redux/reducers/panelsSlice"
 import { toggleModal } from "@JCKConsultant/redux/reducers/modalSlice"
 import Modal from "@JCKConsultant/components/misc/Modal"
 import { formatNumber } from "@JCKConsultant/lib/utilities"
@@ -15,6 +15,7 @@ import { emitFetchCourses } from "@JCKConsultant/redux/reducers/appEventsSlice"
 import { TECollapse } from "tw-elements-react"
 import CourseMaterials from "./CourseMaterials"
 import { CourseInterface } from "@JCKConsultant/types/course"
+import { UserCircleIcon } from "@heroicons/react/24/outline"
 
 type CourseListItemProps = {
 	courseId: number
@@ -35,6 +36,7 @@ export default function CourseListItem({ isAdmin = true, data, showInfo = true, 
 	const _handleToggle = () => toggle(!show)
 
 	const _toggleEditPanel = () => dispatcher(toggleEditCoursePanel({ status: true, params: courseId }))
+	const _toggleEnrollmentPanel = () => dispatcher(toggleEnrollmentPanel({ status: true, params: courseId }))
 
 	const _toggleModal = () => dispatcher(toggleModal(true))
 
@@ -181,7 +183,15 @@ export default function CourseListItem({ isAdmin = true, data, showInfo = true, 
 				<hr />
 				<TECollapse show={show}>
 					{/* course material content */}
-					<div className="min-h-[15vh]">
+					<button
+						onClick={_toggleEnrollmentPanel}
+						type="button"
+						className="ml-10 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mb-4"
+					>
+						<UserCircleIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+						Offline User Enrollment
+					</button>
+					<div className="h-full">
 						<CourseMaterials isAdmin={isAdmin} courseId={courseId as any as string} courseMaterials={data?.materials} />
 					</div>
 				</TECollapse>

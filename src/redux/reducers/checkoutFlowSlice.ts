@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { HYDRATE } from "next-redux-wrapper"
 import { AppState } from "../stores"
-import { SiteConfigs } from "@JCKConsultant/types"
+import { SiteConfigs, TransactionInterface } from "@JCKConsultant/types"
 
 // Type for our state
 export interface CheckoutFlowProps {
 	client_secret?: string
+	transaction?: TransactionInterface
 }
 
 // Initial state
@@ -24,7 +25,9 @@ export const CheckoutFlowSlice = createSlice({
 		setPayIntentClientSecret(state, action) {
 			state.client_secret = action?.payload
 		},
-
+		setTransaction(state, action) {
+			state.transaction = action?.payload
+		},
 		// Special reducer for hydrating the state. Special case for next-redux-wrapper
 		extraReducers: {
 			// @ts-ignore
@@ -38,8 +41,9 @@ export const CheckoutFlowSlice = createSlice({
 	}
 })
 
-export const { setPayIntentClientSecret } = CheckoutFlowSlice.actions
+export const { setTransaction,setPayIntentClientSecret } = CheckoutFlowSlice.actions
 
 export const getPayIntentClientSecret = (state: AppState) => state?.checkoutFlow?.client_secret
+export const getTransaction = (state: AppState) => state?.checkoutFlow?.transaction
 
 export default CheckoutFlowSlice

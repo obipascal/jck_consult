@@ -4,6 +4,7 @@ export const accountEndpoints = {
 	UPDATE: `protected:/v1/account`,
 	GET: `protected:/v1/account`,
 	ALL: (perPage: number = 10) => `protected:/v1/accounts?perPage=${perPage}`,
+	USERS: `protected:/v1/account/users`,
 	DELETE: (accountId: number) => `protected:/v1/account/${accountId}`,
 	SEND_PHONE_VERIFICATION: `protected:/v1/account/sendPhoneVerification`,
 	VERIFY_PHONE: `protected:/v1/account/verifyPhoneNumber`,

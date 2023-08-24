@@ -27,7 +27,7 @@ export default function OrderSummary({ productName, productDiscount = 0, product
 									<td className="whitespace-nowrap px-6 py-4">{productName}</td>
 								</tr>
 								<tr className="border-b bg-white">
-									<td className="whitespace-nowrap px-6 py-4 font-bold">Original Price:</td>
+									<td className="whitespace-nowrap px-6 py-4 font-bold">Price:</td>
 									<td className="whitespace-nowrap px-6 py-4">&pound;{formatNumber(productPrice)}</td>
 								</tr>
 

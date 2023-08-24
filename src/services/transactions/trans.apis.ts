@@ -6,6 +6,10 @@ export const CheckoutTrans = async (params: FormData | any) => {
 	return await POST(transEndpoints.CREATE, params)
 }
 
+export const OfflineTrans = async (params: FormData | any) => {
+	return await POST(transEndpoints.OFFLINE, params)
+}
+
 export const InitiateInstallmentPayment = async (params: UpdateRequestParams) => {
 	return await POST(transEndpoints.INSTALLMENT(params?.id))
 }
