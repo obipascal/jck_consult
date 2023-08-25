@@ -1,96 +1,68 @@
-import Pagination from "@JCKConsultant/components/misc/LinkPagination"
+import TransactionsLoader from "@JCKConsultant/components/loaders/TransactionsLoader"
+import LinkPagination from "@JCKConsultant/components/misc/LinkPagination"
 import { ROUTES } from "@JCKConsultant/configs/routes"
-import { uniqueId } from "@JCKConsultant/lib/utils"
+import { useUser } from "@JCKConsultant/hooks/useUser"
+import { FemaleAvatar, MaleAvatar } from "@JCKConsultant/pages/dashboard/users/[userId]"
+import { FetchAccounts } from "@JCKConsultant/services/account/account.apis"
+import { LinksPaginationResponse, PaginationResponse } from "@JCKConsultant/types"
+import { UserInterface } from "@JCKConsultant/types/user"
 import { ChevronRightIcon } from "@heroicons/react/24/solid"
+import Image from "next/image"
 import Link from "next/link"
-const people = [
-	{
-		name: "Leslie Alexander",
-		email: "leslie.alexander@example.com",
-		role: "Co-Founder / CEO",
-		imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-		lastSeen: "3h ago",
-		lastSeenDateTime: "2023-01-23T13:23Z"
-	},
-	{
-		name: "Michael Foster",
-		email: "michael.foster@example.com",
-		role: "Co-Founder / CTO",
-		imageUrl: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-		lastSeen: "3h ago",
-		lastSeenDateTime: "2023-01-23T13:23Z"
-	},
-	{
-		name: "Dries Vincent",
-		email: "dries.vincent@example.com",
-		role: "Business Relations",
-		imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-		lastSeen: null
-	},
-	{
-		name: "Lindsay Walton",
-		email: "lindsay.walton@example.com",
-		role: "Front-end Developer",
-		imageUrl: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-		lastSeen: "3h ago",
-		lastSeenDateTime: "2023-01-23T13:23Z"
-	},
-	{
-		name: "Courtney Henry",
-		email: "courtney.henry@example.com",
-		role: "Designer",
-		imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-		lastSeen: "3h ago",
-		lastSeenDateTime: "2023-01-23T13:23Z"
-	},
-	{
-		name: "Tom Cook",
-		email: "tom.cook@example.com",
-		role: "Director of Product",
-		imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-		lastSeen: null
-	}
-]
+import React from "react"
+import { useMutation } from "react-query"
 
 export default function UserList() {
+	const activeUser = useUser()
+	const [users, setUsers] = React.useState<LinksPaginationResponse<UserInterface>>()
+
+	const fetchUserApi = useMutation(FetchAccounts, {
+		onSuccess(res: any) {
+			if (res?.status) setUsers(res?.data)
+		}
+	})
+	const isLoading = fetchUserApi.isLoading
+
+	React.useEffect(() => {
+		if (activeUser?.account_id) fetchUserApi.mutateAsync({ perPage: 50, page: 1 })
+	}, [activeUser?.account_id])
+
+	const _data = users?.data
+
 	return (
 		<div className="  bg-white shadow rounded-md p-3">
-			<ul role="list" className="divide-y divide-gray-100 mb-3">
-				{people.map(person => (
-					<li key={person.email} className="px-3 hover:shadow-lg">
-						<Link className="flex justify-between gap-x-6 py-5" href={ROUTES.dashboard.users.info(uniqueId())}>
-							<div className="flex gap-x-4">
-								<img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt="" />
-								<div className="min-w-0 flex-auto">
-									<p className="text-sm font-semibold leading-6 text-gray-900">{person.name}</p>
-									<p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.email}</p>
-								</div>
-							</div>
-
-							<div className="flex gap-x-4 items-center justify-between">
-								<div className="hidden sm:flex sm:flex-col sm:items-end">
-									<p className="text-sm leading-6 text-gray-900">{person.role}</p>
-									{person.lastSeen ? (
-										<p className="mt-1 text-xs leading-5 text-gray-500">
-											Last seen <time dateTime={person.lastSeenDateTime}>{person.lastSeen}</time>
-										</p>
-									) : (
-										<div className="mt-1 flex items-center gap-x-1.5">
-											<div className="flex-none rounded-full bg-emerald-500/20 p-1">
-												<div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+			{isLoading && <TransactionsLoader />}
+			{!isLoading && (
+				<>
+					<ul role="list" className="divide-y divide-gray-100 mb-3">
+						{_data && _data?.length > 0 && (
+							<>
+								{_data?.map(user => (
+									<li key={user?.email} className="px-3 hover:shadow-lg">
+										<Link className="flex justify-between gap-x-6 py-5" href={ROUTES.dashboard.users.info(user?.account_id)}>
+											<div className="flex gap-x-4">
+												<Image className="h-12 w-12 flex-none rounded-full bg-gray-50" src={user?.gender === "female" ? FemaleAvatar : MaleAvatar} alt="" />
+												<div className="min-w-0 flex-auto">
+													<p className="text-sm font-semibold leading-6 text-gray-900">
+														{user?.first_name} {user?.last_name}
+													</p>
+													<p className="mt-1 truncate text-xs leading-5 text-gray-500">{user?.email}</p>
+												</div>
 											</div>
-											<p className="text-xs leading-5 text-gray-500">Online</p>
-										</div>
-									)}
-								</div>
-								<ChevronRightIcon className="text-gray-500 -ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-							</div>
-						</Link>
-					</li>
-				))}
-			</ul>
 
-			<Pagination />
+											<div className="flex gap-x-4 items-center justify-between">
+												<ChevronRightIcon className="text-gray-500 -ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+											</div>
+										</Link>
+									</li>
+								))}
+							</>
+						)}
+					</ul>
+				</>
+			)}
+
+			<LinkPagination pager={users} mutator={fetchUserApi} isLoading={isLoading} />
 		</div>
 	)
 }

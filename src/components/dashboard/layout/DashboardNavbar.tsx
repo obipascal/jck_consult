@@ -33,7 +33,7 @@ type DashboardNavbarProps = {
 const navigation: Array<NavigationProps> = [
 	{ name: "Dashboard", href: ROUTES?.dashboard.index },
 	{ name: "Courses", href: ROUTES.dashboard.courses.index },
-	// { name: "Users", href: ROUTES.dashboard.users.index },
+	{ name: "Users", href: ROUTES.dashboard.users.index },
 	{ name: "Transactions", href: ROUTES.dashboard.transactions.index },
 	{ name: "Promotions", href: ROUTES.dashboard.promotion.index },
 	{ name: "Testimonies", href: ROUTES.dashboard.testimonies.index }

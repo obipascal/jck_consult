@@ -1,5 +1,6 @@
 import { GET, POST, PUT, DROP } from "@JCKConsultant/configs/api"
 import { accountEndpoints } from "./account.endpoints"
+import { PaginationRequestParams } from "@JCKConsultant/types"
 
 export type UpdateAccountProps = {
 	accountId?: number
@@ -17,12 +18,12 @@ export const UpdateProfile = async (params: UpdateAccountProps) => {
 export const FetchAccount = async () => {
 	return await GET(accountEndpoints.GET)
 }
-export const FetchProfile = async (accountId: number) => {
+export const FetchProfile = async (accountId: any) => {
 	return await GET(accountEndpoints.PROFILE(accountId))
 }
 
-export const FetchAccounts = async (perPage: number = 10) => {
-	return await GET(accountEndpoints.ALL(perPage))
+export const FetchAccounts = async (params: PaginationRequestParams) => {
+	return await GET(accountEndpoints.ALL(params?.perPage, params?.page))
 }
 
 export const DeleteAccount = async (accountId: number) => {

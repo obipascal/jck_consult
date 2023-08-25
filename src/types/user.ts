@@ -1,3 +1,5 @@
+import { EnrolledCourseInterface } from "./course"
+
 export interface BillingFormParams {
 	first_name?: string
 	last_name?: string
@@ -21,6 +23,7 @@ export interface UserInterface {
 	api_token: string
 	role: "admin" | "user"
 	billing_info: string
+	enrollments: Array<EnrolledCourseInterface>
 }
 
 export interface ReviewerInterface {
