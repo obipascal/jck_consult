@@ -20,18 +20,18 @@ export const MaleAvatar = Male
 export const FemaleAvatar = Female
 
 type UserHeader = {
-	image: StaticImageData | string
-	first_name: string
-	last_name: string
-	email: string
-	phone_number: string
+	image?: StaticImageData | string
+	first_name?: string
+	last_name?: string
+	email?: string
+	phone_number?: string
 }
 export const UserHeader: React.FC<UserHeader> = props => {
 	return (
 		<section className="p-3 shadow bg-white md:rounded-md xs:rounded-none mb-4 grid xs:grid-cols-1 md:grid-cols-3 gap-4 md:divide-x xs:divide-x-0 xs:divide-y md:divide-y-0">
 			<div className="flex items-centner xs:flex-col xs:justify-center md:flex-row md:justify-start gap-x-1">
 				<div className="basis-1/4 flex items-center justify-center">
-					<Image src={props?.image} alt="" className="rounded-full h-[100px] w-[100px]" />
+					<Image src={props?.image as string} alt="" className="rounded-full h-[100px] w-[100px]" />
 				</div>
 
 				<div className="basis-1/1 flex flex-col md:items-start xs:items-center justify-center">
