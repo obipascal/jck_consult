@@ -50,13 +50,13 @@ export default function Team({ content }: TeamProps) {
 							</div>
 						</div>
 
-						<div className="relative group/card transition ease-in duration-300 min-h-10">
+						{/* <div className="relative group/card transition ease-in duration-300 min-h-10">
 							<Image src={ObiPascalImg} alt="Obi Pascal Banjuare" className="rounded-md w-80 m-auto block transition ease-in duration-300 hover:scale-[1.1]" />
 							<div className="rounded-md bg-gradient-to-r from-indigo-500 to-blue-900 my-4 p-3 w-full">
 								<h1 className="font-bold xs:text-[16px] md:text-[22px] text-white uppercase">OBI PASCAL</h1>
 								<h2 className="font-medium xs:text-[20px] md:text-[20px] text-gray-500 capitalize italic text-secondary">-Software Developer</h2>
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</section>

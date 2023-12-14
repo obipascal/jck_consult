@@ -86,12 +86,12 @@ export default function MainLayout({ meta, children, title, siteConfigs }: Layou
 								: "JCK Consulting."}
 						</title>
 
-						<meta name="theme-color" content="rgb(30 58 138)" />
 
 						<meta charSet="utf-8" />
 						<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 						{/* Application configuration on how it will appear on mobile device */}
+						<meta name="theme-color" content="rgb(30 58 138)" />
 						<meta name="application-name" content={meta?.mediaTitle ? meta?.mediaTitle : meta?.title ? meta?.title : "JCK Consulting."} />
 						<meta name="apple-mobile-web-app-capable" content="yes" />
 						<meta name="apple-mobile-web-app-status-bar-style" content="default" />
